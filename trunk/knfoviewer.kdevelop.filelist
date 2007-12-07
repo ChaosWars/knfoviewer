@@ -1,13 +1,10 @@
+# KDevelop Custom Project File List
 CMakeLists.txt
 src/CMakeLists.txt
 src/cp437codec.cpp
 src/cp437codec.h
-src/knfo.moc.rule
 src/knfoviewer.cpp
 src/knfoviewer.h
 src/knfoviewer_part.cpp
 src/knfoviewer_part.h
-src/knfoviewer_part.moc.rule
-src/knfoviewersettings.cpp
-src/knfoviewersettings.cpp.rule
 src/main.cpp
