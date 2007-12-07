@@ -36,7 +36,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about( "knfoviewer", I18N_NOOP("KNfoViewerViewer"), version, description,
+    KAboutData about( "knfoviewer", I18N_NOOP("KNfoViewer"), version, description,
                      KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, 0, "valheru@facticius.net" );
     about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
     KCmdLineArgs::init( argc, argv, &about );
