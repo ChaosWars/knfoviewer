@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=Qt;KDE;Application;Utility;X-KDE-Utilities-File
+Comment=A NFO viewer for KDE3
+Comment[en_US]=A NFO viewer for KDE3
+DocPath=knfoviewer/knfoviewer.html
+Encoding=UTF-8
+Exec=knfoviewer %i %m -caption "%c"
+GenericName=KNfoViewer
+GenericName[en_US]=
+Icon=knfoviewer
+MimeType=application/x-nfo
+MultipleArgs=false
+Name=KNfoViewer
+Name[en_US]=KNfoViewer
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DCOP-ServiceType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

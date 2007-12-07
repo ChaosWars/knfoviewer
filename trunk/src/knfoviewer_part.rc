@@ -1,0 +1,12 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="knfoviewer_part" version="1">
+<MenuBar>
+  <Menu name="file">
+    <Action name="file_open"/>
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar">
+  <Action name="file_open"/>
+  <Separator/>
+</ToolBar>
+</kpartgui>
