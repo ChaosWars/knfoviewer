@@ -55,6 +55,9 @@
       <filetype>Makefile</filetype>
       <filetype>CMakeLists.txt</filetype>
     </filetypes>
+    <general>
+      <activedir>src</activedir>
+    </general>
   </kdevcustomproject>
   <kdevfilecreate>
     <filetypes/>

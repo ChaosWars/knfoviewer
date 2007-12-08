@@ -1,19 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="4" >
-  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer.cpp" >
-   <View0 Encoding="" line="133" Type="Source" />
+ <DocsAndViews NumberOfDocuments="1" >
+  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer_part.cpp" >
+   <View0 Encoding="" line="94" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer.h" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/x-nfo.desktop" >
-   <View0 Encoding="" line="3" Type="Source" />
-  </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer.desktop" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc3>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

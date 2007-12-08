@@ -10,4 +10,6 @@ src/knfoviewer.cpp
 src/knfoviewer.h
 src/knfoviewer_part.cpp
 src/knfoviewer_part.h
+src/knfoviewerpreview.cpp
+src/knfoviewerpreview.h
 src/main.cpp

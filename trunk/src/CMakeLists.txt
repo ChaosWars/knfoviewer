@@ -10,19 +10,23 @@ ENDIF( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
 
 SET( SRC main.cpp knfoviewer.cpp )
 SET( KPART_SRC knfoviewer_part.cpp cp437codec.cpp )
+SET( PREVIEW_SRC knfoviewerpreview.cpp )
 KDE3_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE3_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE3_LIB_DIR} )
-KDE3_AUTOMOC( ${KPART_SRC} ${SRC} )
+KDE3_AUTOMOC( ${KPART_SRC} ${PREVIEW_SRC} ${SRC} )
 KDE3_ADD_KPART( knfoviewerpart WITH_PREFIX ${KPART_SRC} )
+KDE3_ADD_KPART( knfoviewerpreview WITH_PREFIX ${PREVIEW_SRC} )
 KDE3_ADD_EXECUTABLE( knfoviewer ${SRC} )
-TARGET_LINK_LIBRARIES( knfoviewerpart ${QT_AND_KDECORE_LIBS} kdeui kio kparts )
+TARGET_LINK_LIBRARIES( knfoviewerpart ${QT_AND_KDECORE_LIBS} kio kparts )
+TARGET_LINK_LIBRARIES( knfoviewerpreview ${QT_AND_KDECORE_LIBS} kio kparts )
 TARGET_LINK_LIBRARIES( knfoviewer ${QT_AND_KDECORE_LIBS} kdeui kio kparts )
-INSTALL(TARGETS knfoviewer knfoviewerpart
+INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerpreview
         RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
         LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/kde3
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/kde3 )
 INSTALL( FILES knfoviewer.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/kde )
 INSTALL( FILES knfoviewer_part.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
 INSTALL( FILES x-nfo.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mimelnk/application )
+INSTALL( FILES knfoviewerpreview.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
 INSTALL( FILES knfoviewer_shell.rc knfoviewer_part.rc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/apps/knfoviewer )

@@ -25,7 +25,7 @@
 #include <klocale.h>
 #include <kio/netaccess.h>
 #include <qfile.h>
-#include <ktextbrowser.h>
+#include <ktextedit.h>
 #include "knfoviewer_part.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
@@ -38,7 +38,8 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     setInstance( KNfoViewerPartFactory::instance() );
 
     // this should be your custom internal widget
-    m_widget = new KTextBrowser( parentWidget );
+    m_widget = new KTextEdit( parentWidget );
+    m_widget->setWordWrap( QTextEdit::NoWrap );
     m_widget->setReadOnly( true );
 
     // notify the part that this is our internal widget
