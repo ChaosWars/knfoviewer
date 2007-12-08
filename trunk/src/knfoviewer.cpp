@@ -85,6 +85,7 @@ KNfoViewer::KNfoViewer()
 
 KNfoViewer::~KNfoViewer()
 {
+    saveProperties( config );
 }
 
 void KNfoViewer::load( const KURL& url )
@@ -120,6 +121,7 @@ void KNfoViewer::saveProperties( KConfig* config )
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
     // later when this app is restored
+    config->setGroup( "RecentFiles" );
     recentFiles->saveEntries( config );
 }
 
@@ -129,12 +131,13 @@ void KNfoViewer::readProperties( KConfig* config )
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
+    config->setGroup( "RecentFiles" );
     recentFiles->loadEntries( config );
 }
 
 void KNfoViewer::optionsConfigureKeys()
 {
-    KKeyDialog::configure(actionCollection());
+    KKeyDialog::configure( actionCollection() );
 }
 
 void KNfoViewer::optionsConfigureToolbars()
