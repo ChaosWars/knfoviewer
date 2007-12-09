@@ -25,7 +25,7 @@
 #include <kparts/factory.h>
 
 class KURL;
-class KTextEdit;
+class QTextEdit;
 class KRecentFilesAction;
 class KNfoViewerSettings;
 
@@ -67,7 +67,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
 
     private:
         KNfoViewerSettings *config;
-        KTextEdit *m_widget;
+        QTextEdit *m_widget;
         void setupMainWidget();
         void saveProperties( KNfoViewerSettings *config );
         void readProperties( KNfoViewerSettings *config );

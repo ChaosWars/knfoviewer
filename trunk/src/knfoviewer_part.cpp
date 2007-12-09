@@ -24,8 +24,10 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
+#include <qtextedit.h>
 #include <qfile.h>
-#include <ktextedit.h>
+#include <qregexp.h>
+#include <qsimplerichtext.h>
 #include "knfoviewer_part.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
@@ -38,8 +40,9 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     setInstance( KNfoViewerPartFactory::instance() );
 
     // this should be your custom internal widget
-    m_widget = new KTextEdit( parentWidget );
+    m_widget = new QTextEdit( parentWidget );
     m_widget->setWordWrap( QTextEdit::NoWrap );
+    m_widget->setTextFormat( QTextEdit::RichText );
     m_widget->setReadOnly( true );
 
     // notify the part that this is our internal widget
@@ -82,17 +85,36 @@ bool KNfoViewerPart::openFile()
     // m_file is always local so we can use QFile on it
     QFile file( m_file );
 
-    if( file.open( IO_ReadOnly ) == false )
+    if( !file.open( IO_ReadOnly ) )
         return false;
 
     QString str;
     QTextStream stream( &file );
-    CP437Codec *codec = new CP437Codec();
-    stream.setCodec( codec );
+    CP437Codec codec;
+    stream.setCodec( &codec );
+    QRegExp exp( "http://*" );
 
     while( !stream.atEnd() ){
         QString s = stream.readLine();
-        str += s + "\n";
+        int pos = 0;
+
+        while( ( pos = s.find( exp, pos ) ) > -1 ){
+
+            int end = pos + 7;
+            QChar c( s.at( end ) );
+
+            while( !c.isSpace() && c.category() != QChar::Separator_Line && end != s.length() ){
+                end++;
+                c = s.at( end );
+            }
+
+            QString l = s.mid( pos, end - pos );
+            QString link( "<a href=\"" + l + "\">" + l + "</a>" );
+            s.replace( pos, l );
+            pos += link.length();
+        }
+
+            str += s + "<br>";
     }
 
     file.close();
