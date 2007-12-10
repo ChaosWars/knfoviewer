@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=NFO Files
+ServiceTypes=ThumbCreator
+MimeTypes=text/x-nfo
+X-KDE-Library=libknfoviewerpreview
+CacheThumbnail=false

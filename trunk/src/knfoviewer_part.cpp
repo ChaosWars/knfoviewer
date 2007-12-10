@@ -24,10 +24,9 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
-#include <qtextedit.h>
+#include <ktextbrowser.h>
 #include <qfile.h>
 #include <qregexp.h>
-#include <qsimplerichtext.h>
 #include "knfoviewer_part.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
@@ -40,7 +39,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     setInstance( KNfoViewerPartFactory::instance() );
 
     // this should be your custom internal widget
-    m_widget = new QTextEdit( parentWidget );
+    m_widget = new KTextBrowser( parentWidget );
     m_widget->setTextFormat( QTextEdit::RichText );
     m_widget->setWordWrap( QTextEdit::NoWrap );
     m_widget->setReadOnly( true );
@@ -92,9 +91,10 @@ bool KNfoViewerPart::openFile()
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
+    QString s;
 
     while( !stream.atEnd() ){
-        QString s = stream.readLine();
+        s = stream.readLine();
 
         //Examine the text for hyperlinks
         QRegExp exp( "http://*" );
