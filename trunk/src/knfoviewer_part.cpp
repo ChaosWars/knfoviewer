@@ -41,8 +41,8 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 
     // this should be your custom internal widget
     m_widget = new QTextEdit( parentWidget );
-    m_widget->setWordWrap( QTextEdit::NoWrap );
     m_widget->setTextFormat( QTextEdit::RichText );
+    m_widget->setWordWrap( QTextEdit::NoWrap );
     m_widget->setReadOnly( true );
 
     // notify the part that this is our internal widget
@@ -92,16 +92,18 @@ bool KNfoViewerPart::openFile()
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
-    QRegExp exp( "http://*" );
 
     while( !stream.atEnd() ){
         QString s = stream.readLine();
+
+        //Examine the text for hyperlinks
+        QRegExp exp( "http://*" );
         int pos = 0;
+        QChar c;
 
         while( ( pos = s.find( exp, pos ) ) > -1 ){
-
             int end = pos + 7;
-            QChar c( s.at( end ) );
+            c = s.at( end );
 
             while( !c.isSpace() && c.category() != QChar::Separator_Line && end != s.length() ){
                 end++;
@@ -110,11 +112,11 @@ bool KNfoViewerPart::openFile()
 
             QString l = s.mid( pos, end - pos );
             QString link( "<a href=\"" + l + "\">" + l + "</a>" );
-            s.replace( pos, l );
+            s.replace( pos, l.length(), link );
             pos += link.length();
         }
 
-            str += s + "<br>";
+        str += s + "<br>";
     }
 
     file.close();
