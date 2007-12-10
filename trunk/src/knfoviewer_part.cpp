@@ -88,7 +88,7 @@ bool KNfoViewerPart::openFile()
     if( !file.open( IO_ReadOnly ) )
         return false;
 
-    QString str;
+    QString str( "<pre>" );
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
@@ -118,6 +118,8 @@ bool KNfoViewerPart::openFile()
 
         str += s + "<br>";
     }
+
+    str += "</pre>";
 
     file.close();
 
