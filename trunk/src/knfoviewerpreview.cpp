@@ -17,14 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include <kapplication.h>
+#include <khtml_part.h>
+#include <kstandarddirs.h>
+#include <kmimetype.h>
 #include <qfile.h>
 #include <qimage.h>
 #include <qpixmap.h>
+#include <qpainter.h>
 #include <qtextstream.h>
-#include <kstandarddirs.h>
-#include <kpixmapsplitter.h>
-#include <kmimetype.h>
-#include <kdebug.h>
+#include <time.h>
 #include "knfoviewerpreview.h"
 #include "cp437codec.h"
 
@@ -37,87 +39,100 @@ extern "C"
 }
 
 /*
- * This code is taken nearly verbatim from textcreator.cpp
+ * This code is taken nearly verbatim from htmlcreator.cpp
  * in kdebase/kioslave/thumbnail/ with minor changes to
  * ensure the correct rendering of CP437 encoded characters.
  */
-KNfoViewerPreview::KNfoViewerPreview() : m_splitter(0)
+KNfoViewerPreview::KNfoViewerPreview() : m_html( 0 )
 {
 }
 
 KNfoViewerPreview::~KNfoViewerPreview()
 {
-    delete m_splitter;
+    delete m_html;
 }
 
 bool KNfoViewerPreview::create( const QString &path, int width, int height, QImage &img )
 {
     // Filter out unwanted mimetypes
     KMimeType::Ptr mimeType = KMimeType::findByPath( path );
-    if ( !mimeType->is( "text/x-nfo" ) )
+
+    if( mimeType->is( "text/x-nfo" ) )
         return false;
 
-    if ( !m_splitter )
+    if (!m_html)
     {
-        m_splitter = new KPixmapSplitter;
-        QString pixmap = locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
-        if ( !pixmap.isEmpty() )
-        {
-            // FIXME: make font/glyphsize configurable
-            m_splitter->setPixmap( QPixmap( pixmap ));
-            m_splitter->setItemSize( QSize( 4, 7 ));
-        }
+        m_html = new KHTMLPart;
+        connect(m_html, SIGNAL(completed()), this, SLOT(slotCompleted()));
+        m_html->setJScriptEnabled(false);
+        m_html->setJavaEnabled(false);
+        m_html->setPluginsEnabled(false);
+        m_html->setMetaRefreshEnabled(false);
+        m_html->setOnlyLocalReferences(true);
     }
 
-    // determine some sizes...
-    // example: width: 60, height: 64
-    QSize pixmapSize( width, height );
-    if (height * 3 > width * 4)
-        pixmapSize.setHeight( width * 4 / 3 );
-    else
-        pixmapSize.setWidth( height * 3 / 4 );
-
-    if ( pixmapSize != m_pixmap.size() )
-        m_pixmap.resize( pixmapSize );
-
-    // create text-preview
     QFile file( path );
 
-    if ( file.open( IO_ReadOnly ) ){
-        QTextStream stream( &file );
-        CP437Codec codec;
-        stream.setCodec( &codec );
-        QString text;
+    if( !file.open( IO_ReadOnly ) )
+         return false;
 
-        while( !stream.atEnd() ){
-            QString s = stream.readLine();
-            text += s + "\n";
-        }
+    QTextStream stream( &file );
+    CP437Codec codec;
+    stream.setCodec( &codec );
+    QString text( "<html><pre>");
 
-        file.close();
+    while( !stream.atEnd() ){
+        text += stream.readLine() + "<br>";
+    }
 
-        m_pixmap.fill( QColor( 245, 245, 245 ) ); // light-grey background
+    text += "<pre><html>";
+    file.close();
+    m_html->write( text );
+    int t = startTimer(5000);
+    qApp->enter_loop();
+    killTimer(t);
 
-        QRect rect;
-        const QPixmap *fontPixmap = &(m_splitter->pixmap());
+    // render the HTML page on a bigger pixmap and use smoothScale,
+    // looks better than directly scaling with the QPainter (malte)
+    QPixmap pix;
+    if (width > 400 || height > 600)
+    {
+        if (height * 3 > width * 4)
+            pix.resize(width, width * 4 / 3);
+        else
+            pix.resize(height * 3 / 4, height);
+    }
+    else
+        pix.resize(400, 600);
 
-        for ( uint i = 0; i < text.length(); i++ ){
-            QChar ch = text.at( i );
-            rect = m_splitter->coordinates( ch );
+    // light-grey background, in case loadind the page failed
+    pix.fill( QColor( 245, 245, 245 ) );
 
-            if ( !rect.isEmpty() ){
-                bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect, Qt::CopyROP );
-            }
+    int borderX = pix.width() / width, borderY = pix.height() / height;
+    QRect rc(borderX, borderY, pix.width() - borderX * 2, pix.height() - borderY * 2);
+    QPainter p;
 
-        }
-            img = m_pixmap.convertToImage();
-    }else{
-       return false;
-   }
+    p.begin(&pix);
+    m_html->paint(&p, rc);
+    p.end();
+
+    img = pix.convertToImage();
     return true;
+}
+
+void KNfoViewerPreview::timerEvent(QTimerEvent *)
+{
+    qApp->exit_loop();
+}
+
+void KNfoViewerPreview::slotCompleted()
+{
+    qApp->exit_loop();
 }
 
 ThumbCreator::Flags KNfoViewerPreview::flags() const
 {
-    return (Flags)(DrawFrame | BlendIcon);
+    return DrawFrame;
 }
+
+#include "knfoviewerpreview.moc"
