@@ -53,7 +53,7 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     // Filter out unwanted mimetypes
     KMimeType::Ptr mimeType = KMimeType::findByPath( path );
 
-    if( mimeType->is( "text/x-nfo" ) )
+    if( !mimeType->is( "text/x-nfo" ) )
         return false;
 
     QFile file( path );
