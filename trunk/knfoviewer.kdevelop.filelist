@@ -12,4 +12,6 @@ src/knfoviewer_part.cpp
 src/knfoviewer_part.h
 src/knfoviewerpreview.cpp
 src/knfoviewerpreview.h
+src/knfoviewerthumbnail.cpp
+src/knfoviewerthumbnail.h
 src/main.cpp

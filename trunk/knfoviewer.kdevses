@@ -3,10 +3,10 @@
 <KDevPrjSession>
  <DocsAndViews NumberOfDocuments="3" >
   <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewerpreview.cpp" >
-   <View0 Encoding="" line="81" Type="Source" />
+   <View0 Encoding="" line="118" Type="Source" />
   </Doc0>
   <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewerpreview.h" >
-   <View0 Encoding="" line="0" Type="Source" />
+   <View0 Encoding="" line="27" Type="Source" />
   </Doc1>
   <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer_part.cpp" >
    <View0 Encoding="" line="93" Type="Source" />
