@@ -144,7 +144,7 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
 
 ThumbCreator::Flags KNfoViewerThumbnail::flags() const
 {
-    return DrawFrame;
+    return (Flags)(DrawFrame | BlendIcon);
 }
 
 #include "knfoviewerthumbnail.moc"
