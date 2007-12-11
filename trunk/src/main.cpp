@@ -26,7 +26,7 @@
 static const char description[] =
     I18N_NOOP( "A NFO viewer for KDE3" );
 
-static const char version[] = "0.1";
+static const char version[] = "0.2";
 
 static KCmdLineOptions options[] =
 {
@@ -54,13 +54,14 @@ int main(int argc, char **argv)
             KNfoViewer *widget = new KNfoViewer();
             widget->show();
         }else{
-            int i = 0;
-            for (; i < args->count(); i++ )
+
+            for (int i = 0; i < args->count(); i++ )
             {
                 KNfoViewer *widget = new KNfoViewer();
                 widget->show();
                 widget->load( args->url( i ) );
             }
+
         }
         args->clear();
     }

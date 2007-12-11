@@ -49,8 +49,7 @@ KNfoViewer::KNfoViewer()
     if ( factory ){
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                "knfoviewer_part", "KParts::ReadOnlyPart" ));
+        m_part = static_cast<KParts::ReadOnlyPart *>( factory->create(this, "knfoviewer_part", "KParts::ReadOnlyPart" ) );
 
         if( m_part ){
             // tell the KParts::MainWindow that this is indeed the main widget
@@ -110,8 +109,7 @@ void KNfoViewer::setupActions()
     KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
-    (void) new KAction( i18n( "&Configure Fonts" ), 0,
-                        this, SLOT( optionsConfigureFonts() ),
+    (void) new KAction( i18n( "&Configure Fonts" ), 0, this, SLOT( optionsConfigureFonts() ),
                         actionCollection(), "options_configure_fonts" );
     recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
 }
