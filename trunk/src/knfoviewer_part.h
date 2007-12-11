@@ -25,9 +25,10 @@
 #include <kparts/factory.h>
 
 class KURL;
-class KTextBrowser;
+class KHTMLPart;
 class KRecentFilesAction;
 class KNfoViewerSettings;
+class QGridLayout;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -53,7 +54,8 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         virtual ~KNfoViewerPart();
 
     public slots:
-        void setBrowserFont( const QFont& font );
+        void getFont();
+        void setBrowserFont( const QFont &newFont );
 
     protected:
     /**
@@ -66,13 +68,21 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         void fileOpen();
 
     private:
+        QFont font;
+        QString text;
+        int maxLineLength;
         KNfoViewerSettings *config;
-        KTextBrowser *m_widget;
+        QWidget *m_widget;
+        KHTMLPart *htmlpart;
+        QGridLayout *layout;
         void setupMainWidget();
+        const QString htmlCode( const QString &text );
         void saveProperties( KNfoViewerSettings *config );
         void readProperties( KNfoViewerSettings *config );
+        void display();
 
     signals:
+        void currentFont( const QFont &font );
         void addRecentFile( const KURL& url );
 };
 

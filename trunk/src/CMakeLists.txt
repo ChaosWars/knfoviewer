@@ -18,8 +18,8 @@ KDE3_AUTOMOC( ${KPART_SRC} ${THUMBNAIL_SRC} ${SRC} )
 KDE3_ADD_KPART( knfoviewerpart WITH_PREFIX ${KPART_SRC} )
 KDE3_ADD_KPART( knfoviewerthumbnail ${THUMBNAIL_SRC} )
 KDE3_ADD_EXECUTABLE( knfoviewer ${SRC} )
-TARGET_LINK_LIBRARIES( knfoviewerpart ${QT_AND_KDECORE_LIBS} kio kparts )
-TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${QT_AND_KDECORE_LIBS} kio kparts )
+TARGET_LINK_LIBRARIES( knfoviewerpart ${QT_AND_KDECORE_LIBS} kio kparts khtml )
+TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${QT_AND_KDECORE_LIBS} kio kparts khtml )
 TARGET_LINK_LIBRARIES( knfoviewer ${QT_AND_KDECORE_LIBS} kdeui kio kparts )
 INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
         RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin

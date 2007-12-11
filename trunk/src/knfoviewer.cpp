@@ -59,6 +59,8 @@ KNfoViewer::KNfoViewer()
             createGUI(m_part);
         }
 
+        connect( this, SIGNAL( getBrowserFont() ), m_part, SLOT( getFont() ) );
+        connect( m_part, SIGNAL( currentFont( const QFont& ) ), this, SLOT( configureFontsDialog( const QFont& ) ) );
         connect( this, SIGNAL( setBrowserFont( const QFont& ) ), m_part, SLOT( setBrowserFont( const QFont& ) ) );
         connect( m_part, SIGNAL( addRecentFile( const KURL& ) ), this, SLOT( addRecentFile( const KURL&  ) ) );
     }
@@ -158,8 +160,13 @@ void KNfoViewer::optionsConfigureToolbars()
 
 void KNfoViewer::optionsConfigureFonts()
 {
+    emit getBrowserFont();
+}
+
+void KNfoViewer::configureFontsDialog( const QFont& font )
+{
     KFontDialog fd( 0L, 0, true );
-    fd.setFont( m_part->widget()->font(), true );
+    fd.setFont( font, true );
     int result = fd.exec();
 
     if ( result == KFontDialog::Accepted ){

@@ -24,9 +24,11 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
-#include <ktextbrowser.h>
+#include <khtml_part.h>
+#include <khtmlview.h>
 #include <qfile.h>
 #include <qregexp.h>
+#include <qlayout.h>
 #include "knfoviewer_part.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
@@ -39,10 +41,16 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     setInstance( KNfoViewerPartFactory::instance() );
 
     // this should be your custom internal widget
-    m_widget = new KTextBrowser( parentWidget );
-    m_widget->setTextFormat( QTextEdit::RichText );
-    m_widget->setWordWrap( QTextEdit::NoWrap );
-    m_widget->setReadOnly( true );
+    m_widget = new QWidget( parentWidget );
+    layout = new QGridLayout( m_widget );
+    htmlpart = new KHTMLPart( m_widget );
+    layout->addWidget( htmlpart->view(), 0, 0, 0 );
+    htmlpart->setZoomFactor( 100 );
+    htmlpart->setJScriptEnabled(false);
+    htmlpart->setJavaEnabled(false);
+    htmlpart->setMetaRefreshEnabled(false);
+    htmlpart->setPluginsEnabled(false);
+    htmlpart->setOnlyLocalReferences(true);
 
     // notify the part that this is our internal widget
     setWidget( m_widget );
@@ -59,24 +67,30 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 KNfoViewerPart::~KNfoViewerPart()
 {
     saveProperties( config );
+    delete htmlpart;
+    delete layout;
 }
 
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
 {
-    config->setFont( m_widget->font().toString() );
+    config->setFont( font.toString() );
     config->writeConfig();
 }
 
 void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
 {
-    QFont font;
     font.fromString( config->font() );
-    m_widget->setFont( font );
 }
 
-void KNfoViewerPart::setBrowserFont( const QFont &font )
+void KNfoViewerPart::getFont()
 {
-    m_widget->setFont( font );
+    emit currentFont( font );
+}
+
+void KNfoViewerPart::setBrowserFont( const QFont &newFont )
+{
+    font = newFont;
+    display();
 }
 
 bool KNfoViewerPart::openFile()
@@ -87,14 +101,18 @@ bool KNfoViewerPart::openFile()
     if( !file.open( IO_ReadOnly ) )
         return false;
 
-    QString str( "<pre>" );
+    text = "<pre>";
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
     QString s;
+    maxLineLength = 0;
 
     while( !stream.atEnd() ){
         s = stream.readLine();
+        int currentLineLength = s.length();
+
+        currentLineLength > maxLineLength ? maxLineLength = currentLineLength : maxLineLength;
 
         //Examine the text for hyperlinks
         QRegExp exp( "http://*" );
@@ -116,20 +134,72 @@ bool KNfoViewerPart::openFile()
             pos += link.length();
         }
 
-        str += s + "<br>";
+        text += s + "<br>";
     }
 
-    str += "</pre>";
+    text += "</pre>";
 
     file.close();
 
     // now that we have the entire file, display it
-    m_widget->setText( str );
+    display();
 
     // just for fun, set the status bar
     emit setStatusBarText( m_url.prettyURL() );
 
     return true;
+}
+
+const QString KNfoViewerPart::htmlCode( const QString &text )
+{
+    int width = 565*maxLineLength/80;
+    int marginLeft = width/2;
+    QString code;
+    code = "<html><head> \
+            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF8\" /> \
+            <meta http-equiv=\"Content-Style-Type\" content=\"text/css\" /> \
+            <style> \
+            html, body { \
+                background-color: #ffffff; margin: 0; padding: 0; \
+            } \
+            div.nfo { \
+                background-color: #ffffff; \
+                padding : 11px; \
+            } \
+            div.data {";
+    code +=     "font-size: " + QString::number( font.pointSize() ) + "px;";
+    code +=     "font-family: \"" + font.family() + "\";";
+    code +=     "line-height: " + QString::number( font.pointSize() ) + "px;";
+    code +=     "background-color: #ffffff; \
+                color: #000000; \
+                padding: 0; margin: 0; \
+                text-align: left; \
+                position: relative;";
+//     code +=     "width : " + QString::number( width ) + "px;";
+    code +=     "margin-left : 10%;";
+    code +=     "margin-right : 10%;";
+    code += "} \
+            div.data a { \
+                color: blue; \
+                text-decoration: none; \
+            } \
+            div.data a:hover { \
+                color: blue; \
+                border-bottom: 1px solid blue; \
+            } \
+            </style></head><body><div class=\"nfo\"><div class=\"data\">";
+
+    code += text;
+    code += "<br></div></div><br/></body></html>";
+
+    return code;
+}
+
+void KNfoViewerPart::display()
+{
+    htmlpart->begin();
+    htmlpart->write( htmlCode( text ) );
+    htmlpart->end();
 }
 
 bool KNfoViewerPart::openURL( const KURL & url )

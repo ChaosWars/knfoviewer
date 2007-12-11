@@ -146,5 +146,3 @@ ThumbCreator::Flags KNfoViewerThumbnail::flags() const
 {
     return (Flags)(DrawFrame | BlendIcon);
 }
-
-#include "knfoviewerthumbnail.moc"

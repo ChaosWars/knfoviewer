@@ -41,6 +41,7 @@ class KToggleAction;
 class KNfoViewer : public KParts::MainWindow
 {
     Q_OBJECT
+
     public:
     /**
      * Default Constructor
@@ -76,6 +77,7 @@ class KNfoViewer : public KParts::MainWindow
         void optionsConfigureToolbars();
         void applyNewToolbarConfig();
         void optionsConfigureFonts();
+        void configureFontsDialog( const QFont &font );
         void addRecentFile( const KURL &url );
         void openRecent( const KURL& url );
 
@@ -89,6 +91,7 @@ class KNfoViewer : public KParts::MainWindow
         KParts::ReadOnlyPart *m_part;
 
     signals:
+        void getBrowserFont();
         void setBrowserFont( const QFont& font );
 };
 
