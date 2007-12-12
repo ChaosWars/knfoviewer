@@ -107,11 +107,11 @@ bool KNfoViewerPart::openFile()
     stream.setCodec( &codec );
     QString s;
     maxLineLength = 0;
+    numLines = 0;
 
     while( !stream.atEnd() ){
         s = stream.readLine();
         int currentLineLength = s.length();
-
         currentLineLength > maxLineLength ? maxLineLength = currentLineLength : maxLineLength;
 
         //Examine the text for hyperlinks
@@ -134,11 +134,11 @@ bool KNfoViewerPart::openFile()
             pos += link.length();
         }
 
-        text += s + "<br>";
+        text += s + "\n";
+        numLines++;
     }
 
     text += "</pre>";
-
     file.close();
 
     // now that we have the entire file, display it
@@ -152,42 +152,55 @@ bool KNfoViewerPart::openFile()
 
 const QString KNfoViewerPart::htmlCode( const QString &text )
 {
-    int width = 565*maxLineLength/80;
-    int marginLeft = width/2;
+    int fontSize = font.pointSize();
+//     int width = maxLineLength * fontSize;
+//     int height = numLines * fontSize;
     QString code;
-    code = "<html><head> \
-            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF8\" /> \
-            <meta http-equiv=\"Content-Style-Type\" content=\"text/css\" /> \
-            <style> \
-            html, body { \
-                background-color: #ffffff; margin: 0; padding: 0; \
-            } \
-            div.nfo { \
+    code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \
+            <html><head> \
+            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" /> \
+            <style type=\"text/css\" media=\"screen\"><!-- \
+            body { \
+                color : white; \
                 background-color: #ffffff; \
-                padding : 11px; \
+                margin: 0px; \
             } \
-            div.data {";
-    code +=     "font-size: " + QString::number( font.pointSize() ) + "px;";
+            #nfo { \
+                color: white; \
+                background-color: transparent; \
+                text-align: center; \
+                position: absolute; \
+                top: 50%; \
+                left: 0px; \
+                width: 100%; \
+                height: 1px; \
+                overflow: visible; \
+                visibility: visible; \
+                display: block \
+            } \
+            #data {";
+    code +=     "font-size: " + QString::number( fontSize ) + "px;";
     code +=     "font-family: \"" + font.family() + "\";";
-    code +=     "line-height: " + QString::number( font.pointSize() ) + "px;";
+    code +=     "line-height: " + QString::number( fontSize ) + "px;";
     code +=     "background-color: #ffffff; \
                 color: #000000; \
-                padding: 0; margin: 0; \
-                text-align: left; \
-                position: relative;";
-//     code +=     "width : " + QString::number( width ) + "px;";
-    code +=     "margin-left : 10%;";
-    code +=     "margin-right : 10%;";
+                position: relative; \
+                visibility : visible;"; \
+//     code +=     "top: -" + QString::number( height/2 ) + "px;";
+//     code +=     "margin-left : -" + QString::number( width/2 ) + "px;";
+//     code +=     "width : " + QString::number( width/2 ) + "px;";
+//     code +=     "height : " + QString::number( height ) + "px;";
     code += "} \
-            div.data a { \
+            a { \
                 color: blue; \
                 text-decoration: none; \
             } \
-            div.data a:hover { \
+            a:hover { \
                 color: blue; \
+                text-decoration: none; \
                 border-bottom: 1px solid blue; \
             } \
-            </style></head><body><div class=\"nfo\"><div class=\"data\">";
+            --></style></head><body><body><div id\"nfo\"><div id=\"data\">";
 
     code += text;
     code += "<br></div></div><br/></body></html>";

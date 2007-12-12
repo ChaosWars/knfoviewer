@@ -71,6 +71,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         QFont font;
         QString text;
         int maxLineLength;
+        int numLines;
         KNfoViewerSettings *config;
         QWidget *m_widget;
         KHTMLPart *htmlpart;
