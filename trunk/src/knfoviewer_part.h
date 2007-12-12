@@ -25,7 +25,7 @@
 #include <kparts/factory.h>
 
 class KURL;
-class KHTMLPart;
+class KNfoViewerHTML;
 class KRecentFilesAction;
 class KConfigDialog;
 class KNfoViewerSettings;
@@ -77,7 +77,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         KConfigDialog *settings;
         KNfoViewerSettings *config;
         QWidget *m_widget;
-        KHTMLPart *htmlpart;
+        KNfoViewerHTML *htmlpart;
         QGridLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );

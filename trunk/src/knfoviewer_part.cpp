@@ -24,12 +24,12 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
-#include <khtml_part.h>
 #include <khtmlview.h>
 #include <qfile.h>
 #include <qregexp.h>
 #include <qlayout.h>
 #include "knfoviewer_part.h"
+#include "knfoviewerhtml.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
 #include "settings.h"
@@ -44,7 +44,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     // this should be your custom internal widget
     m_widget = new QWidget( parentWidget );
     layout = new QGridLayout( m_widget );
-    htmlpart = new KHTMLPart( m_widget );
+    htmlpart = new KNfoViewerHTML( m_widget );
     layout->addWidget( htmlpart->view(), 0, 0, 0 );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -117,7 +117,7 @@ bool KNfoViewerPart::openFile()
     if( !file.open( IO_ReadOnly ) )
         return false;
 
-    text = "<pre>";
+    text = "";
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
@@ -149,7 +149,6 @@ bool KNfoViewerPart::openFile()
         text += s + "\n";
     }
 
-    text += "</pre>";
     file.close();
 
     // now that we have the entire file, display it
@@ -163,6 +162,7 @@ bool KNfoViewerPart::openFile()
 
 const QString KNfoViewerPart::htmlCode( const QString &text )
 {
+    qDebug( font.family() );
     int fontSize = font.pointSize();
     QString code;
     QString bc;
@@ -203,6 +203,7 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     code +=     "background-color: #" + bc + ";";
     code +=     "color: #" + tc + ";";
     code +=     "position: relative; \
+                white-space: pre; \
                 visibility : visible;";
     code += "} \
             a {";
@@ -218,6 +219,7 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     code += text;
     code += "<br></div></div><br/></body></html>";
 
+    qDebug( code );
     return code;
 }
 
