@@ -219,7 +219,6 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     code += text;
     code += "<br></div></div><br/></body></html>";
 
-    qDebug( code );
     return code;
 }
 
