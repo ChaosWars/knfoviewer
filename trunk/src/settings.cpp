@@ -22,6 +22,7 @@
 #include <qlayout.h>
 #include "settings.h"
 #include "knfoviewersettings.h"
+#include "color.h"
 
 Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *config )
     : KConfigDialog( parent, name, config ), m_config( config )
