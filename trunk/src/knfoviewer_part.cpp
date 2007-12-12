@@ -179,7 +179,7 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
             <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" /> \
             <style type=\"text/css\" media=\"screen\"><!-- \
             body {";
-    code +=     "color : #" + bc + ";";
+    code +=     "color : #" + tc + ";";
     code +=     "background-color: #" + bc + ";";
     code +=     "margin: 0px; \
             } \
