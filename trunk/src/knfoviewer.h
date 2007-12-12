@@ -76,8 +76,6 @@ class KNfoViewer : public KParts::MainWindow
         void optionsConfigureKeys();
         void optionsConfigureToolbars();
         void applyNewToolbarConfig();
-        void optionsConfigureFonts();
-        void configureFontsDialog( const QFont &font );
         void addRecentFile( const KURL &url );
         void openRecent( const KURL& url );
 
@@ -89,10 +87,6 @@ class KNfoViewer : public KParts::MainWindow
 
     private:
         KParts::ReadOnlyPart *m_part;
-
-    signals:
-        void getBrowserFont();
-        void setBrowserFont( const QFont& font );
 };
 
 #endif // _KNFOVIEWER_H_

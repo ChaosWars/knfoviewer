@@ -29,7 +29,6 @@
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
-#include <kfontdialog.h>
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
@@ -59,9 +58,6 @@ KNfoViewer::KNfoViewer()
             createGUI(m_part);
         }
 
-        connect( this, SIGNAL( getBrowserFont() ), m_part, SLOT( getFont() ) );
-        connect( m_part, SIGNAL( currentFont( const QFont& ) ), this, SLOT( configureFontsDialog( const QFont& ) ) );
-        connect( this, SIGNAL( setBrowserFont( const QFont& ) ), m_part, SLOT( setBrowserFont( const QFont& ) ) );
         connect( m_part, SIGNAL( addRecentFile( const KURL& ) ), this, SLOT( addRecentFile( const KURL&  ) ) );
     }
     else
@@ -111,8 +107,6 @@ void KNfoViewer::setupActions()
     KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
-    (void) new KAction( i18n( "&Configure Fonts" ), 0, this, SLOT( optionsConfigureFonts() ),
-                        actionCollection(), "options_configure_fonts" );
     recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
 }
 
@@ -156,22 +150,6 @@ void KNfoViewer::optionsConfigureToolbars()
     KEditToolbar dlg(factory());
     connect( &dlg, SIGNAL( newToolbarConfig() ), this, SLOT( applyNewToolbarConfig() ) );
     dlg.exec();
-}
-
-void KNfoViewer::optionsConfigureFonts()
-{
-    emit getBrowserFont();
-}
-
-void KNfoViewer::configureFontsDialog( const QFont& font )
-{
-    KFontDialog fd( 0L, 0, true );
-    fd.setFont( font, true );
-    int result = fd.exec();
-
-    if ( result == KFontDialog::Accepted ){
-        emit setBrowserFont( fd.font() );
-    }
 }
 
 void KNfoViewer::applyNewToolbarConfig()

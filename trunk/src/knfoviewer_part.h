@@ -27,6 +27,7 @@
 class KURL;
 class KHTMLPart;
 class KRecentFilesAction;
+class KConfigDialog;
 class KNfoViewerSettings;
 class QGridLayout;
 
@@ -54,8 +55,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         virtual ~KNfoViewerPart();
 
     public slots:
-        void getFont();
-        void setBrowserFont( const QFont &newFont );
+        void loadSettings();
 
     protected:
     /**
@@ -66,12 +66,12 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
 
     protected slots:
         void fileOpen();
+        void optionsConfigure();
 
     private:
         QFont font;
         QString text;
-        int maxLineLength;
-        int numLines;
+        KConfigDialog *settings;
         KNfoViewerSettings *config;
         QWidget *m_widget;
         KHTMLPart *htmlpart;
@@ -83,7 +83,6 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         void display();
 
     signals:
-        void currentFont( const QFont &font );
         void addRecentFile( const KURL& url );
 };
 

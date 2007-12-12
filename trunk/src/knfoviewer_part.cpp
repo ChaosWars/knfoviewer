@@ -32,6 +32,7 @@
 #include "knfoviewer_part.h"
 #include "cp437codec.h"
 #include "knfoviewersettings.h"
+#include "settings.h"
 
 KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
                               QObject *parent, const char *name )
@@ -57,6 +58,8 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 
     // create our actions
     KStdAction::open( this, SLOT( fileOpen() ), actionCollection() );
+    (void) new KAction( i18n( "&Configure KNfoViewer" ), 0, this, SLOT( optionsConfigure() ),
+                                            actionCollection(), "options_configure" );
     config = KNfoViewerSettings::self();
     readProperties( config );
 
@@ -82,14 +85,20 @@ void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
     font.fromString( config->font() );
 }
 
-void KNfoViewerPart::getFont()
+void KNfoViewerPart::optionsConfigure()
 {
-    emit currentFont( font );
+    if( KConfigDialog::showDialog( "settings" ) )
+        return;
+
+    settings = new Settings( m_widget, "settings", config );
+    connect( settings, SIGNAL( settingsChanged() ), this, SLOT( loadSettings() ) );
+    settings->show();
 }
 
-void KNfoViewerPart::setBrowserFont( const QFont &newFont )
+void KNfoViewerPart::loadSettings()
 {
-    font = newFont;
+    font.fromString( config->font() );
+
     display();
 }
 
@@ -106,13 +115,9 @@ bool KNfoViewerPart::openFile()
     CP437Codec codec;
     stream.setCodec( &codec );
     QString s;
-    maxLineLength = 0;
-    numLines = 0;
 
     while( !stream.atEnd() ){
         s = stream.readLine();
-        int currentLineLength = s.length();
-        currentLineLength > maxLineLength ? maxLineLength = currentLineLength : maxLineLength;
 
         //Examine the text for hyperlinks
         QRegExp exp( "http://*" );
@@ -135,7 +140,6 @@ bool KNfoViewerPart::openFile()
         }
 
         text += s + "\n";
-        numLines++;
     }
 
     text += "</pre>";
@@ -153,8 +157,6 @@ bool KNfoViewerPart::openFile()
 const QString KNfoViewerPart::htmlCode( const QString &text )
 {
     int fontSize = font.pointSize();
-//     int width = maxLineLength * fontSize;
-//     int height = numLines * fontSize;
     QString code;
     code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \
             <html><head> \
@@ -186,10 +188,6 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
                 color: #000000; \
                 position: relative; \
                 visibility : visible;"; \
-//     code +=     "top: -" + QString::number( height/2 ) + "px;";
-//     code +=     "margin-left : -" + QString::number( width/2 ) + "px;";
-//     code +=     "width : " + QString::number( width/2 ) + "px;";
-//     code +=     "height : " + QString::number( height ) + "px;";
     code += "} \
             a { \
                 color: blue; \
@@ -269,7 +267,7 @@ KInstance* KNfoViewerPartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.2");
+        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.3");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }

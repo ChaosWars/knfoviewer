@@ -4,6 +4,9 @@
   <Menu name="file">
     <Action name="file_open"/>
   </Menu>
+  <Menu name="settings">
+      <Action name="options_configure"/>
+  </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">
   <Action name="file_open"/>
