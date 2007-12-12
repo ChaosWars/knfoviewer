@@ -71,6 +71,9 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
     private:
         QFont font;
         QString text;
+        QColor backgroundColor;
+        QColor textColor;
+        QColor linkColor;
         KConfigDialog *settings;
         KNfoViewerSettings *config;
         QWidget *m_widget;

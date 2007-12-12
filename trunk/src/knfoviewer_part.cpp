@@ -65,6 +65,8 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 
     // set our XML-UI resource file
     setXMLFile( "knfoviewer_part.rc" );
+
+    display();
 }
 
 KNfoViewerPart::~KNfoViewerPart()
@@ -77,12 +79,18 @@ KNfoViewerPart::~KNfoViewerPart()
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
 {
     config->setFont( font.toString() );
+    config->setBackgroundColor( backgroundColor.rgb() );
+    config->setTextColor( textColor.rgb() );
+    config->setLinkColor( linkColor.rgb() );
     config->writeConfig();
 }
 
 void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
 {
     font.fromString( config->font() );
+    backgroundColor = config->backgroundColor();
+    textColor = config->textColor();
+    linkColor = config->linkColor();
 }
 
 void KNfoViewerPart::optionsConfigure()
@@ -97,8 +105,7 @@ void KNfoViewerPart::optionsConfigure()
 
 void KNfoViewerPart::loadSettings()
 {
-    font.fromString( config->font() );
-
+    readProperties( config );
     display();
 }
 
@@ -158,24 +165,33 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
 {
     int fontSize = font.pointSize();
     QString code;
+    QString bc;
+    bc.sprintf( "%x", backgroundColor.rgb() );
+    bc = bc.right( 6 );
+    QString tc;
+    tc.sprintf( "%x", textColor.rgb() );
+    tc = tc.right( 6 );
+    QString lc;
+    lc.sprintf( "%x", linkColor.rgb() );
+    lc = lc.right( 6 );
     code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \
             <html><head> \
             <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" /> \
             <style type=\"text/css\" media=\"screen\"><!-- \
-            body { \
-                color : white; \
-                background-color: #ffffff; \
-                margin: 0px; \
+            body {";
+    code +=     "color : #" + bc + ";";
+    code +=     "background-color: #" + bc + ";";
+    code +=     "margin: 0px; \
             } \
-            #nfo { \
-                color: white; \
-                background-color: transparent; \
+            #nfo {";
+    code +=     "color: #" + bc + ";";
+    code +=     "background-color: transparent; \
                 text-align: center; \
                 position: absolute; \
-                top: 50%; \
+                top: 0px; \
                 left: 0px; \
                 width: 100%; \
-                height: 1px; \
+                height: 100%; \
                 overflow: visible; \
                 visibility: visible; \
                 display: block \
@@ -184,19 +200,18 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     code +=     "font-size: " + QString::number( fontSize ) + "px;";
     code +=     "font-family: \"" + font.family() + "\";";
     code +=     "line-height: " + QString::number( fontSize ) + "px;";
-    code +=     "background-color: #ffffff; \
-                color: #000000; \
-                position: relative; \
-                visibility : visible;"; \
+    code +=     "background-color: #" + bc + ";";
+    code +=     "color: #" + tc + ";";
+    code +=     "position: relative; \
+                visibility : visible;";
     code += "} \
-            a { \
-                color: blue; \
-                text-decoration: none; \
+            a {";
+    code +=     "color: #" + lc + ";";
+    code +=     "text-decoration: none; \
             } \
-            a:hover { \
-                color: blue; \
-                text-decoration: none; \
-                border-bottom: 1px solid blue; \
+            a:hover {";
+    code +=     "color: #" + lc + ";";
+    code +=     "text-decoration: none; \
             } \
             --></style></head><body><body><div id\"nfo\"><div id=\"data\">";
 

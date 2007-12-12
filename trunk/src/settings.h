@@ -24,6 +24,7 @@
 
 class KNfoViewerSettings;
 class KFontChooser;
+class ColorPage;
 
 class Settings : public KConfigDialog
 {
@@ -41,11 +42,21 @@ class Settings : public KConfigDialog
 
     private:
         QFont font;
-        QFont newFont;
+        QColor backgroundColor;
+        QColor textColor;
+        QColor linkColor;
         KNfoViewerSettings *m_config;
+        bool fc; //Fonts changed
+        bool cc; //Colors changed
         QWidget *fontPage;
+        ColorPage *colorPage;
         QGridLayout *fontLayout;
         KFontChooser *fontChooser;
+
+    private slots:
+        void backgroundColorChanged( const QColor &color );
+        void textColorChanged( const QColor &color );
+        void linkColorChanged( const QColor &color );
 };
 
 #endif

@@ -19,13 +19,14 @@
  ***************************************************************************/
 #include <kfontdialog.h>
 #include <klocale.h>
+#include <kcolorcombo.h>
 #include <qlayout.h>
 #include "settings.h"
 #include "knfoviewersettings.h"
 #include "color.h"
 
 Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *config )
-    : KConfigDialog( parent, name, config ), m_config( config )
+    : KConfigDialog( parent, name, config ), m_config( config ), fc( false ), cc( false )
 {
     //Set up font page
     fontPage = new QWidget( 0, "FontPage" );
@@ -36,6 +37,16 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     fontLayout->addWidget( fontChooser, 0, 0 );
     connect( fontChooser, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
     addPage( fontPage, i18n( "Configure Fonts" ), "fonts" );
+
+    //Set up the color chooser page
+    colorPage = new ColorPage();
+    connect( colorPage->backgroundColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( backgroundColorChanged( const QColor& ) ) );
+    connect( colorPage->textColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( textColorChanged( const QColor& ) ) );
+    connect( colorPage->linkColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( linkColorChanged( const QColor& ) ) );
+    colorPage->setBackgroundColor( config->backgroundColor()  );
+    colorPage->setTextColor( config->textColor()  );
+    colorPage->setLinkColor( config->linkColor()  );
+    addPage( colorPage, i18n( "Configure Colors" ), "colorize" );
 }
 
 Settings::~Settings()
@@ -45,7 +56,31 @@ Settings::~Settings()
 void Settings::fontChanged( const QFont &chosenFont )
 {
     if( chosenFont != font ){
-        newFont = chosenFont;
+        fc = true;
+        enableButton( Apply, true );
+    }
+}
+
+void Settings::backgroundColorChanged( const QColor &color )
+{
+    if( backgroundColor != color ){
+        cc = true;
+        enableButton( Apply, true );
+    }
+}
+
+void Settings::textColorChanged( const QColor &color )
+{
+    if( textColor != color ){
+        cc = true;
+        enableButton( Apply, true );
+    }
+}
+
+void Settings::linkColorChanged( const QColor &color )
+{
+    if( linkColor != color ){
+        cc = true;
         enableButton( Apply, true );
     }
 }
@@ -54,9 +89,21 @@ void Settings::updateSettings()
 {
     bool settingsChanged = false;
 
-    if( newFont != font ){
-        font = newFont;
+    if( fc ){
+        font = fontChooser->font();
         m_config->setFont( font.toString() );
+        fc = false;
+        settingsChanged = true;
+    }
+
+    if( cc ){
+        backgroundColor = colorPage->backgroundColor();
+        m_config->setBackgroundColor( backgroundColor.rgb() );
+        textColor = colorPage->textColor();
+        m_config->setTextColor( textColor.rgb() );
+        linkColor = colorPage->linkColor();
+        m_config->setLinkColor( linkColor.rgb() );
+        cc = false;
         settingsChanged = true;
     }
 

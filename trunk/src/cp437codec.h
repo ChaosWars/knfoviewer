@@ -34,8 +34,8 @@
 class CP437Codec : public QTextCodec
 {
     public:
-        CP437Codec(){}
-        ~CP437Codec(){}
+        CP437Codec();
+        ~CP437Codec();
         virtual int mibEnum() const;
         const char* name() const;
 

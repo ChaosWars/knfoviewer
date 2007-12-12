@@ -8,20 +8,23 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>188</width>
-            <height>197</height>
+            <width>277</width>
+            <height>236</height>
         </rect>
     </property>
     <property name="caption">
         <string>Color Page</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
-                <cstring>layout4</cstring>
+                <cstring>colorsGroupBox</cstring>
+            </property>
+            <property name="title">
+                <string>Colors</string>
             </property>
             <vbox>
                 <property name="name">
@@ -39,6 +42,12 @@
                             <property name="name">
                                 <cstring>backgroundColorTextLabel</cstring>
                             </property>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
                             <property name="text">
                                 <string>Background Color</string>
                             </property>
@@ -48,7 +57,7 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>backgroundColorCombo</cstring>
+                                <cstring>m_backgroundColorCombo</cstring>
                             </property>
                         </widget>
                     </vbox>
@@ -91,7 +100,14 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>textColorCombo</cstring>
+                                <cstring>m_textColorCombo</cstring>
+                            </property>
+                            <property name="color">
+                                <color>
+                                    <red>0</red>
+                                    <green>0</green>
+                                    <blue>0</blue>
+                                </color>
                             </property>
                         </widget>
                     </vbox>
@@ -134,15 +150,72 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>linkColorCombo</cstring>
+                                <cstring>m_linkColorCombo</cstring>
+                            </property>
+                            <property name="color">
+                                <color>
+                                    <red>0</red>
+                                    <green>0</green>
+                                    <blue>255</blue>
+                                </color>
                             </property>
                         </widget>
                     </vbox>
                 </widget>
             </vbox>
         </widget>
-    </vbox>
+        <spacer row="0" column="1">
+            <property name="name">
+                <cstring>spacer3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>40</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <spacer row="1" column="0">
+            <property name="name">
+                <cstring>spacer4</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>40</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
 </widget>
+<includes>
+    <include location="local" impldecl="in implementation">color.ui.h</include>
+</includes>
+<slots>
+    <slot>setBackgroundColor( const uint &amp; color )</slot>
+    <slot>setTextColor( const uint &amp; color )</slot>
+    <slot>setLinkColor( const uint &amp; color )</slot>
+</slots>
+<functions>
+    <function returnType="QColor">backgroundColor()</function>
+    <function returnType="QColor">linkColor()</function>
+    <function returnType="QColor">textColor()</function>
+    <function returnType="KColorCombo *">backgroundColorCombo()</function>
+    <function returnType="KColorCombo *">textColorCombo()</function>
+    <function returnType="KColorCombo *">linkColorCombo()</function>
+</functions>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kcolorcombo.h</includehint>

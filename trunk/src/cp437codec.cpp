@@ -28,6 +28,14 @@ static unsigned int CP437oUnicode( unsigned int code, uint *s );
 #define IsCP437Char(c)  ( ( (c) >= 0x80 ) && ( (c) <= 0xFF ) )
 #define QValidChar(u)   ( (u) ? QChar( (u) ) : QChar::replacement )
 
+CP437Codec::CP437Codec()
+{
+}
+
+CP437Codec::~CP437Codec()
+{
+}
+
 int CP437Codec::mibEnum() const
 {
     return 2011;
