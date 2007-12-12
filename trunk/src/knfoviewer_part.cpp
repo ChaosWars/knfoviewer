@@ -162,7 +162,6 @@ bool KNfoViewerPart::openFile()
 
 const QString KNfoViewerPart::htmlCode( const QString &text )
 {
-    qDebug( font.family() );
     int fontSize = font.pointSize();
     QString code;
     QString bc;
