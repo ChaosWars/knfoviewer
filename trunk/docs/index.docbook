@@ -96,7 +96,7 @@ Do NOT change these in the translation. -->
 
 <abstract>
 <para>
-&knfoviewer;is an application for viewing NFO files.
+&knfoviewer; is an application for viewing NFO files.
 </para>
 </abstract>
 
@@ -162,7 +162,15 @@ patent issues. -->
 </para>
 <para>
 You can double click on any NFO file and it will open in &knfoviewer;.
-Alternatively, you can open any NFO file via <guimenu>File</guimenu><guimenuitem>Open</guimenuitem>
+Alternatively, you can open any NFO file via
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open</guimenuitem>
+</menuchoice></term>
+</varlistentry>
+</variablelist>
 
 </para>
 </chapter>

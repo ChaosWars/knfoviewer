@@ -72,7 +72,6 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 KNfoViewerPart::~KNfoViewerPart()
 {
     saveProperties( config );
-    delete htmlpart;
     delete layout;
 }
 

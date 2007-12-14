@@ -104,7 +104,7 @@ void KNfoViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
+    KStdAction::quit( this, SLOT( close() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
     recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );

@@ -82,11 +82,9 @@ class KNfoViewer : public KParts::MainWindow
     private:
         KConfig *config;
         KRecentFilesAction *recentFiles;
+        KParts::ReadOnlyPart *m_part;
         void setupAccel();
         void setupActions();
-
-    private:
-        KParts::ReadOnlyPart *m_part;
 };
 
 #endif // _KNFOVIEWER_H_
