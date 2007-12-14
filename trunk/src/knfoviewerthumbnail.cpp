@@ -18,8 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <kstandarddirs.h>
+#include <kapplication.h>
 #include <kmimetype.h>
-#include <kpixmapsplitter.h>
+#include <time.h>
+#include <qpixmap.h>
+#include <qimage.h>
+#include <qpainter.h>
+#include <khtml_part.h>
 #include <qfile.h>
 #include <qimage.h>
 #include <qtextstream.h>
@@ -35,114 +40,164 @@ extern "C"
 }
 
 /*
- * This code is taken nearly verbatim from textcreator.cpp
+ * This code is taken nearly verbatim from htmlcreator.cpp
  * in kdebase/kioslave/thumbnail/ with minor changes to
  * ensure the correct rendering of CP437 encoded characters.
  */
-KNfoViewerThumbnail::KNfoViewerThumbnail() : m_splitter( 0 )
+KNfoViewerThumbnail::KNfoViewerThumbnail() : m_html( 0 )
 {
 }
 
 KNfoViewerThumbnail::~KNfoViewerThumbnail()
 {
-    delete m_splitter;
+    delete m_html;
 }
 
 bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
 {
     // Filter out unwanted mimetypes
-    KMimeType::Ptr mimeType = KMimeType::findByPath( path );
+//     KMimeType::Ptr mimeType = KMimeType::findByPath( path );
+//
+//     if( !mimeType->is( "text/x-nfo" ) )
+//         return false;
 
-    if( !mimeType->is( "text/x-nfo" ) )
-        return false;
+    if (!m_html)
+    {
+        m_html = new KHTMLPart;
+        connect(m_html, SIGNAL(completed()), SLOT(slotCompleted()));
+        m_html->setJScriptEnabled(false);
+        m_html->setJavaEnabled(false);
+        m_html->setPluginsEnabled(false);
+        m_html->setMetaRefreshEnabled(false);
+        m_html->setOnlyLocalReferences(true);
+    }
 
     QFile file( path );
 
     if( !file.open( IO_ReadOnly ) )
          return false;
 
+    QString text;
     QTextStream stream( &file );
     CP437Codec codec;
     stream.setCodec( &codec );
-    QString currentLine;
-    QString text;
-    int maxLineLength = 0;
-    int numLines = 0;
 
     while( !stream.atEnd() ){
-        currentLine = stream.readLine();
-        int currentLineLength = currentLine.length();
-
-        if( currentLineLength > maxLineLength )
-            maxLineLength = currentLineLength;
-
-        text += currentLine + "\n";
-        numLines++;
+        text += stream.readLine() + "\n";
     }
 
+//     KURL url;
+//     url.setPath(path);
+//     m_html->openURL(url);
+
+    int t = startTimer(50000);
+    qApp->enter_loop();
+    killTimer(t);
+
+    m_html->begin();
+    m_html->write( htmlCode( text ) );
+    m_html->end();
+
+    // render the HTML page on a bigger pixmap and use smoothScale,
+    // looks better than directly scaling with the QPainter (malte)
+    QPixmap pix;
+    if (width > 400 || height > 600)
+    {
+        if (height * 3 > width * 4)
+            pix.resize(width, width * 4 / 3);
+        else
+            pix.resize(height * 3 / 4, height);
+    }
+    else
+        pix.resize(400, 600);
+
+    // light-grey background, in case loadind the page failed
+    pix.fill( QColor( 245, 245, 245 ) );
+
+    int borderX = pix.width() / width, borderY = pix.height() / height;
+    QRect rc(borderX, borderY, pix.width() - borderX * 2,
+             pix.height() - borderY * 2);
+
+    QPainter p;
+    p.begin(&pix);
+    m_html->paint(&p, rc);
+    p.end();
+
+    img = pix.convertToImage();
+//     m_html->closeURL();
     file.close();
 
-    if ( !m_splitter ){
-        m_splitter = new KPixmapSplitter;
-        QString pixmap = locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
-
-        if ( !pixmap.isEmpty() ){
-            // FIXME: make font/glyphsize configurable...
-            m_splitter->setPixmap( QPixmap( pixmap ) );
-            m_splitter->setItemSize( QSize( 4, 7 ) );
-        }
-
-    }
-
-    QSize chSize = m_splitter->itemSize(); // the size of one char
-    int xOffset = chSize.width();
-    int yOffset = chSize.height();
-
-    width = xOffset * maxLineLength + 2*( 1 + maxLineLength/16 );
-    height = yOffset + numLines + 2*( 1 + numLines/16 );
-    width > 400 ? width = 400 : width;
-    height > 600 ? height = 600 : height;
-    QSize pixmapSize( width, height );
-    m_pixmap.resize( pixmapSize );
-    m_pixmap.fill( QColor( 245, 245, 245 ) ); // light-grey background
-
-    // one pixel for the rectangle, the rest. whitespace
-    int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
-    int yborder = 1 + pixmapSize.height()/16; // minimum y-border
-    int rest = m_pixmap.width() - ( maxLineLength * chSize.width() );
-    xborder = QMAX( xborder, rest/2 ); // center horizontally
-    rest = m_pixmap.height() - ( numLines * chSize.height() );
-    yborder = QMAX( yborder, rest/2 ); // center vertically
-    // end centering
-
-    int x = xborder, y = yborder; // where to paint the characters
-    const QPixmap *fontPixmap = &(m_splitter->pixmap());
-    QRect rect;
-
-    for( int i = 0; i < numLines; i++ ){
-        QChar ch = text.at( i );
-
-        if ( ch == '\n' ){
-            x = xborder;
-            y += yOffset;
-            continue;
-        }else{
-            rect = m_splitter->coordinates( ch );
-
-            if ( !rect.isEmpty() ){
-                bitBlt( &m_pixmap, QPoint( x,y ), fontPixmap, rect, Qt::CopyROP );
-            }
-
-            x += xOffset; // next character
-        }
-
-    }
-
-    img = m_pixmap.convertToImage();
     return true;
+}
+
+const QString KNfoViewerThumbnail::htmlCode( const QString &text )
+{
+    QString code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\
+            <html>\n\
+            <head>\n\
+            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" />\n\
+            <style type=\"text/css\" media=\"screen\"><!--\n\
+            body {\n \
+                color : #000000;\n\
+                background-color: #ffffff;\n\
+                margin: 0px;\n\
+            }\n\
+            #nfo {\n\
+                color: #000000;\n\
+                background-color: transparent;\n\
+                text-align: center;\n\
+                position: absolute;\n\
+                top: 0px;\n\
+                left: 0px;\n\
+                width: 100%;\n\
+                height: 100%;\n\
+                overflow: visible;\n\
+                visibility: visible;\n\
+                display: block\n\
+            }\n\
+            #data {\n\
+                font-size: 11px;\n\
+                font-family: \"Andale Mono\";\n\
+                line-height: 11px;\n\
+                background-color: #ffffff;\n\
+                color: #000000;\n\
+                position: relative;\n\
+                white-space: pre;\n\
+                visibility : visible;\n\
+            }\n\
+            a {\n\
+                color: #000000;\n\
+                text-decoration: none;\n\
+            }\n\
+            a:hover {\n\
+                color: #000000;\n\
+                text-decoration: none;\n\
+}\n\
+            --></style>\n\
+            </head>\n\
+            <body>\n\
+            <div id\"nfo\">\n\
+            <div id=\"data\">\n";
+
+    code += text;
+    code += "<br></div></div><br/></body></html>";
+
+    return code;
+}
+
+void KNfoViewerThumbnail::timerEvent(QTimerEvent *)
+{
+    qApp->exit_loop();
+}
+
+void KNfoViewerThumbnail::slotCompleted()
+{
+    qApp->exit_loop();
 }
 
 ThumbCreator::Flags KNfoViewerThumbnail::flags() const
 {
-    return (Flags)(DrawFrame | BlendIcon);
+    return DrawFrame;
 }
+
+#include "knfoviewerthumbnail.moc"

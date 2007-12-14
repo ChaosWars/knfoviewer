@@ -24,19 +24,25 @@
 #include <kio/thumbcreator.h>
 #include <qpixmap.h>
 
-class KPixmapSplitter;
-
-class KNfoViewerThumbnail : public ThumbCreator
+class KNfoViewerThumbnail : public QObject, public ThumbCreator
 {
+    Q_OBJECT
+
     public:
         KNfoViewerThumbnail();
         ~KNfoViewerThumbnail();
+        const QString htmlCode( const QString &text );
         virtual bool create( const QString &path, int width, int height, QImage &img );
         virtual Flags flags() const;
 
+    protected:
+        virtual void timerEvent(QTimerEvent *);
+
+    private slots:
+        void slotCompleted();
+
     private:
-        KPixmapSplitter *m_splitter;
-        QPixmap m_pixmap;
+        KHTMLPart *m_html;
 };
 
 #endif

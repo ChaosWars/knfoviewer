@@ -173,47 +173,52 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     QString lc;
     lc.sprintf( "%x", linkColor.rgb() );
     lc = lc.right( 6 );
-    code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \
-            <html><head> \
-            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" /> \
-            <style type=\"text/css\" media=\"screen\"><!-- \
-            body {";
-    code +=     "color : #" + tc + ";";
-    code +=     "background-color: #" + bc + ";";
-    code +=     "margin: 0px; \
-            } \
-            #nfo {";
-    code +=     "color: #" + bc + ";";
-    code +=     "background-color: transparent; \
-                text-align: center; \
-                position: absolute; \
-                top: 0px; \
-                left: 0px; \
-                width: 100%; \
-                height: 100%; \
-                overflow: visible; \
-                visibility: visible; \
-                display: block \
-            } \
-            #data {";
-    code +=     "font-size: " + QString::number( fontSize ) + "px;";
-    code +=     "font-family: \"" + font.family() + "\";";
-    code +=     "line-height: " + QString::number( fontSize ) + "px;";
-    code +=     "background-color: #" + bc + ";";
-    code +=     "color: #" + tc + ";";
-    code +=     "position: relative; \
-                white-space: pre; \
-                visibility : visible;";
-    code += "} \
-            a {";
-    code +=     "color: #" + lc + ";";
-    code +=     "text-decoration: none; \
-            } \
-            a:hover {";
-    code +=     "color: #" + lc + ";";
-    code +=     "text-decoration: none; \
-            } \
-            --></style></head><body><body><div id\"nfo\"><div id=\"data\">";
+    code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\
+            <html>\n\
+            <head>\n\
+            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" />\n\
+            <style type=\"text/css\" media=\"screen\"><!--\n\
+            body {\n";
+    code +=     "color : #" + tc + ";\n";
+    code +=     "background-color: #" + bc + ";\n";
+    code +=     "margin: 0px;\n\
+            }\n\
+            #nfo {\n";
+    code +=     "color: #" + bc + ";\n";
+    code +=     "background-color: transparent;\n\
+                text-align: center;\n\
+                position: absolute;\n\
+                top: 0px;\n\
+                left: 0px;\n\
+                width: 100%;\n\
+                height: 100%;\n\
+                overflow: visible;\n\
+                visibility: visible;\n\
+                display: block\n\
+            }\n\
+            #data {\n";
+    code +=     "font-size: " + QString::number( fontSize ) + "px;\n";
+    code +=     "font-family: \"" + font.family() + "\";\n";
+    code +=     "line-height: " + QString::number( fontSize ) + "px;\n";
+    code +=     "background-color: #" + bc + ";\n";
+    code +=     "color: #" + tc + ";\n";
+    code +=     "position: relative;\n\
+                white-space: pre;\n\
+                visibility : visible;\n";
+    code += "}\n\
+            a {\n";
+    code +=     "color: #" + lc + ";\n";
+    code +=     "text-decoration: none;\n\
+            }\n\
+            a:hover {\n";
+    code +=     "color: #" + lc + ";\n";
+    code +=     "text-decoration: none;\n\
+            }\n\
+            --></style>\n\
+        </head>\n\
+        <body>\n\
+            <div id\"nfo\">\n\
+                <div id=\"data\">\n";
 
     code += text;
     code += "<br></div></div><br/></body></html>";
@@ -282,7 +287,7 @@ KInstance* KNfoViewerPartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.3");
+        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.4");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }

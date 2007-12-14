@@ -8,4 +8,4 @@ SET( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" )
 
 #list all source files here
 ADD_SUBDIRECTORY( src )
-
+ADD_SUBDIRECTORY( docs )

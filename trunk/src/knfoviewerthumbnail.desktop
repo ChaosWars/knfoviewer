@@ -5,4 +5,4 @@ Name=NFO Files
 ServiceTypes=ThumbCreator
 MimeTypes=text/x-nfo
 X-KDE-Library=knfoviewerthumbnail
-CacheThumbnail=false
+CacheThumbnail=true

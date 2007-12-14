@@ -26,7 +26,7 @@
 static const char description[] =
     I18N_NOOP( "A NFO viewer for KDE3" );
 
-static const char version[] = "0.3";
+static const char version[] = "0.4";
 
 static KCmdLineOptions options[] =
 {
