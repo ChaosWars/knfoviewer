@@ -2,6 +2,8 @@
 Encoding=UTF-8
 Type=Service
 Name=NFO Files
+GeneralName=NFO Files
+Comment=NFO Files
 ServiceTypes=ThumbCreator
 MimeTypes=text/x-nfo
 X-KDE-Library=knfoviewerthumbnail

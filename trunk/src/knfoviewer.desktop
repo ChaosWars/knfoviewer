@@ -1,10 +1,10 @@
 [Desktop Entry]
 Categories=Qt;KDE;Application;Graphics;X-KDE-Graphics-File
-Comment=A NFO viewer for KDE3
+Comment=A NFO viewer for KDE
 DocPath=knfoviewer/knfoviewer.html
 Encoding=UTF-8
 Exec=knfoviewer %i %m -caption "%c"
-GenericName=A NFO viewer for KDE3
+GenericName=A NFO viewer for KDE
 Icon=knfoviewer
 MimeType=text/x-nfo
 MultipleArgs=false

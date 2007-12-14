@@ -58,6 +58,7 @@
     <general>
       <activedir>src</activedir>
     </general>
+    <blacklist/>
   </kdevcustomproject>
   <kdevfilecreate>
     <filetypes/>

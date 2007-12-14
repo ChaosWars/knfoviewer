@@ -1,7 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=KNfoViewer
-Comment=A NFO viewer for KDE3
+GenericName=A NFO viewer for KDE
+Comment=A NFO viewer for KDE
 Icon=knfoviewer
 MimeType=text/x-nfo
 X-KDE-Library=libknfoviewerpart
