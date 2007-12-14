@@ -58,8 +58,9 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 
     // create our actions
     KStdAction::open( this, SLOT( fileOpen() ), actionCollection() );
-    (void) new KAction( i18n( "&Configure KNfoViewer" ), 0, this, SLOT( optionsConfigure() ),
-                                            actionCollection(), "options_configure" );
+    new KAction( i18n( "&Configure KNfoViewer" ), "configure", 0,
+                 this, SLOT( optionsConfigure() ),
+                 actionCollection(), "options_configure" );
     config = KNfoViewerSettings::self();
     readProperties( config );
 

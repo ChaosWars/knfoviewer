@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <kapplication.h>
+#include <khtml_events.h>
 #include "knfoviewerhtml.h"
 
 KNfoViewerHTML::KNfoViewerHTML( QWidget *parentWidget ) : KHTMLPart( parentWidget )
@@ -28,10 +29,10 @@ KNfoViewerHTML::~KNfoViewerHTML()
 {
 }
 
-// void KNfoViewerHTML::khtmlMouseReleaseEvent( khtml::MouseReleaseEvent *event )
-// {
-//     qDebug( "khtmlMouseReleaseEvent()" );
-// }
+void KNfoViewerHTML::khtmlMouseMoveEvent( khtml::MouseMoveEvent *event )
+{
+    qDebug( event->url().string() );
+}
 
 void KNfoViewerHTML::urlSelected( const QString &url, int button, int state,
                                   const QString &_target, KParts::URLArgs args )
