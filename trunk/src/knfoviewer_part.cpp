@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -28,6 +28,7 @@
 #include <qfile.h>
 #include <qregexp.h>
 #include <qlayout.h>
+#include "mainwidget.h"
 #include "knfoviewer_part.h"
 #include "knfoviewerhtml.h"
 #include "cp437codec.h"
@@ -42,7 +43,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     setInstance( KNfoViewerPartFactory::instance() );
 
     // this should be your custom internal widget
-    m_widget = new QWidget( parentWidget );
+    m_widget = new MainWidget( parentWidget );
     layout = new QGridLayout( m_widget );
     htmlpart = new KNfoViewerHTML( m_widget );
     layout->addWidget( htmlpart->view(), 0, 0, 0 );
@@ -52,6 +53,9 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     htmlpart->setMetaRefreshEnabled(false);
     htmlpart->setPluginsEnabled(false);
     htmlpart->setOnlyLocalReferences(true);
+
+    connect( htmlpart, SIGNAL( urlMouseOver( const QString& ) ), m_widget, SIGNAL( urlMouseOver( const QString& ) ) );
+    connect( htmlpart, SIGNAL( popupMenu( const QString&, const QPoint& ) ), this, SLOT( popupMenu( const QString&, const QPoint& ) ) );
 
     // notify the part that this is our internal widget
     setWidget( m_widget );
@@ -73,7 +77,11 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 KNfoViewerPart::~KNfoViewerPart()
 {
     saveProperties( config );
-    delete layout;
+}
+
+void KNfoViewerPart::popupMenu(const QString &url, const QPoint &point)
+{
+    qDebug( "popupmenu requested at coordinates %d:%d", point.x(), point.y() );
 }
 
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )

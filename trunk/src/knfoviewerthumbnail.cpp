@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -61,10 +61,9 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
 //     if( !mimeType->is( "text/x-nfo" ) )
 //         return false;
 
-    if (!m_html)
-    {
-        m_html = new KHTMLPart;
-        connect(m_html, SIGNAL(completed()), SLOT(slotCompleted()));
+    if( !m_html ){
+        m_html = new KHTMLPart();
+        connect( m_html, SIGNAL( completed() ), SLOT( slotCompleted() ) );
         m_html->setJScriptEnabled(false);
         m_html->setJavaEnabled(false);
         m_html->setPluginsEnabled(false);
@@ -85,10 +84,6 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     while( !stream.atEnd() ){
         text += stream.readLine() + "\n";
     }
-
-//     KURL url;
-//     url.setPath(path);
-//     m_html->openURL(url);
 
     int t = startTimer(50000);
     qApp->enter_loop();
@@ -124,8 +119,9 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     p.end();
 
     img = pix.convertToImage();
-//     m_html->closeURL();
     file.close();
+
+    qApp->exit_loop();
 
     return true;
 }

@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -19,10 +19,13 @@
  ***************************************************************************/
 #include <kapplication.h>
 #include <khtml_events.h>
+#include <dom/dom2_range.h>
+#include <qclipboard.h>
 #include "knfoviewerhtml.h"
 
 KNfoViewerHTML::KNfoViewerHTML( QWidget *parentWidget ) : KHTMLPart( parentWidget )
 {
+    connect( this, SIGNAL( selectionChanged() ), this, SLOT( selectionSlot() ) );
 }
 
 KNfoViewerHTML::~KNfoViewerHTML()
@@ -31,7 +34,7 @@ KNfoViewerHTML::~KNfoViewerHTML()
 
 void KNfoViewerHTML::khtmlMouseMoveEvent( khtml::MouseMoveEvent *event )
 {
-    qDebug( event->url().string() );
+    emit urlMouseOver( event->url().string() );
 }
 
 void KNfoViewerHTML::urlSelected( const QString &url, int button, int state,
@@ -39,3 +42,16 @@ void KNfoViewerHTML::urlSelected( const QString &url, int button, int state,
 {
     kapp->invokeBrowser( url );
 }
+
+void KNfoViewerHTML::selectionSlot()
+{
+    kapp->clipboard()->setText( selectedText() );
+//     DOM::Range newRange;
+//     newRange.collapse( true );
+//     DOM::Node n;
+//     newRange.setStart( n, 0 );
+//     newRange.setEnd( n, 0 );
+//     setSelection( newRange );
+}
+
+#include "knfoviewerhtml.moc"

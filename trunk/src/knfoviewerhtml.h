@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -24,13 +24,21 @@
 
 class KNfoViewerHTML : public KHTMLPart
 {
+    Q_OBJECT
+
     public:
-        KNfoViewerHTML( QWidget *parentWidget );
+        KNfoViewerHTML( QWidget *parentWidget = 0 );
         ~KNfoViewerHTML();
 
     protected:
         virtual void khtmlMouseMoveEvent( khtml::MouseMoveEvent *event );
         virtual void urlSelected( const QString &url, int button, int state, const QString &_target, KParts::URLArgs args=KParts::URLArgs() );
+
+    private slots:
+        void selectionSlot();
+
+    signals:
+        void urlMouseOver( const QString &url );
 };
 
 #endif

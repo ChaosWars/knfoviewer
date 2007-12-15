@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -30,6 +30,7 @@ class KRecentFilesAction;
 class KConfigDialog;
 class KNfoViewerSettings;
 class QGridLayout;
+class MainWidget;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -67,6 +68,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
     protected slots:
         void fileOpen();
         void optionsConfigure();
+        void popupMenu( const QString &url, const QPoint &point );
 
     private:
         QFont font;
@@ -76,7 +78,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         QColor linkColor;
         KConfigDialog *settings;
         KNfoViewerSettings *config;
-        QWidget *m_widget;
+        MainWidget *m_widget;
         KNfoViewerHTML *htmlpart;
         QGridLayout *layout;
         void setupMainWidget();

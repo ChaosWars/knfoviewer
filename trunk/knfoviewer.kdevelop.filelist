@@ -17,5 +17,7 @@ src/knfoviewerhtml.h
 src/knfoviewerthumbnail.cpp
 src/knfoviewerthumbnail.h
 src/main.cpp
+src/mainwidget.cpp
+src/mainwidget.h
 src/settings.cpp
 src/settings.h
