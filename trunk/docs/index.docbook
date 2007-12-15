@@ -2,6 +2,8 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
+  <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
   <!ENTITY knfoviewer "<application>KNfoViewer</application>">
   <!ENTITY kappname "&knfoviewer;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
@@ -62,20 +64,15 @@ as Authors, publish date, the abstract, and Keywords -->
 <!ENTITY George.N.Ugnacious.mail "<email>gnu@kde.org</email>">
 and use `&George.N.Ugnacious; &George.N.Ugnacious.mail;' in the author element.
  -->
-<personname>
-<firstname>Lawrence</firstname>
-<othername>C.</othername>
-<surname>Lee</surname>
-</personname>
-<email>valheru@facticius.net</email>
-</author>
+&Lawrence.C.Lee;
+&Lawrence.C.Lee.email;
 </authorgroup>
 
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 
 <copyright>
 <year>2007</year>
-<holder>Lawrence C. Lee</holder>
+<holder>&Lawrence.C.Lee;</holder>
 </copyright>
 <!-- Translators: put here the copyright notice of the translation -->
 <!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
@@ -132,7 +129,7 @@ revision history. (see installation appendix comment) -->
 
 <para>
 &knfoviewer; is an application for viewing NFO files.
-Please report any problems or feature requests to valheru@facticius.net.
+Please report any problems or feature requests to &Lawrence.C.Lee.email;
 </para>
 </chapter>
 
@@ -173,8 +170,8 @@ Alternatively, you can open any NFO file via
 </variablelist>
 
 <para>
-Once loaded, the file is displayed using CP437/IBM437 encoding.
-This enables the viewing of "ASCII graphics".
+Once loaded, the file is displayed using CP437/IBM437 decoding.
+This enables the viewing of ASCII graphics.
 </para>
 <para>
 
@@ -307,11 +304,11 @@ distribution. -->
 &knfoviewer;
 </para>
 <para>
-Program copyright 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
+Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <para>
-Documentation Copyright &copy; 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
+Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->

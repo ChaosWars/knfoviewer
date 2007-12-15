@@ -5,7 +5,7 @@
     <Action name="file_open"/>
   </Menu>
   <Menu name="settings">
-      <Action name="options_configure"/>
+      <Action name="configure_settings"/>
   </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">

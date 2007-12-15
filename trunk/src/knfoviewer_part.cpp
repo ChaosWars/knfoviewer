@@ -62,8 +62,8 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     // create our actions
     KStdAction::open( this, SLOT( fileOpen() ), actionCollection() );
     new KAction( i18n( "&Configure KNfoViewer" ), "configure", 0,
-                 this, SLOT( optionsConfigure() ),
-                 actionCollection(), "options_configure" );
+                 this, SLOT( configureSettings() ),
+                 actionCollection(), "configure_settings" );
     config = KNfoViewerSettings::self();
     readProperties( config );
 
@@ -95,7 +95,7 @@ void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
     linkColor = config->linkColor();
 }
 
-void KNfoViewerPart::optionsConfigure()
+void KNfoViewerPart::configureSettings()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
@@ -248,9 +248,9 @@ void KNfoViewerPart::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    QString file_name = KFileDialog::getOpenFileName( QDir::homeDirPath(), "*.nfo *.NFO | NFO Files", 0, NULL );
+    KURL file_name = KFileDialog::getOpenURL( QString::null, "*.nfo *.NFO | NFO Files" );
 
-    if (file_name.isEmpty() == false){
+    if( !file_name.isEmpty() ){
         openURL( file_name );
     }
 }

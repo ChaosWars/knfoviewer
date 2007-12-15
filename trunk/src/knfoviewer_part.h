@@ -67,7 +67,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
 
     protected slots:
         void fileOpen();
-        void optionsConfigure();
+        void configureSettings();
 
     private:
         QFont font;
