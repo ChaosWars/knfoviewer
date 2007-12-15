@@ -1,8 +1,8 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-    <author></author>
-    <email></email>
+    <author/>
+    <email/>
     <version>$VERSION$</version>
     <projectmanagement>KDevCustomProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
@@ -13,21 +13,21 @@
       <language>C</language>
     </secondaryLanguages>
     <projectname>knfoviewer</projectname>
-    <description></description>
-    <defaultencoding></defaultencoding>
+    <description/>
+    <defaultencoding/>
     <versioncontrol>kdevsubversion</versioncontrol>
   </general>
   <kdevcustomproject>
     <filelistdirectory>/home/lawrence/Projects/knfoviewer</filelistdirectory>
     <run>
-      <mainprogram></mainprogram>
+      <mainprogram/>
       <directoryradio>custom</directoryradio>
       <customdirectory>/home/lawrence/Projects/knfoviewer</customdirectory>
-      <programargs></programargs>
+      <programargs/>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
-      <globaldebugarguments></globaldebugarguments>
+      <globaldebugarguments/>
       <globalcwd>/home/lawrence/Projects/knfoviewer</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <autoinstall>false</autoinstall>
@@ -41,14 +41,14 @@
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin></makebin>
+      <makebin/>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
       </environments>
       <prio>0</prio>
-      <defaulttarget></defaulttarget>
-      <makeoptions></makeoptions>
+      <defaulttarget/>
+      <makeoptions/>
     </make>
     <filetypes>
       <filetype>*.java</filetype>
@@ -72,9 +72,9 @@
     <blacklist/>
     <other>
       <prio>0</prio>
-      <otherbin></otherbin>
-      <defaulttarget></defaulttarget>
-      <otheroptions></otheroptions>
+      <otherbin/>
+      <defaulttarget/>
+      <otheroptions/>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
@@ -149,7 +149,7 @@
       <designerpluginpaths/>
     </qt>
     <creategettersetter>
-      <prefixGet></prefixGet>
+      <prefixGet/>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -174,15 +174,16 @@
     <tree>
       <hidepatterns>*.o,*.lo,CVS,*~,cmake*</hidepatterns>
       <hidenonprojectfiles>true</hidenonprojectfiles>
+      <showvcsfields>false</showvcsfields>
     </tree>
   </kdevfileview>
   <kdevdebugger>
     <general>
-      <gdbpath></gdbpath>
-      <dbgshell></dbgshell>
-      <configGdbScript></configGdbScript>
-      <runShellScript></runShellScript>
-      <runGdbScript></runGdbScript>
+      <gdbpath/>
+      <dbgshell/>
+      <configGdbScript/>
+      <runShellScript/>
+      <runGdbScript/>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
@@ -196,8 +197,8 @@
   </kdevdebugger>
   <kdevdocumentation>
     <projectdoc>
-      <docsystem></docsystem>
-      <docurl></docurl>
+      <docsystem/>
+      <docurl/>
       <usermanualurl>/home/lawrence/Projects/knfoviewer/docs/index.docbook</usermanualurl>
     </projectdoc>
   </kdevdocumentation>

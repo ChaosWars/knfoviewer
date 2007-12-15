@@ -55,7 +55,6 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
     htmlpart->setOnlyLocalReferences(true);
 
     connect( htmlpart, SIGNAL( urlMouseOver( const QString& ) ), m_widget, SIGNAL( urlMouseOver( const QString& ) ) );
-    connect( htmlpart, SIGNAL( popupMenu( const QString&, const QPoint& ) ), this, SLOT( popupMenu( const QString&, const QPoint& ) ) );
 
     // notify the part that this is our internal widget
     setWidget( m_widget );
@@ -77,11 +76,6 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
 KNfoViewerPart::~KNfoViewerPart()
 {
     saveProperties( config );
-}
-
-void KNfoViewerPart::popupMenu(const QString &url, const QPoint &point)
-{
-    qDebug( "popupmenu requested at coordinates %d:%d", point.x(), point.y() );
 }
 
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )

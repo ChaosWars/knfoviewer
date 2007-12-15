@@ -19,7 +19,6 @@
  ***************************************************************************/
 #include <kapplication.h>
 #include <khtml_events.h>
-#include <dom/dom2_range.h>
 #include <qclipboard.h>
 #include "knfoviewerhtml.h"
 
@@ -48,9 +47,6 @@ void KNfoViewerHTML::selectionSlot()
     kapp->clipboard()->setText( selectedText() );
 //     DOM::Range newRange;
 //     newRange.collapse( true );
-//     DOM::Node n;
-//     newRange.setStart( n, 0 );
-//     newRange.setEnd( n, 0 );
 //     setSelection( newRange );
 }
 

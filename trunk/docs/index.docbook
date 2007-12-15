@@ -172,6 +172,28 @@ Alternatively, you can open any NFO file via
 </varlistentry>
 </variablelist>
 
+<para>
+Once loaded, the file is displayed using CP437/IBM437 encoding.
+This enables the viewing of "ASCII graphics".
+</para>
+<para>
+
+<!-- Note that all graphics should be in .png format. Use no gifs because of
+patent issues. -->
+
+<screenshot>
+<screeninfo>&knfoviewer; displaying a CP437 encoded file</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="knfoviewer_file_loaded.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
 </para>
 </chapter>
 

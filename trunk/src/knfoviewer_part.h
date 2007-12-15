@@ -68,7 +68,6 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
     protected slots:
         void fileOpen();
         void optionsConfigure();
-        void popupMenu( const QString &url, const QPoint &point );
 
     private:
         QFont font;
