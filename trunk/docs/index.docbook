@@ -4,6 +4,7 @@
        CVS -->
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com<ulink>">
   <!ENTITY knfoviewer "<application>KNfoViewer</application>">
   <!ENTITY kappname "&knfoviewer;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
@@ -57,7 +58,6 @@ as Authors, publish date, the abstract, and Keywords -->
 <title>The &knfoviewer; Handbook</title>
 
 <authorgroup>
-<author>
 <!-- This is just put in as an example.  For real documentation, please
      define a general entity in entities/contributor.entities, e.g.
 <!ENTITY George.N.Ugnacious "<personname><firstname>George</firstname><othername>N.</othername><surname>Ugnacious</surname></personname>">
@@ -129,7 +129,7 @@ revision history. (see installation appendix comment) -->
 
 <para>
 &knfoviewer; is an application for viewing NFO files.
-Please report any problems or feature requests to &Lawrence.C.Lee.email;
+Please report any problems or feature requests as an issue on &homepage;
 </para>
 </chapter>
 
