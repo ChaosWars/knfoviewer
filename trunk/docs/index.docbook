@@ -4,7 +4,7 @@
        CVS -->
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
-  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com<ulink>">
+  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com</ulink>">
   <!ENTITY knfoviewer "<application>KNfoViewer</application>">
   <!ENTITY kappname "&knfoviewer;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
@@ -336,7 +336,7 @@ part of KDE CVS.  You should remove it if you are releasing your
 application -->
 
 <para>
-&knfoviewer; can be found on <ulink url="http://knfoviewer.googlecode.com">The &knfoviewer; home page</ulink>.
+&knfoviewer; can be found on <ulink url="http://knfoviewer.googlecode.com">the &knfoviewer; home page</ulink>.
 </para>
 
 </sect1>
