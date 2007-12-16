@@ -10,4 +10,4 @@ FIND_PACKAGE( KDE3 REQUIRED )
 
 #list all source files here
 ADD_SUBDIRECTORY( src )
-ADD_SUBDIRECTORY( docs )
+ADD_SUBDIRECTORY( doc )
