@@ -28,6 +28,10 @@
 Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *config )
     : KConfigDialog( parent, name, config ), m_config( config ), fc( false ), cc( false )
 {
+#ifdef COMPILE_FOR_KDE4
+
+#elseif
+
     //Set up font page
     fontPage = new QWidget( 0, "kcfg_BrowserFont" );
     fontLayout = new QGridLayout( fontPage );
@@ -46,6 +50,8 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     colorPage->setTextColor( config->textColor()  );
     colorPage->setLinkColor( config->linkColor()  );
     addPage( colorPage, i18n( "Configure Colors" ), "colorize" );
+
+#endif
 }
 
 Settings::~Settings()
