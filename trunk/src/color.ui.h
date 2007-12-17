@@ -28,19 +28,19 @@ QColor ColorPage::linkColor()
 	return m_linkColorCombo->color();
 }
 
-void ColorPage::setBackgroundColor( const uint &color )
+void ColorPage::setBackgroundColor( const QColor &color )
 {
 	m_backgroundColorCombo->setColor( color );
 }
 
 
-void ColorPage::setTextColor( const uint &color )
+void ColorPage::setTextColor( const QColor &color )
 {
 	m_textColorCombo->setColor( color );
 }
 
 
-void ColorPage::setLinkColor( const uint &color )
+void ColorPage::setLinkColor( const QColor &color )
 {
 	m_linkColorCombo->setColor( color );
 }
@@ -62,5 +62,3 @@ KColorCombo* ColorPage::linkColorCombo()
 {
 	return m_linkColorCombo;
 }
-
-

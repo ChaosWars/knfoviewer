@@ -1,7 +1,7 @@
 # KDevelop Custom Project File List
 CMakeLists.txt
-docs
-docs/CMakeLists.txt
+doc
+doc/CMakeLists.txt
 src
 src/CMakeLists.txt
 src/cp437codec.cpp

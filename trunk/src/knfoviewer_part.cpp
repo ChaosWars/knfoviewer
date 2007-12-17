@@ -80,16 +80,16 @@ KNfoViewerPart::~KNfoViewerPart()
 
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
 {
-    config->setFont( font.toString() );
-    config->setBackgroundColor( backgroundColor.rgb() );
-    config->setTextColor( textColor.rgb() );
-    config->setLinkColor( linkColor.rgb() );
+    config->setFont( font );
+    config->setBackgroundColor( backgroundColor );
+    config->setTextColor( textColor );
+    config->setLinkColor( linkColor );
     config->writeConfig();
 }
 
 void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
 {
-    font.fromString( config->font() );
+    font = config->font();
     backgroundColor = config->backgroundColor();
     textColor = config->textColor();
     linkColor = config->linkColor();

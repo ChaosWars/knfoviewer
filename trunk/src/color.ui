@@ -13,7 +13,7 @@
         </rect>
     </property>
     <property name="caption">
-        <string>Color Page</string>
+        <string>Colors</string>
     </property>
     <vbox>
         <property name="name">
@@ -40,7 +40,7 @@
                         </property>
                         <widget class="QLabel">
                             <property name="name">
-                                <cstring>backgroundColorTextLabel</cstring>
+                                <cstring>backgroundColorLabel</cstring>
                             </property>
                             <property name="frameShape">
                                 <enum>NoFrame</enum>
@@ -72,7 +72,7 @@
                         </property>
                         <widget class="QLabel">
                             <property name="name">
-                                <cstring>textColorTextLabel</cstring>
+                                <cstring>textColorLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>Text Color</string>
@@ -105,7 +105,7 @@
                         </property>
                         <widget class="QLabel">
                             <property name="name">
-                                <cstring>linkColorTextLabel</cstring>
+                                <cstring>linkColorLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>Link Color</string>
@@ -153,9 +153,9 @@
     <include location="local" impldecl="in implementation">color.ui.h</include>
 </includes>
 <slots>
-    <slot>setBackgroundColor( const uint &amp; color )</slot>
-    <slot>setTextColor( const uint &amp; color )</slot>
-    <slot>setLinkColor( const uint &amp; color )</slot>
+    <slot>setBackgroundColor( const QColor &amp; color )</slot>
+    <slot>setTextColor( const QColor &amp; color )</slot>
+    <slot>setLinkColor( const QColor &amp; color )</slot>
 </slots>
 <functions>
     <function returnType="QColor">backgroundColor()</function>
@@ -166,9 +166,4 @@
     <function returnType="KColorCombo *">linkColorCombo()</function>
 </functions>
 <layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>kcolorcombo.h</includehint>
-    <includehint>kcolorcombo.h</includehint>
-    <includehint>kcolorcombo.h</includehint>
-</includehints>
 </UI>

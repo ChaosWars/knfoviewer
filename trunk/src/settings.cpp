@@ -29,17 +29,16 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     : KConfigDialog( parent, name, config ), m_config( config ), fc( false ), cc( false )
 {
     //Set up font page
-    fontPage = new QWidget( 0, "FontPage" );
+    fontPage = new QWidget( 0, "kcfg_BrowserFont" );
     fontLayout = new QGridLayout( fontPage );
-    fontChooser = new KFontChooser( fontPage, "FontChooser", true );
-    font.fromString( m_config->font() );
-    fontChooser->setFont( font, true );
+    fontChooser = new KFontChooser( fontPage, "kcfg_font", true );
+    fontChooser->setFont( m_config->font(), true );
     fontLayout->addWidget( fontChooser, 0, 0 );
     connect( fontChooser, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
     addPage( fontPage, i18n( "Configure Fonts" ), "fonts" );
 
     //Set up the color chooser page
-    colorPage = new ColorPage();
+    colorPage = new ColorPage( 0, "kcfg_Colors");
     connect( colorPage->backgroundColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( backgroundColorChanged( const QColor& ) ) );
     connect( colorPage->textColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( textColorChanged( const QColor& ) ) );
     connect( colorPage->linkColorCombo(), SIGNAL( activated( const QColor& ) ), this, SLOT( linkColorChanged( const QColor& ) ) );
@@ -91,18 +90,18 @@ void Settings::updateSettings()
 
     if( fc ){
         font = fontChooser->font();
-        m_config->setFont( font.toString() );
+        m_config->setFont( font );
         fc = false;
         settingsChanged = true;
     }
 
     if( cc ){
         backgroundColor = colorPage->backgroundColor();
-        m_config->setBackgroundColor( backgroundColor.rgb() );
+        m_config->setBackgroundColor( backgroundColor );
         textColor = colorPage->textColor();
-        m_config->setTextColor( textColor.rgb() );
+        m_config->setTextColor( textColor );
         linkColor = colorPage->linkColor();
-        m_config->setLinkColor( linkColor.rgb() );
+        m_config->setLinkColor( linkColor );
         cc = false;
         settingsChanged = true;
     }
