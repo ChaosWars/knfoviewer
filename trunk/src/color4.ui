@@ -1,12 +1,12 @@
 <ui version="4.0" >
- <class>kcfg_ColorPage</class>
- <widget class="QWidget" name="kcfg_ColorPage" >
+ <class>Color4</class>
+ <widget class="QWidget" name="Color4" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>149</width>
-    <height>219</height>
+    <width>158</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -27,12 +27,192 @@
            <string>Background color</string>
           </property>
           <property name="buddy" >
-           <cstring>kcfg_BackgroundColorCombo</cstring>
+           <cstring>m_BackgroundColorCombo</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorCombo" name="kcfg_BackgroundColorCombo" >
+         <widget class="KColorCombo" name="m_BackgroundColorCombo" >
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
           <item>
            <property name="text" >
             <string>Custom...</string>
@@ -135,12 +315,12 @@
            <string>Text color</string>
           </property>
           <property name="buddy" >
-           <cstring>kcfg_TextColorCombo</cstring>
+           <cstring>m_TextColorCombo</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorCombo" name="kcfg_TextColorCombo" >
+         <widget class="KColorCombo" name="m_TextColorCombo" >
           <property name="color" >
            <color>
             <red>0</red>
@@ -148,6 +328,186 @@
             <blue>0</blue>
            </color>
           </property>
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
           <item>
            <property name="text" >
             <string>Custom...</string>
@@ -250,12 +610,12 @@
            <string>Link color</string>
           </property>
           <property name="buddy" >
-           <cstring>kcfg_LinkColorCombo</cstring>
+           <cstring>m_LinkColorCombo</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorCombo" name="kcfg_LinkColorCombo" >
+         <widget class="KColorCombo" name="m_LinkColorCombo" >
           <property name="color" >
            <color>
             <red>0</red>
@@ -263,6 +623,186 @@
             <blue>255</blue>
            </color>
           </property>
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>Custom...</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string/>
+           </property>
+          </item>
           <item>
            <property name="text" >
             <string>Custom...</string>

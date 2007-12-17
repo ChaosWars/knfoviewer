@@ -7,27 +7,28 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
 
 SET( SRC main4.cpp knfoviewer4.cpp )
-SET( KPART_SRC knfoviewer_part4.cpp mainwidget.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
+SET( KPART_SRC knfoviewer_part4.cpp mainwidget4.cpp knfoviewerhtml4.cpp cp437codec4.cpp settings4.cpp )
 SET( KPART_UI_SRC color4.ui font4.ui )
-SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp )
+SET( THUMBNAIL_SRC knfoviewerthumbnail4.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
 KDE4_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )
-ADD_DEFINITIONS( ${QT4_DEFINITIONS} ${KDE3_DEFINITIONS} )
+ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE4_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE4_LIB_DIR} )
-KDE4_ADD_PLUGIN( knfoviewerpart WITH_PREFIX ${KPART_SRC} ${KPART_UI_SRC} )
-KDE4_ADD_PLUGIN( knfoviewerthumbnail ${THUMBNAIL_SRC} )
+KDE4_ADD_PLUGIN( knfoviewerpart WITH_PREFIX ${KPART_SRC} )
+# KDE4_ADD_PLUGIN( knfoviewerthumbnail ${THUMBNAIL_SRC} )
 KDE4_ADD_EXECUTABLE( knfoviewer ${SRC} )
-TARGET_LINK_LIBRARIES( knfoviewerpart ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPART_LIBS} ${KDE4_KHTML_LIBS} )
-TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPART_LIBS} ${KDE4_KHTML_LIBS} )
-TARGET_LINK_LIBRARIES( knfoviewer ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KHTML_LIBS} )
-INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
+TARGET_LINK_LIBRARIES( knfoviewerpart ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
+# TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
+TARGET_LINK_LIBRARIES( knfoviewer ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} )
+INSTALL(TARGETS knfoviewer knfoviewerpart
+# knfoviewerthumbnail
         RUNTIME DESTINATION ${KDE4_BIN_INSTALL_DIR}
         LIBRARY DESTINATION ${PLUGIN_INSTALL_DIR}
         ARCHIVE DESTINATION ${PLUGIN_INSTALL_DIR} )
 INSTALL( FILES knfoviewer.desktop DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR} )
 INSTALL( FILES knfoviewer_part.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 INSTALL( FILES x-nfo.desktop DESTINATION ${MIME_INSTALL_DIR} )
-INSTALL( FILES knfoviewerthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+# INSTALL( FILES knfoviewerthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 INSTALL( FILES knfoviewer_shell.rc knfoviewer_part.rc DESTINATION ${DATA_INSTALL_DIR}/knfoviewer )
 
 ELSE( COMPILE_FOR_KDE4 )

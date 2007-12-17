@@ -26,12 +26,12 @@
 #include <KDE/KUrl>
 
 class KAboutData;
-class KNfoViewerHTML;
+class KNfoViewerHTML4;
 class KRecentFilesAction;
 class KConfigDialog;
 class KNfoViewerSettings;
 class QGridLayout;
-class MainWidget;
+class MainWidget4;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -80,8 +80,8 @@ class KNfoViewerPart4 : public KParts::ReadOnlyPart
         QColor linkColor;
         KConfigDialog *settings;
         KNfoViewerSettings *config;
-        MainWidget *m_widget;
-        KNfoViewerHTML *htmlpart;
+        MainWidget4 *m_widget;
+        KNfoViewerHTML4 *htmlpart;
         QGridLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );

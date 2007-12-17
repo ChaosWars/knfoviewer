@@ -20,6 +20,7 @@
 #include <KDE/KApplication>
 #include <KDE/KMessageBox>
 #include <KDE/KPluginLoader>
+#include <KDE/KPluginFactory>
 #include <KDE/KFileDialog>
 #include <KDE/KConfig>
 #include <KDE/KEditToolBar>
@@ -29,7 +30,6 @@
 #include <KDE/KStatusBar>
 #include <KDE/KLocale>
 #include "knfoviewer4.h"
-#include "knfoviewer_part4.h"
 
 KNfoViewer4::KNfoViewer4()
 {
@@ -42,16 +42,14 @@ KNfoViewer4::KNfoViewer4()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-//     KLibFactory *factory = KLibLoader::self()->factory("libknfoviewerpart4");
     KPluginLoader loader( "knfoviewerpart4" );
-
     KPluginFactory* factory = loader.factory();
 
     if( !factory ){
 //         kWarning() << "Error loading plugin:" << loader.errorString();
     }else{
 
-        m_part = factory->create< KNfoViewerPart4 >();
+        m_part = factory->create< KParts::ReadOnlyPart >();
 
         if ( !m_part ) {
             // if we couldn't find our Part, we exit since the Shell by

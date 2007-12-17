@@ -17,7 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "cp437codec.h"
+#include "cp437codec4.h"
 
 #ifndef QT_NO_CODECS
 
@@ -25,22 +25,29 @@
 #define IsCP437Char(c)  ( ( (c) >= 0x80 ) && ( (c) <= 0xFF ) )
 #define QValidChar(u)   ( (u) ? QChar( (u) ) : QChar::replacement )
 
-CP437Codec::CP437Codec()
+CP437Codec4::CP437Codec4()
 {
 }
 
-CP437Codec::~CP437Codec()
+CP437Codec4::~CP437Codec4()
 {
 }
 
-int CP437Codec::mibEnum() const
+int CP437Codec4::mibEnum() const
 {
     return 2011;
 }
 
-const char* CP437Codec::name() const
+QByteArray CP437Codec4::name() const
 {
-    return "CP437";
+    return QByteArray( "CP437" );
+}
+
+QList< QByteArray > CP437Codec4::aliases() const
+{
+    return QList< QByteArrya > m_aliases;
+    m_aliases << "IBM437";
+    return m_aliases;
 }
 
 static const ushort UnToCP437[][2] = {
@@ -209,11 +216,12 @@ static const ushort CP437ToUn[][2] = {
     {0x00FF,0x00A0}
 };
 
-QCString CP437Codec::fromUnicode( const QString& uc, int& lenInOut ) const
+QByteArray CP437Codec4::fromUnicode( const QString& uc, int& lenInOut ) const
 {
+    return QByteArray();
 }
 
-QString CP437Codec::toUnicode( const char* chars, int len ) const
+QString CP437Codec4::toUnicode( const char* chars, int len ) const
 {
     QString result;
 
@@ -228,9 +236,9 @@ QString CP437Codec::toUnicode( const char* chars, int len ) const
             //CP437
 //             if ( ch <= 0x1F ) {
 //                 result += QValidChar( CP437ToUn[ch - 0x01][1] );
-//
+            //
 //             } else {
-                result += QValidChar( CP437ToUn[ch - 0x80][1] );
+            result += QValidChar( CP437ToUn[ch - 0x80][1] );
             //}
 
         } else {
@@ -243,7 +251,7 @@ QString CP437Codec::toUnicode( const char* chars, int len ) const
     return result;
 }
 
-int CP437Codec::heuristicContentMatch( const char* chars, int len ) const
+int CP437Codec4::heuristicContentMatch( const char* chars, int len ) const
 {
     int score = 0;
 
@@ -273,7 +281,7 @@ int CP437Codec::heuristicContentMatch( const char* chars, int len ) const
     return score;
 }
 
-int CP437Codec::heuristicNameMatch( const char* hint ) const
+int CP437Codec4::heuristicNameMatch( const char* hint ) const
 {
     const char *p = strchr( hint, '.' );
 
@@ -283,7 +291,7 @@ int CP437Codec::heuristicNameMatch( const char* hint ) const
         p = hint;
 
     if ( qstricmp( p, "IBM437" ) == 0 ||
-            qstricmp( p, "CP437" ) == 0 )
+         qstricmp( p, "CP437" ) == 0 )
         return 4;
 
     return QTextCodec::heuristicNameMatch( hint );

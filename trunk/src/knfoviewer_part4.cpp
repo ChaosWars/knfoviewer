@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include <KDE/KPluginFactory>
 #include <KDE/KAction>
 #include <KDE/KStandardAction>
 #include <KDE/KFileDialog>
@@ -27,25 +28,25 @@
 #include <QFile>
 #include <QRegExp>
 #include <QLayout>
-#include "mainwidget.h"
+#include "mainwidget4.h"
 #include "knfoviewer_part4.h"
-#include "knfoviewerhtml.h"
-#include "cp437codec.h"
+#include "knfoviewerhtml4.h"
+#include "cp437codec4.h"
 #include "knfoviewersettings.h"
-#include "settings.h"
+#include "settings4.h"
 
-K_PLUGIN_FACTORY( KNfoViewerPart4Factory, registerPlugin< KNfoViewerPart4 >() );
-K_EXPORT_PLUGIN( KNfoViewerPart4Factory( "knfoviewerpart4" ) );
+K_PLUGIN_FACTORY( KNfoViewer4Factory, registerPlugin<KNfoViewerPart4>(); )
+K_EXPORT_PLUGIN( KNfoViewer4Factory( "knfoviewerpart4" ) )
 
-KNfoViewerPart4::KNfoViewerPart4(QQWidget* parentWidget, QObject* parent, const QVariantList &args )
+KNfoViewerPart4::KNfoViewerPart4( QQWidget *parentWidget, QObject *parent, const QVariantList &args )
     : KParts::ReadOnlyPart( parent )
 {
-    setComponentData( KNfoViewerPart4Factory::componentData() );
+    setComponentData( KNfoViewer4Factory::componentData() );
 
     // this should be your custom internal widget
-    m_widget = new MainWidget( parentWidget );
+    m_widget = new MainWidget4( parentWidget );
     layout = new QGridLayout( m_widget );
-    htmlpart = new KNfoViewerHTML( m_widget );
+    htmlpart = new KNfoViewerHTML4( m_widget );
     layout->addWidget( htmlpart->view(), 0, 0, 0 );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -105,7 +106,7 @@ void KNfoViewerPart4::configureSettings()
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    settings = new Settings( m_widget, "settings", config );
+    settings = new Settings4( m_widget, "settings", config );
     connect( settings, SIGNAL( settingsChanged() ), this, SLOT( loadSettings() ) );
     settings->show();
 }
@@ -121,12 +122,12 @@ bool KNfoViewerPart4::openFile()
     // m_file is always local so we can use QFile on it
     QFile file( m_file );
 
-    if( !file.open( IO_ReadOnly ) )
+    if( !file.open( QIODevice::ReadOnly ) )
         return false;
 
     text = "";
     QTextStream stream( &file );
-    CP437Codec codec;
+    CP437Codec4 codec;
     stream.setCodec( &codec );
     QString s;
 
@@ -240,7 +241,7 @@ void KNfoViewerPart4::display()
     htmlpart->end();
 }
 
-bool KNfoViewerPart4::openURL( const KURL & url )
+bool KNfoViewerPart4::openURL( const KUrl & url )
 {
     emit setWindowCaption( url.prettyURL() );
     emit addRecentFile( url );
@@ -253,7 +254,7 @@ void KNfoViewerPart4::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KURL file_name = KFileDialog::getOpenURL( QString::null, "*.nfo *.NFO | NFO Files" );
+    KURL file_name = KFileDialog::getOpenUrl( QString::null, "*.nfo *.NFO | NFO Files" );
 
     if( !file_name.isEmpty() ){
         openURL( file_name );
