@@ -25,8 +25,17 @@
 #include <config.h>
 #endif
 
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KApplication>
+#include <KDE/KParts/MainWindow>
+
+#else
+
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
+
+#endif
 
 class KToggleAction;
 

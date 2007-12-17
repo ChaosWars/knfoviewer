@@ -17,6 +17,21 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KKeyDialog>
+#include <KDE/KFileDialog>
+#include <KDE/KConfig>
+#include <KDE/KURL>
+#include <KDE/KEditToolBar>
+#include <KDE/KAction>
+#include <KDE/KStandardAction>
+#include <KDE/KLibLoader>
+#include <KDE/kmessagebox.h>
+#include <KDE/kstatusbar.h>
+#include <KDE/klocale.h>
+
+#else
 
 #include <kkeydialog.h>
 #include <kfiledialog.h>
@@ -29,6 +44,9 @@
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+
+#endif
+
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
