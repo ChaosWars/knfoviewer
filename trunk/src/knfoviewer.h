@@ -29,6 +29,7 @@
 
 #include <KDE/KApplication>
 #include <KDE/KParts/MainWindow>
+#include <KDE/KUrl>
 
 #else
 
@@ -38,6 +39,7 @@
 #endif
 
 class KToggleAction;
+class KRecentFilesAction;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -45,7 +47,7 @@ class KToggleAction;
  *
  * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.1
+ * @version 0.3.1
  */
 class KNfoViewer : public KParts::MainWindow
 {
@@ -58,35 +60,61 @@ class KNfoViewer : public KParts::MainWindow
         KNfoViewer();
 
     /**
-         * Default Destructor
+     * Default Destructor
      */
         virtual ~KNfoViewer();
 
     /**
-         * Use this method to load whatever file/URL you have
+     * Use this method to load whatever file/URL you have
      */
+#ifdef COMPILE_FOR_KDE4
+        void load(const KUrl& url);
+#else
         void load(const KURL& url);
+#endif
 
     protected:
+
+#ifdef COMPILE_FOR_KDE4
     /**
      * This method is called when it is time for the app to save its
      * properties for session management purposes.
      */
-        void saveProperties(KConfig *config );
+        void saveProperties( KConfigGroup &config );
 
     /**
          * This method is called when this app is restored.  The KConfig
          * object points to the session management config file that was saved
          * with @ref saveProperties
      */
-        void readProperties(KConfig *config );
+        void readProperties( const KConfigGroup &config );
+#else
+    /**
+     * This method is called when it is time for the app to save its
+     * properties for session management purposes.
+     */
+        void saveProperties( KConfig *config );
+
+    /**
+     * This method is called when this app is restored.  The KConfig
+     * object points to the session management config file that was saved
+     * with @ref saveProperties
+     */
+        void readProperties( KConfig *config );
+#endif
 
     private slots:
         void optionsConfigureKeys();
         void optionsConfigureToolbars();
         void applyNewToolbarConfig();
+
+#ifdef COMPILE_FOR_KDE4
+        void addRecentFile( const KUrl &url );
+        void openRecent( const KUrl &url );
+#else
         void addRecentFile( const KURL &url );
         void openRecent( const KURL& url );
+#endif
 
     private:
         KConfig *config;

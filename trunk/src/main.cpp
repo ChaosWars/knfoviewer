@@ -17,6 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KLocalizedString>
+#include <KDE/KAboutData>
+#include <KDE/KCmdLineArgs>
+#include <KDE/KApplication>
+#include "knfoviewer.h"
+
+static const char description[] ="A NFO viewer for KDE3";
+
+static const char version[] = "0.3.1";
+
+};
+
+int main(int argc, char **argv)
+{
+    KCmdLineOptions options;
+    options.add( "+files", ki18n( "Documents to open. You can list multiple files here." ) );
+    KAboutData about( "KNfoViewer", QByteArray(), "KNfoViewer", version, ki18n( "A NFO viewer for KDE" ),
+                        KAboutData::License_GPL, ki18n( "(C) 2007 Lawrence Lee" ), ki18n(""),
+                        "http://knfoviewer.googlecode.com", "valheru@facticius.net" );
+    about.addAuthor( "Lawrence Lee", ki18n( "Lead programmer" ), "valheru@facticius.net", "www.facticius.net" );
+
+#else
+
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
@@ -31,14 +56,19 @@ static const char version[] = "0.3.1";
 static KCmdLineOptions options[] =
 {
     { "+[URL]", I18N_NOOP( "Document to open" ), 0 },
-    KCmdLineLastOption
+                           KCmdLineLastOption
 };
 
 int main(int argc, char **argv)
 {
     KAboutData about( "knfoviewer", I18N_NOOP("KNfoViewer"), version, description,
-                     KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://knfoviewer.googlecode.com" );
+                      KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://knfoviewer.googlecode.com" );
     about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
+
+#endif
+
+
+
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;

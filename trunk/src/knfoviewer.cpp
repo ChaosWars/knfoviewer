@@ -22,14 +22,13 @@
 #include <KDE/KKeyDialog>
 #include <KDE/KFileDialog>
 #include <KDE/KConfig>
-#include <KDE/KURL>
 #include <KDE/KEditToolBar>
 #include <KDE/KAction>
 #include <KDE/KStandardAction>
 #include <KDE/KLibLoader>
-#include <KDE/kmessagebox.h>
-#include <KDE/kstatusbar.h>
-#include <KDE/klocale.h>
+#include <KDE/KMessageBox>
+#include <KDE/KStatusBar>
+#include <KDE/KLocale>
 
 #else
 
@@ -75,8 +74,12 @@ KNfoViewer::KNfoViewer()
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
         }
-
+#ifdef COMPILE_FOR_KDE4
+        connect( m_part, SIGNAL( addRecentFile( const KUrl& ) ), this, SLOT( addRecentFile( const KUrl&  ) ) );
+#else
         connect( m_part, SIGNAL( addRecentFile( const KURL& ) ), this, SLOT( addRecentFile( const KURL&  ) ) );
+#endif
+
         connect( m_part->widget(), SIGNAL( urlMouseOver( const QString& ) ), statusBar(), SLOT( message( const QString& ) ) );
     }
     else
@@ -104,6 +107,25 @@ KNfoViewer::~KNfoViewer()
     saveProperties( config );
 }
 
+#ifdef COMPILE_FOR_KDE4
+
+void KNfoViewer::load( const KUrl& url )
+{
+    m_part->openURL( url );
+}
+
+void KNfoViewer::addRecentFile( const KUrl &url )
+{
+    recentFiles->addURL( url );
+}
+
+void KNfoViewer::openRecent( const KUrl &url )
+{
+    m_part->openURL( url );
+}
+
+#else
+
 void KNfoViewer::load( const KURL& url )
 {
     m_part->openURL( url );
@@ -119,15 +141,27 @@ void KNfoViewer::openRecent( const KURL &url )
     m_part->openURL( url );
 }
 
+#endif
+
 void KNfoViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
+
+#ifdef COMPILE_FOR_KDE4
+    KStandardAction::quit( this, SLOT( close() ), actionCollection() );
+    KStandardAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
+    KStandardAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
+    recentFiles = KStandardAction::openRecent( this, SLOT( openRecent( const KUrl& ) ), actionCollection() );
+#else
     KStdAction::quit( this, SLOT( close() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
     recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
+#endif
 }
+
+#ifdef COMPILE_FOR_KDE4
 
 void KNfoViewer::saveProperties( KConfig* config )
 {
@@ -147,6 +181,27 @@ void KNfoViewer::readProperties( KConfig* config )
     config->setGroup( "RecentFiles" );
     recentFiles->loadEntries( config );
 }
+
+#else
+
+void KNfoViewer::saveProperties( KConfigGroup &config )
+{
+    // the 'config' object points to the session managed
+    // config file.  anything you write here will be available
+    // later when this app is restored
+}
+
+void KNfoViewer::readProperties( const KConfigGroup &config )
+{
+    // the 'config' object points to the session managed
+    // config file.  this function is automatically called whenever
+    // the app is being restored.  read in here whatever you wrote
+    // in 'saveProperties'
+    config->setGroup( "RecentFiles" );
+    recentFiles->loadEntries( config );
+}
+
+#endif
 
 void KNfoViewer::optionsConfigureKeys()
 {
