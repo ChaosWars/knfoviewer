@@ -18,19 +18,18 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _KNFOVIEWER_H_
-#define _KNFOVIEWER_H_
+#ifndef _KNFOVIEWER4_H_
+#define _KNFOVIEWER4_H_
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
-#include <kapplication.h>
-#include <kparts/mainwindow.h>
+#include <KDE/KParts/MainWindow>
+#include <KDE/KUrl>
 
 class KToggleAction;
 class KRecentFilesAction;
-class KNfoViewerPart;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -40,7 +39,7 @@ class KNfoViewerPart;
  * @author Lawrence Lee <valher@facticius.net>
  * @version 0.3.1
  */
-class KNfoViewer : public KParts::MainWindow
+class KNfoViewer4 : public KParts::MainWindow
 {
     Q_OBJECT
 
@@ -48,17 +47,17 @@ class KNfoViewer : public KParts::MainWindow
     /**
      * Default Constructor
      */
-        KNfoViewer();
+        KNfoViewer4();
 
     /**
-     * Default Destructor
+         * Default Destructor
      */
-        virtual ~KNfoViewer();
+        virtual ~KNfoViewer4();
 
     /**
-     * Use this method to load whatever file/URL you have
+         * Use this method to load whatever file/URL you have
      */
-        void load(const KURL& url);
+        void load(const KUrl& url);
 
     protected:
 
@@ -66,21 +65,21 @@ class KNfoViewer : public KParts::MainWindow
      * This method is called when it is time for the app to save its
      * properties for session management purposes.
      */
-        void saveProperties( KConfig *config );
+        void saveProperties( KConfigGroup &config );
 
     /**
-     * This method is called when this app is restored.  The KConfig
-     * object points to the session management config file that was saved
-     * with @ref saveProperties
+         * This method is called when this app is restored.  The KConfig
+         * object points to the session management config file that was saved
+         * with @ref saveProperties
      */
-        void readProperties( KConfig *config );
+        void readProperties( const KConfigGroup &config );
 
     private slots:
         void optionsConfigureKeys();
         void optionsConfigureToolbars();
         void applyNewToolbarConfig();
-        void addRecentFile( const KURL &url );
-        void openRecent( const KURL& url );
+        void addRecentFile( const KUrl &url );
+        void openRecent( const KUrl &url );
 
     private:
         KConfig *config;
@@ -90,4 +89,4 @@ class KNfoViewer : public KParts::MainWindow
         void setupActions();
 };
 
-#endif // _KNFOVIEWER_H_
+#endif

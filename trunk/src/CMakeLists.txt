@@ -6,12 +6,13 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_BINARY_DIR}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
 
-SET( SRC main.cpp knfoviewer.cpp )
-SET( KPART_SRC knfoviewer_part.cpp mainwidget.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
+SET( SRC main4.cpp knfoviewer4.cpp )
+SET( KPART_SRC knfoviewer_part4.cpp mainwidget.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
 SET( KPART_UI_SRC color4.ui font4.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp )
+KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
 KDE4_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )
-ADD_DEFINITIONS( ${QT4_DEFINITIONS} ${KDE3_DEFINITIONS} -DCOMPILE_FOR_KDE4 )
+ADD_DEFINITIONS( ${QT4_DEFINITIONS} ${KDE3_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE4_LIB_DIR} )
 KDE4_ADD_PLUGIN( knfoviewerpart WITH_PREFIX ${KPART_SRC} ${KPART_UI_SRC} )
 KDE4_ADD_PLUGIN( knfoviewerthumbnail ${THUMBNAIL_SRC} )
