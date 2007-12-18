@@ -17,14 +17,17 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <KDE/KPluginFactory>
 #include <KDE/KAction>
 #include <KDE/KStandardAction>
+#include <KDE/KActionCollection>
 #include <KDE/KFileDialog>
 #include <KDE/KLocale>
 #include <KDE/KIO/NetAccess>
 #include <KDE/KHTMLView>
 #include <KDE/KAboutData>
+#include <KDE/KPluginFactory>
+#include <KDE/KPluginLoader>
+#include <KDE/KIcon>
 #include <QFile>
 #include <QRegExp>
 #include <QLayout>
@@ -38,7 +41,7 @@
 K_PLUGIN_FACTORY( KNfoViewer4Factory, registerPlugin<KNfoViewerPart4>(); )
 K_EXPORT_PLUGIN( KNfoViewer4Factory( "knfoviewerpart4" ) )
 
-KNfoViewerPart4::KNfoViewerPart4( QQWidget *parentWidget, QObject *parent, const QVariantList &args )
+KNfoViewerPart4::KNfoViewerPart4( QWidget *parentWidget, QObject *parent, const QVariantList &args )
     : KParts::ReadOnlyPart( parent )
 {
     setComponentData( KNfoViewer4Factory::componentData() );
@@ -46,7 +49,7 @@ KNfoViewerPart4::KNfoViewerPart4( QQWidget *parentWidget, QObject *parent, const
     // this should be your custom internal widget
     m_widget = new MainWidget4( parentWidget );
     layout = new QGridLayout( m_widget );
-    htmlpart = new KNfoViewerHTML4( m_widget );
+    htmlpart = new KNfoViewerHTML4();
     layout->addWidget( htmlpart->view(), 0, 0, 0 );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -62,9 +65,8 @@ KNfoViewerPart4::KNfoViewerPart4( QQWidget *parentWidget, QObject *parent, const
 
     // create our actions
     KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
-    new KAction( i18n( "&Configure KNfoViewer" ), "configure", 0,
-                 this, SLOT( configureSettings() ),
-                 actionCollection(), "configure_settings" );
+    configureAction = new KAction( KIcon( "configure" ), i18n( "&amp;Configure KNfoViewer" ), actionCollection() );
+    connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
     config = KNfoViewerSettings::self();
     readProperties( config );
 
@@ -119,53 +121,7 @@ void KNfoViewerPart4::loadSettings()
 
 bool KNfoViewerPart4::openFile()
 {
-    // m_file is always local so we can use QFile on it
-    QFile file( m_file );
-
-    if( !file.open( QIODevice::ReadOnly ) )
-        return false;
-
-    text = "";
-    QTextStream stream( &file );
-    CP437Codec4 codec;
-    stream.setCodec( &codec );
-    QString s;
-
-    while( !stream.atEnd() ){
-        s = stream.readLine();
-
-        //Examine the text for hyperlinks
-        QRegExp exp( "http://*" );
-        int pos = 0;
-        QChar c;
-
-        while( ( pos = s.find( exp, pos ) ) > -1 ){
-            int end = pos + 7;
-            c = s.at( end );
-
-            while( !c.isSpace() && c.category() != QChar::Separator_Line && end != s.length() ){
-                end++;
-                c = s.at( end );
-            }
-
-            QString l = s.mid( pos, end - pos );
-            QString link( "<a href=\"" + l + "\">" + l + "</a>" );
-            s.replace( pos, l.length(), link );
-            pos += link.length();
-        }
-
-        text += s + "\n";
-    }
-
-    file.close();
-
-    // now that we have the entire file, display it
-    display();
-
-    // just for fun, set the status bar
-    emit setStatusBarText( m_url.prettyURL() );
-
-    return true;
+    return false;
 }
 
 const QString KNfoViewerPart4::htmlCode( const QString &text )
@@ -241,12 +197,58 @@ void KNfoViewerPart4::display()
     htmlpart->end();
 }
 
-bool KNfoViewerPart4::openURL( const KUrl & url )
+bool KNfoViewerPart4::openUrl( const KUrl & url )
 {
-    emit setWindowCaption( url.prettyURL() );
+    QString m_file( KIO::NetAccess::mostLocalUrl( url, 0 ).path() );
+    // m_file is always local so we can use QFile on it
+    QFile file(m_file );
+
+    if( !file.open( QIODevice::ReadOnly ) )
+        return false;
+
+    text = "";
+    QTextStream stream( &file );
+    CP437Codec4 codec;
+    stream.setCodec( &codec );
+    QString s;
+
+    while( !stream.atEnd() ){
+        s = stream.readLine();
+
+        //Examine the text for hyperlinks
+        QRegExp exp( "http://*" );
+        int pos = 0;
+        QChar c;
+
+        while( ( pos = s.indexOf( exp, pos ) ) > -1 ){
+            int end = pos + 7;
+            c = s.at( end );
+
+            while( !c.isSpace() && c.category() != QChar::Separator_Line && end != s.length() ){
+                end++;
+                c = s.at( end );
+            }
+
+            QString l = s.mid( pos, end - pos );
+            QString link( "<a href=\"" + l + "\">" + l + "</a>" );
+            s.replace( pos, l.length(), link );
+            pos += link.length();
+        }
+
+        text += s + "\n";
+    }
+
+    file.close();
+
+    // now that we have the entire file, display it
+    display();
+
+    // just for fun, set the status bar
+    emit setStatusBarText( url.prettyUrl() );
+    emit setWindowCaption( url.prettyUrl() );
     emit addRecentFile( url );
-    m_file = KIO::NetAccess::mostLocalURL( url, 0 ).path();
-    return openFile();
+
+    return true;
 }
 
 void KNfoViewerPart4::fileOpen()
@@ -254,10 +256,10 @@ void KNfoViewerPart4::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KURL file_name = KFileDialog::getOpenUrl( QString::null, "*.nfo *.NFO | NFO Files" );
+    KUrl file_name = KFileDialog::getOpenUrl( KUrl(), "*.nfo *.NFO | NFO Files" );
 
     if( !file_name.isEmpty() ){
-        openURL( file_name );
+        openUrl( file_name );
     }
 }
 

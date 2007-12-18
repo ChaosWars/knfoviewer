@@ -30,7 +30,7 @@ Settings4::Settings4( QWidget *parent, const char *name, KNfoViewerSettings *con
     fontPage = new FontPage4();
     fontPage->setFont( config->font(), true );
     connect( fontPage, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
-    addPage( fontPage, ki18n( "Configure Fonts" ), "fonts" );
+    addPage( fontPage, "configure_fonts", "fonts", "Configure Fonts" );
 
     //Set up the color chooser page
     colorPage = new ColorPage4();
@@ -40,7 +40,7 @@ Settings4::Settings4( QWidget *parent, const char *name, KNfoViewerSettings *con
     colorPage->setBackgroundColor( config->backgroundColor()  );
     colorPage->setTextColor( config->textColor()  );
     colorPage->setLinkColor( config->linkColor()  );
-    addPage( colorPage, ki18n( "Configure Colors" ), "colorize" );
+    addPage( colorPage, "configure_colors", "colorize", "Configure Colors" );
 }
 
 Settings4::~Settings4()
@@ -84,7 +84,7 @@ void Settings4::updateSettings()
     bool settingsChanged = false;
 
     if( fc ){
-        font = fontChooser->font();
+        font = fontPage->font();
         m_config->setFont( font );
         fc = false;
         settingsChanged = true;
@@ -103,7 +103,6 @@ void Settings4::updateSettings()
 
     if( settingsChanged ){
         m_config->writeConfig();
-        settingsChangedSlot();
     }
 }
 

@@ -22,7 +22,7 @@
 
 #include <KDE/KColorCombo>
 #include <QColor>
-#include "ui_color4.h"
+#include "ui_colorpage4.h"
 
 class ColorPage4 : public QWidget, public Ui::ColorPage4
 {
@@ -35,6 +35,9 @@ class ColorPage4 : public QWidget, public Ui::ColorPage4
         QColor backgroundColor() const{ return m_BackgroundColorCombo->color(); };
         QColor textColor() const{ return m_TextColorCombo->color(); };
         QColor linkColor() const{ return m_LinkColorCombo->color(); };
+        void setBackgroundColor( const QColor &color ){ m_BackgroundColorCombo->setColor( color ); }
+        void setTextColor( const QColor &color ){ m_TextColorCombo->setColor( color ); }
+        void setLinkColor( const QColor &color ){ m_LinkColorCombo->setColor( color ); }
 };
 
 #endif

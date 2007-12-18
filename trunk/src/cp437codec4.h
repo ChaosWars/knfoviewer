@@ -21,13 +21,11 @@
 #define _CP437CODEC_H_
 
 //Avoid QString mangling
-#if !defined( QT_NO_ASCII_CAST )
-#define QT_NO_ASCII_CAST 1
+#if !defined( QT_NO_CAST_FROM_ASCII )
+#define QT_NO_CAST_FROM_ASCII 1
 #endif
 
-#ifndef QT_H
 #include <QTextCodec>
-#endif // QT_H
 
 #ifndef QT_NO_CODECS
 
@@ -38,15 +36,11 @@ class CP437Codec4 : public QTextCodec
         ~CP437Codec4();
         int mibEnum() const;
         QByteArray name() const;
-        QList<QByteArray> aliases () const;
+        QList<QByteArray> aliases() const;
 
-#if !defined(Q_NO_USING_KEYWORD)
-        using QTextCodec::fromUnicode;
-#endif
-        QByteArray convertFromUnicode( const QChar *input, int number, ConverterState *state = 0 ) const;
-        QString convertToUnicode ( const char * chars, int len, ConverterState * state = 0 ) const;
-        int heuristicContentMatch(const char* chars, int len) const;
-        int heuristicNameMatch(const char* hint) const;
+    protected:
+        QByteArray convertFromUnicode( const QChar *input, int number, ConverterState *state ) const;
+        QString convertToUnicode( const char * chars, int len, ConverterState * state ) const;
 };
 
 #endif // QT_NO_CODECS

@@ -1,31 +1,19 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="8" >
-  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer_part4.cpp" >
-   <View0 Encoding="" line="124" Type="Source" />
+ <DocsAndViews NumberOfDocuments="4" >
+  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/settings4.cpp" >
+   <View0 Encoding="" line="86" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewer_part4.h" >
+  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/fontpage4.h" >
    <View0 Encoding="" line="0" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/mainwidget4.cpp" >
-   <View0 Encoding="" line="19" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/knfoviewersettings.kcfg" >
+   <View0 Encoding="" line="3" Type="Source" />
   </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/mainwidget4.h" >
-   <View0 Encoding="" line="0" Type="Source" />
+  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/doc/CMakeLists.txt" >
+   <View0 Encoding="" line="2" Type="Source" />
   </Doc3>
-  <Doc4 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/mainwidget.h" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc4>
-  <Doc5 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/mainwidget.cpp" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc5>
-  <Doc6 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/settings4.cpp" >
-   <View0 Encoding="" line="25" Type="Source" />
-  </Doc6>
-  <Doc7 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/src/settings4.h" >
-   <View0 Encoding="" line="33" Type="Source" />
-  </Doc7>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

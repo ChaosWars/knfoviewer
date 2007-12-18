@@ -25,6 +25,7 @@
 #include <KDE/KParts/Part>
 #include <KDE/KUrl>
 
+class KAction;
 class KAboutData;
 class KNfoViewerHTML4;
 class KRecentFilesAction;
@@ -32,6 +33,7 @@ class KConfigDialog;
 class KNfoViewerSettings;
 class QGridLayout;
 class MainWidget4;
+
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -66,7 +68,7 @@ class KNfoViewerPart4 : public KParts::ReadOnlyPart
      * This must be implemented by each part
      */
         virtual bool openFile();
-        virtual bool openURL( const KUrl & url );
+        virtual bool openUrl( const KUrl & url );
 
     protected Q_SLOTS:
         void fileOpen();
@@ -78,6 +80,7 @@ class KNfoViewerPart4 : public KParts::ReadOnlyPart
         QColor backgroundColor;
         QColor textColor;
         QColor linkColor;
+        KAction *configureAction;
         KConfigDialog *settings;
         KNfoViewerSettings *config;
         MainWidget4 *m_widget;

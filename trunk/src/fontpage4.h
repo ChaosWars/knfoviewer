@@ -21,14 +21,15 @@
 #define _FONTPAGE4_H_
 
 #include <QFont>
-#include "ui_font4.h"
+#include "ui_fontpage4.h"
 
-class FontPage4 : public QWidget, public Ui::Font4
+class FontPage4 : public QWidget, public Ui::FontPage4
 {
-    Font4(){ setupUi( this ); }
-    ~Font4(){}
-    QFont font() const{ return kfonthooser->font(); }
-    void setFont( const QFont &font ){ kfontchooser->setFont( font ); }
+    public:
+        FontPage4(){ setupUi( this ); }
+        ~FontPage4(){}
+        QFont font() const{ return kfontchooser->font(); }
+        void setFont( const QFont &font, bool onlyFixed = true ){ kfontchooser->setFont( font, onlyFixed ); }
 };
 
 #endif

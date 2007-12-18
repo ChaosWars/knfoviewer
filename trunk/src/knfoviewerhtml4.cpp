@@ -30,25 +30,16 @@ KNfoViewerHTML4::~KNfoViewerHTML4()
 {
 }
 
-void KNfoViewerHTML4::khtmlMouseMoveEvent( khtml::MouseMoveEvent *event )
+bool KNfoViewerHTML4::urlSelected( const QString &url, int button, int state, const QString &_target,
+                                   const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs )
 {
-    emit urlMouseOver( event->url().string() );
-}
-
-bool KNfoViewerHTML4::urlSelected( const QString &url,
-                                   int button,
-                                   int state,
-                                   const QString &_target,
-                                   const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
-                                   const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments() )
-{
-    kApplication()->invokeBrowser( url );
+//     kapp->invokeBrowser( url );
     return true;
 }
 
 void KNfoViewerHTML4::selectionSlot()
 {
-    kApplication()->clipboard()->setText( selectedText() );
+    kapp->clipboard()->setText( selectedText() );
 //     DOM::Range newRange;
 //     newRange.collapse( true );
 //     setSelection( newRange );

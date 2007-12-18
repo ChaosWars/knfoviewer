@@ -17,13 +17,11 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include <QChar>
 #include "cp437codec4.h"
-
-#ifndef QT_NO_CODECS
 
 //#define IsCP437Char(c)  ( ( ( (c) <= 0x1F ) && ( (c) != 0x0A ) && ( (c) != 0x0D ) ) || ( ( (c) >= 0x7F ) && ( (c) <= 0xFF ) ) )
 #define IsCP437Char(c)  ( ( (c) >= 0x80 ) && ( (c) <= 0xFF ) )
-#define QValidChar(u)   ( (u) ? QChar( (u) ) : QChar::replacement )
 
 CP437Codec4::CP437Codec4()
 {
@@ -45,7 +43,7 @@ QByteArray CP437Codec4::name() const
 
 QList< QByteArray > CP437Codec4::aliases() const
 {
-    return QList< QByteArrya > m_aliases;
+    QList< QByteArray > m_aliases;
     m_aliases << "IBM437";
     return m_aliases;
 }
@@ -216,12 +214,12 @@ static const ushort CP437ToUn[][2] = {
     {0x00FF,0x00A0}
 };
 
-QByteArray CP437Codec4::fromUnicode( const QString& uc, int& lenInOut ) const
+QByteArray CP437Codec4::convertFromUnicode( const QChar*, int, ConverterState* ) const
 {
     return QByteArray();
 }
 
-QString CP437Codec4::toUnicode( const char* chars, int len ) const
+QString CP437Codec4::convertToUnicode( const char * chars, int len, ConverterState * ) const
 {
     QString result;
 
@@ -234,67 +232,14 @@ QString CP437Codec4::toUnicode( const char* chars, int len ) const
 
         } else if ( IsCP437Char( ch ) ) {
             //CP437
-//             if ( ch <= 0x1F ) {
-//                 result += QValidChar( CP437ToUn[ch - 0x01][1] );
-            //
-//             } else {
-            result += QValidChar( CP437ToUn[ch - 0x80][1] );
-            //}
+            result += CP437ToUn[ch - 0x80][1];
 
         } else {
             //Invalid charachter
-            result += QChar::replacement;
+            result += QChar( ch );
         }
 
     }
 
     return result;
 }
-
-int CP437Codec4::heuristicContentMatch( const char* chars, int len ) const
-{
-    int score = 0;
-
-    for ( int i=0; i<len; i++ ) {
-        uchar ch = chars[i];
-        // No nulls allowed.
-
-        if ( !ch )
-            return -1;
-
-        if ( ch < 32 && ch != '\t' && ch != '\n' && ch != '\r' ) {
-            // Suspicious
-            if ( score )
-                score--;
-
-        } else if ( ch < 0x80 ) {
-            // Inconclusive
-        } else if ( IsCP437Char( ch ) ) {
-            score++;
-
-        } else {
-            // Invalid
-            return -1;
-        }
-    }
-
-    return score;
-}
-
-int CP437Codec4::heuristicNameMatch( const char* hint ) const
-{
-    const char *p = strchr( hint, '.' );
-
-    if ( p )
-        p++;
-    else
-        p = hint;
-
-    if ( qstricmp( p, "IBM437" ) == 0 ||
-         qstricmp( p, "CP437" ) == 0 )
-        return 4;
-
-    return QTextCodec::heuristicNameMatch( hint );
-}
-
-#endif

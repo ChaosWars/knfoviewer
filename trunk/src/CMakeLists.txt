@@ -8,7 +8,7 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
 
 SET( SRC main4.cpp knfoviewer4.cpp )
 SET( KPART_SRC knfoviewer_part4.cpp mainwidget4.cpp knfoviewerhtml4.cpp cp437codec4.cpp settings4.cpp )
-SET( KPART_UI_SRC color4.ui font4.ui )
+SET( KPART_UI_SRC colorpage4.ui fontpage4.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail4.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
 KDE4_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )

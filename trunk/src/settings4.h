@@ -22,9 +22,9 @@
 
 #include <KDE/KConfigDialog>
 
-class KNfoViewerSettings4;
-class ColorPage4;
+class KNfoViewerSettings;
 class FontPage4;
+class ColorPage4;
 
 class Settings4 : public KConfigDialog
 {
@@ -45,7 +45,7 @@ class Settings4 : public KConfigDialog
         QColor backgroundColor;
         QColor textColor;
         QColor linkColor;
-        KNfoViewerSettings4 *m_config;
+        KNfoViewerSettings *m_config;
         bool fc; //Fonts changed
         bool cc; //Colors changed
         FontPage4 *fontPage;
