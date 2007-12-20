@@ -41,7 +41,6 @@ KNfoViewer::KNfoViewer()
     setupActions();
 
     KPluginLoader loader( "knfoviewerpart" );
-    kDebug() << loader.errorString();
     KPluginFactory* factory = loader.factory();
 
     if( !factory ){
