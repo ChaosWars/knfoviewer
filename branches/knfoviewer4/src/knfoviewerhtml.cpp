@@ -33,7 +33,7 @@ KNfoViewerHTML::~KNfoViewerHTML()
 bool KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/, const QString&/*_target*/,
                                   const KParts::OpenUrlArguments&/*args*/, const KParts::BrowserArguments&/*browserArgs*/ )
 {
-//     kapp->invokeBrowser( url );
+//     KInvocation::invokeBrowser( url );
     return true;
 }
 
