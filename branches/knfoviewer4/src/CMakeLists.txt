@@ -4,7 +4,7 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
 
 SET( SRC main.cpp knfoviewer.cpp )
-SET( KPART_SRC knfoviewerpart.cpp mainwidget.cpp fontpage.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
+SET( KPART_SRC knfoviewerpart.cpp mainwidget.cpp fontpage.cpp colorpage.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
 SET( KPART_UI_SRC colorpage.ui fontpage.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
