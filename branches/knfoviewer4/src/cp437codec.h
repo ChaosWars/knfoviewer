@@ -31,8 +31,6 @@
 
 class CP437Codec : public QTextCodec
 {
-    Q_OBJECT
-
     public:
         CP437Codec();
         ~CP437Codec();

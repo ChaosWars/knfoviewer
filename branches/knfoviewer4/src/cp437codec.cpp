@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <QChar>
-#include "cp437codec4.h"
+#include "cp437codec.h"
 
 //#define IsCP437Char(c)  ( ( ( (c) <= 0x1F ) && ( (c) != 0x0A ) && ( (c) != 0x0D ) ) || ( ( (c) >= 0x7F ) && ( (c) <= 0xFF ) ) )
 #define IsCP437Char(c)  ( ( (c) >= 0x80 ) && ( (c) <= 0xFF ) )
@@ -243,6 +243,3 @@ QString CP437Codec::convertToUnicode( const char * chars, int len, ConverterStat
 
     return result;
 }
-
-#include "cp437codec.moc"
-

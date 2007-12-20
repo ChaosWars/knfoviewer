@@ -28,4 +28,4 @@ MainWidget::~MainWidget()
 {
 }
 
-#include "mainwidget4.moc"
+#include "mainwidget.moc"

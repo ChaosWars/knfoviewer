@@ -25,9 +25,9 @@
 #include <KDE/KIO/NetAccess>
 #include <KDE/KHTMLView>
 #include <KDE/KAboutData>
-#include <KDE/KPluginFactory>
-#include <KDE/KPluginLoader>
-// #include <KDE/KParts/GenericFactory>
+// #include <KDE/KPluginFactory>
+// #include <KDE/KPluginLoader>
+#include <KDE/KParts/GenericFactory>
 #include <KDE/KIcon>
 #include <QFile>
 #include <QRegExp>
@@ -46,7 +46,7 @@
 typedef KParts::GenericFactory<KNfoViewerPart> KNfoViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( knfoviewerpart /*library name*/, KNfoViewerPartFactory )
 
-KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const /*QStringList*/ QVariantList &args )
+KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList /*QVariantList*/ &args )
     : KParts::ReadOnlyPart( parent )
 {
 //     setComponentData( KNfoViewerFactory::componentData() );
@@ -113,7 +113,7 @@ void KNfoViewerPart::configureSettings()
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    settings = new Settings4( m_widget, "settings", config );
+    settings = new Settings( m_widget, "settings", config );
     connect( settings, SIGNAL( settingsChanged() ), this, SLOT( loadSettings() ) );
     settings->show();
 }
