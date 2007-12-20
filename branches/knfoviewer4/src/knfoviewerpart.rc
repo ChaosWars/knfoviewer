@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="KNfoViewerPart" version="4">
+<kpartgui name="KNfoViewerPart" version="1">
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
