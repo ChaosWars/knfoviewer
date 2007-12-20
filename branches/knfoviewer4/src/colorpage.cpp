@@ -22,6 +22,9 @@
 ColorPage::ColorPage()
 {
     setupUi( this );
+    m_BackgroundColorCombo->showEmptyList();
+    m_TextColorCombo->showEmptyList();
+    m_LinkColorCombo->showEmptyList();
 }
 
 ColorPage::~ColorPage()

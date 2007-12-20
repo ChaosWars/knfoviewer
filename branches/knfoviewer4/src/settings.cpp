@@ -30,7 +30,7 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     fontPage = new FontPage();
     fontPage->setFont( config->font(), true );
     connect( fontPage, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
-    addPage( fontPage, i18n( "Configure Fonts" ), "fonts" );
+    addPage( fontPage, i18n( "Configure Fonts" ), "preferences-desktop-font" );
 
     //Set up the color chooser page
     colorPage = new ColorPage();
@@ -40,7 +40,7 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     colorPage->setBackgroundColor( config->backgroundColor()  );
     colorPage->setTextColor( config->textColor()  );
     colorPage->setLinkColor( config->linkColor()  );
-    addPage( colorPage, i18n( "Configure Colors" ), "colorize" );
+    addPage( colorPage, i18n( "Configure Colors" ), "preferences-desktop-color" );
 }
 
 Settings::~Settings()

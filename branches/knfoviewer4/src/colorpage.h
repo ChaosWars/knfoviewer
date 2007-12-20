@@ -26,18 +26,20 @@
 
 class ColorPage : public QWidget, public Ui::ColorPage
 {
+    Q_OBJECT
+
     public:
-        ColorPage(){ setupUi( this ); }
-        ~ColorPage(){}
-        KColorCombo *backgroundColorCombo(){ return m_BackgroundColorCombo ; }
-        KColorCombo *textColorCombo(){ return m_TextColorCombo ; }
-        KColorCombo *linkColorCombo(){ return m_LinkColorCombo ; }
-        QColor backgroundColor() const{ return m_BackgroundColorCombo->color(); };
-        QColor textColor() const{ return m_TextColorCombo->color(); };
-        QColor linkColor() const{ return m_LinkColorCombo->color(); };
-        void setBackgroundColor( const QColor &color ){ m_BackgroundColorCombo->setColor( color ); }
-        void setTextColor( const QColor &color ){ m_TextColorCombo->setColor( color ); }
-        void setLinkColor( const QColor &color ){ m_LinkColorCombo->setColor( color ); }
+        ColorPage();
+        ~ColorPage();
+        KColorCombo *backgroundColorCombo();
+        KColorCombo *textColorCombo();
+        KColorCombo *linkColorCombo();
+        QColor backgroundColor() const;
+        QColor textColor() const;
+        QColor linkColor() const;
+        void setBackgroundColor( const QColor &color );
+        void setTextColor( const QColor &color );
+        void setLinkColor( const QColor &color );
 };
 
 #endif
