@@ -30,8 +30,8 @@ KNfoViewerHTML::~KNfoViewerHTML()
 {
 }
 
-bool KNfoViewerHTML::urlSelected( const QString &url, int button, int state, const QString &_target,
-                                   const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs )
+bool KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/, const QString&/*_target*/,
+                                  const KParts::OpenUrlArguments&/*args*/, const KParts::BrowserArguments&/*browserArgs*/ )
 {
 //     kapp->invokeBrowser( url );
     return true;
@@ -40,9 +40,6 @@ bool KNfoViewerHTML::urlSelected( const QString &url, int button, int state, con
 void KNfoViewerHTML::selectionSlot()
 {
     kapp->clipboard()->setText( selectedText() );
-//     DOM::Range newRange;
-//     newRange.collapse( true );
-//     setSelection( newRange );
 }
 
 #include "knfoviewerhtml.moc"

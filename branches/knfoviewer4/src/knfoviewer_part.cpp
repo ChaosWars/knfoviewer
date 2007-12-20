@@ -25,8 +25,6 @@
 #include <KDE/KIO/NetAccess>
 #include <KDE/KHTMLView>
 #include <KDE/KAboutData>
-// #include <KDE/KPluginFactory>
-// #include <KDE/KPluginLoader>
 #include <KDE/KParts/GenericFactory>
 #include <KDE/KIcon>
 #include <QFile>
@@ -39,18 +37,13 @@
 #include "knfoviewersettings.h"
 #include "settings.h"
 
-// K_PLUGIN_FACTORY( KNfoViewerFactory, registerPlugin<KNfoViewerPart>(); )
-// K_EXPORT_PLUGIN( KNfoViewerFactory( "knfoviewerpart" ) )
-
 //Factory Code
 typedef KParts::GenericFactory<KNfoViewerPart> KNfoViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( knfoviewerpart /*library name*/, KNfoViewerPartFactory )
 
-KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList /*QVariantList*/ &args )
+KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
     : KParts::ReadOnlyPart( parent )
 {
-//     setComponentData( KNfoViewerFactory::componentData() );
-
     // this should be your custom internal widget
     m_widget = new MainWidget( parentWidget );
     layout = new QGridLayout( m_widget );

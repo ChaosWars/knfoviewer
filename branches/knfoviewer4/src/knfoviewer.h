@@ -82,7 +82,7 @@ class KNfoViewer : public KParts::MainWindow
         void openRecent( const KUrl &url );
 
     private:
-        KConfig *config;
+        KSharedConfigPtr config;
         KRecentFilesAction *recentFiles;
         KParts::ReadOnlyPart *m_part;
         void setupAccel();

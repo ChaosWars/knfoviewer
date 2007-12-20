@@ -68,8 +68,8 @@ KNfoViewer::KNfoViewer()
         connect( m_part, SIGNAL( addRecentFile( const KUrl& ) ), this, SLOT( addRecentFile( const KUrl&  ) ) );
         connect( m_part->widget(), SIGNAL( urlMouseOver( const QString& ) ), statusBar(), SLOT( message( const QString& ) ) );
 
-        //config = KGlobal::config();
-        //readProperties( config );
+        config = KGlobal::config();
+        //readProperties( &config );
 
         // apply the saved mainwindow settings, if any, and ask the mainwindow
         // to automatically save settings if changed: window size, toolbar
@@ -82,12 +82,12 @@ KNfoViewer::KNfoViewer()
 
 KNfoViewer::~KNfoViewer()
 {
-//     saveProperties( config );
+     //saveProperties( &config );
 }
 
 void KNfoViewer::load( const KUrl& url )
 {
-//     m_part->openUrl( url );
+     m_part->openUrl( url );
 }
 
 void KNfoViewer::addRecentFile( const KUrl &url )
@@ -97,7 +97,7 @@ void KNfoViewer::addRecentFile( const KUrl &url )
 
 void KNfoViewer::openRecent( const KUrl &url )
 {
-//     m_part->openUrl( url );
+     m_part->openUrl( url );
 }
 
 void KNfoViewer::setupActions()
@@ -110,23 +110,23 @@ void KNfoViewer::setupActions()
     recentFiles = KStandardAction::openRecent( this, SLOT( openRecent( const KUrl& ) ), actionCollection() );
 }
 
-void KNfoViewer::saveProperties( KConfigGroup &config )
+void KNfoViewer::saveProperties( KConfigGroup& )
 {
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
     // later when this app is restored
-//     config->setGroup( "RecentFiles" );
-//     recentFiles->saveEntries( config );
+//      config->setGroup( "RecentFiles" );
+//      recentFiles->saveEntries( &config );
 }
 
-void KNfoViewer::readProperties( const KConfigGroup &config )
+void KNfoViewer::readProperties( const KConfigGroup& )
 {
     // the 'config' object points to the session managed
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
-//     config->setGroup( "RecentFiles" );
-//     recentFiles->loadEntries( config );
+//      config->setGroup( "RecentFiles" );
+//      recentFiles->loadEntries( &config );
 }
 
 void KNfoViewer::optionsConfigureKeys()
