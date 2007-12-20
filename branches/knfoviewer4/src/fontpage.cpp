@@ -29,12 +29,12 @@ FontPage::~FontPage()
 {
 }
 
-QFont FontPage::font()
+QFont FontPage::font() const
 {
     return kfontchooser->font();
 }
 
-void FrontPage::setFont( const QFont &font )
+void FontPage::setFont( const QFont &font, const bool onlyFixed )
 {
     kfontchooser->setFont( font, onlyFixed );
 }
