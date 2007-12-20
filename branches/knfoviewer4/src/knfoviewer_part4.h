@@ -46,6 +46,7 @@ class MainWidget4;
 class KNfoViewerPart4 : public KParts::ReadOnlyPart
 {
     Q_OBJECT
+
     public:
     /**
      * Default constructor

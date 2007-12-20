@@ -2,7 +2,7 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
-  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com</ulink>">
+  <!ENTITY homepage "<ulink url='http://knfoviewer.googlecode.com'>http://knfoviewer.googlecode.com</ulink>">
   <!ENTITY knfoviewer "<application>KNfoViewer</application>">
   <!ENTITY kappname "&knfoviewer;">
   <!ENTITY package "kde-module">
