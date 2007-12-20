@@ -35,7 +35,7 @@
 KNfoViewer::KNfoViewer()
 {
     // set the shell's ui resource file
-    setXMLFile("knfoviewer_shell.rc");
+    setXMLFile("knfoviewer.rc");
 
     // then, setup our actions
     setupActions();

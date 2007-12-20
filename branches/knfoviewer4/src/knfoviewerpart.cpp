@@ -69,7 +69,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
     readProperties( config );
 
     // set our XML-UI resource file
-    setXMLFile( "knfoviewer_part.rc" );
+    setXMLFile( "knfoviewerpart.rc" );
 
     display();
 }
