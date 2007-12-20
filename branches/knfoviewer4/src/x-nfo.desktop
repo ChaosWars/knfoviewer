@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=MimeType
+MimeType=text/x-nfo
+Icon=ascii
+Patterns=*.nfo;*.NFO;
+DefaultApp=knfoviewer
+Comment=NFO File

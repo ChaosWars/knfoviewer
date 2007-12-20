@@ -1,0 +1,374 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com</ulink>">
+  <!ENTITY knfoviewer "<application>KNfoViewer</application>">
+  <!ENTITY kappname "&knfoviewer;">
+  <!ENTITY package "kde-module">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+
+<title>The &knfoviewer; Handbook</title>
+
+<authorgroup>
+&Lawrence.C.Lee;
+&Lawrence.C.Lee.email;
+</authorgroup>
+
+<copyright>
+<year>2007</year>
+<holder>&Lawrence.C.Lee;</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2007-12-16</date>
+
+<releaseinfo>0.03.10</releaseinfo>
+
+<abstract>
+
+<para>
+&knfoviewer; is an application for viewing NFO files.
+</para>
+
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdeutils</keyword>
+<keyword>KNfoViewer</keyword>
+<keyword>nfo</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+
+<title>Introduction</title>
+
+<para>
+&knfoviewer; is an application for viewing NFO files.
+Please report any problems or feature requests as an issue on &homepage;
+</para>
+
+</chapter>
+
+<chapter id="using-knfoviewer">
+
+<title>Using &knfoviewer;</title>
+
+<para>
+
+<screenshot>
+<screeninfo>Here's a screenshot of &knfoviewer;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="knfoviewer.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+You can double click on any NFO file and it will open in &knfoviewer;.
+Alternatively, you can open any NFO file via
+
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open</guimenuitem>
+</menuchoice></term>
+</varlistentry>
+</variablelist>
+
+</para>
+
+<para>
+Once loaded, the file is displayed using CP437/IBM437 decoding.
+This enables the viewing of ASCII graphics.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&knfoviewer; displaying a CP437 encoded file</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="knfoviewer_file_loaded.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+</chapter>
+
+<chapter id="commands">
+
+<title>Command Reference</title>
+
+<sect1 id="knfoviewer-mainwindow">
+
+<title>The main &knfoviewer; window</title>
+
+<sect2>
+
+<title>The File Menu</title>
+
+<para>
+<variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Open</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Opens a NFO file</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open Recent</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays a list of recently opened NFO files</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quits</action> &knfoviewer;</para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+
+</sect2>
+
+<sect2>
+
+<title>The Settings Menu</title>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
+</shortcut>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure KNfoViewer</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Opens the configuration dialog for KNfoViewer</action></para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+</sect2>
+
+<sect2>
+
+<title>The <guimenu>Help</guimenu> Menu</title>
+
+&help.menu.documentation;
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="faq">
+
+<title>Questions and Answers</title>
+
+&reporting.bugs;
+
+</chapter>
+
+<chapter id="credits">
+
+<title>Credits and License</title>
+
+<para>
+&knfoviewer;
+</para>
+
+<para>
+Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+</para>
+
+<para>
+Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+</para>
+
+&underFDL;
+&underGPL;
+
+</chapter>
+
+<appendix id="installation">
+
+<title>Installation</title>
+
+<sect1 id="getting-knfoviewer">
+
+<title>How to obtain &knfoviewer;</title>
+
+<para>
+&knfoviewer; can be found on <ulink url="http://knfoviewer.googlecode.com">the &knfoviewer; home page</ulink>.
+</para>
+
+</sect1>
+
+<sect1 id="requirements">
+
+<title>Requirements</title>
+
+<para>
+In order to successfully use &knfoviewer; you need &kde; 3.5.
+</para>
+
+</sect1>
+
+<sect1 id="compilation">
+
+<title>Compilation and Installation</title>
+
+<para>
+In order to compile and install KNfoViewer on your system, type the following in the base directory of the KNfoViewer source:
+</para>
+
+<screen>
+%cmake . -DCMAKE_INSTALL_PREFIX=$KDEDIR
+%make
+%make install
+</screen>
+
+</sect1>
+
+<sect1 id="configuration">
+
+<title>Configuration</title>
+
+<para>&knfoviewer; allows users to configure the font used in the application
+and the colors the application uses to display the NFO files.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Fonts</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="configure_font.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+You can configure the font that &knfoviewer; uses to render the NFO's. Only fixed type fonts are shown.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Colors</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="configure_colors.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+You can configure the colors that &knfoviewer; uses to render the NFO's.
+You can configure the colors used for:
+
+<itemizedlist>
+
+<listitem>
+
+<para>
+Background color.
+</para>
+
+<para>
+The color used to render the background of the NFO.
+</para>
+
+</listitem>
+
+<listitem>
+
+<para>
+Text color.
+</para>
+
+<para>
+The color used to render the text of the NFO.
+</para>
+
+</listitem>
+
+<listitem>
+
+<para>
+Link color.
+</para>
+
+<para>
+The color used to render url's in the NFO.
+</para>
+
+</listitem>
+
+</itemizedlist>
+
+</para>
+
+</sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
