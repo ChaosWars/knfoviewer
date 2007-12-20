@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <KDE/KApplication>
+#include <KDE/KToolInvocation>
 #include <QClipboard>
 #include "knfoviewerhtml.h"
 
@@ -33,7 +34,7 @@ KNfoViewerHTML::~KNfoViewerHTML()
 bool KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/, const QString&/*_target*/,
                                   const KParts::OpenUrlArguments&/*args*/, const KParts::BrowserArguments&/*browserArgs*/ )
 {
-//     KInvocation::invokeBrowser( url );
+    KToolInvocation::invokeBrowser( url );
     return true;
 }
 

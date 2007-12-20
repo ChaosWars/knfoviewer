@@ -69,11 +69,7 @@ KNfoViewer::KNfoViewer()
         connect( m_part->widget(), SIGNAL( urlMouseOver( const QString& ) ), statusBar(), SLOT( message( const QString& ) ) );
 
         config = KGlobal::config();
-        //readProperties( &config );
-
-        // apply the saved mainwindow settings, if any, and ask the mainwindow
-        // to automatically save settings if changed: window size, toolbar
-        // position, icon size, etc.
+        readProperties( KConfigGroup( config, "RecentFiles" ) );
         setAutoSaveSettings();
 
     }
@@ -82,7 +78,8 @@ KNfoViewer::KNfoViewer()
 
 KNfoViewer::~KNfoViewer()
 {
-     //saveProperties( &config );
+    KConfigGroup configGroup( config, "RecentFiles" );
+    saveProperties( configGroup );
 }
 
 void KNfoViewer::load( const KUrl& url )
@@ -110,23 +107,17 @@ void KNfoViewer::setupActions()
     recentFiles = KStandardAction::openRecent( this, SLOT( openRecent( const KUrl& ) ), actionCollection() );
 }
 
-void KNfoViewer::saveProperties( KConfigGroup& )
+void KNfoViewer::saveProperties( KConfigGroup &configGroup )
 {
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
     // later when this app is restored
-//      config->setGroup( "RecentFiles" );
-//      recentFiles->saveEntries( &config );
+     recentFiles->saveEntries( configGroup );
 }
 
-void KNfoViewer::readProperties( const KConfigGroup& )
+void KNfoViewer::readProperties( const KConfigGroup &configGroup )
 {
-    // the 'config' object points to the session managed
-    // config file.  this function is automatically called whenever
-    // the app is being restored.  read in here whatever you wrote
-    // in 'saveProperties'
-//      config->setGroup( "RecentFiles" );
-//      recentFiles->loadEntries( &config );
+     recentFiles->loadEntries( configGroup );
 }
 
 void KNfoViewer::optionsConfigureKeys()
