@@ -17,45 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef _SETTINGS_H_
-#define _SETTINGS_H_
+#include "fontpage.h"
 
-#include <KDE/KConfigDialog>
-
-class KNfoViewerSettings;
-class FontPage;
-class ColorPage;
-
-class Settings : public KConfigDialog
+FontPage::FontPage()
 {
-    Q_OBJECT
+    setupUi( this );
+    connect( kfontchooser, SIGNAL( fontSelected( const QFont& ) ), this, SIGNAL( fontSelected( const QFont& ) ) );
+}
 
-    public:
-        Settings( QWidget *parent, const char *name, KNfoViewerSettings *config );
-        ~Settings();
+FontPage::~FontPage()
+{
+}
 
-    protected Q_SLOTS:
-        virtual void updateSettings();
+QFont FontPage::font()
+{
+    return kfontchooser->font();
+}
 
-    private:
-        QFont font;
-        QColor backgroundColor;
-        QColor textColor;
-        QColor linkColor;
-        KNfoViewerSettings *m_config;
-        bool fc; //Fonts changed
-        bool cc; //Colors changed
-        FontPage *fontPage;
-        ColorPage *colorPage;
+void FrontPage::setFont( const QFont &font )
+{
+    kfontchooser->setFont( font, onlyFixed );
+}
 
-    private Q_SLOTS:
-        void fontChanged( const QFont& newFont );
-        void backgroundColorChanged( const QColor &color );
-        void textColorChanged( const QColor &color );
-        void linkColorChanged( const QColor &color );
-
-    Q_SIGNALS:
-        void settingsChanged();
-};
-
-#endif
+#include "fontpage.moc"

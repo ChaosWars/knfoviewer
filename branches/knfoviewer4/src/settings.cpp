@@ -30,7 +30,7 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     fontPage = new FontPage();
     fontPage->setFont( config->font(), true );
     connect( fontPage, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
-    addPage( fontPage, "configure_fonts", "fonts", "Configure Fonts" );
+    addPage( fontPage, i18n( "Configure Fonts" ), "fonts" );
 
     //Set up the color chooser page
     colorPage = new ColorPage();
@@ -40,7 +40,7 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
     colorPage->setBackgroundColor( config->backgroundColor()  );
     colorPage->setTextColor( config->textColor()  );
     colorPage->setLinkColor( config->linkColor()  );
-    addPage( colorPage, "configure_colors", "colorize", "Configure Colors" );
+    addPage( colorPage, i18n( "Configure Colors" ), "colorize" );
 }
 
 Settings::~Settings()
@@ -51,7 +51,7 @@ void Settings::fontChanged( const QFont &chosenFont )
 {
     if( chosenFont != font ){
         fc = true;
-        enableButton( Apply, true );
+        enableButtonApply( true );
     }
 }
 
@@ -59,7 +59,7 @@ void Settings::backgroundColorChanged( const QColor &color )
 {
     if( backgroundColor != color ){
         cc = true;
-        enableButton( Apply, true );
+        enableButtonApply( true );
     }
 }
 
@@ -67,7 +67,7 @@ void Settings::textColorChanged( const QColor &color )
 {
     if( textColor != color ){
         cc = true;
-        enableButton( Apply, true );
+        enableButtonApply( true );
     }
 }
 
@@ -75,19 +75,19 @@ void Settings::linkColorChanged( const QColor &color )
 {
     if( linkColor != color ){
         cc = true;
-        enableButton( Apply, true );
+        enableButtonApply( true );
     }
 }
 
 void Settings::updateSettings()
 {
-    bool settingsChanged = false;
+    bool sc = false;
 
     if( fc ){
         font = fontPage->font();
         m_config->setFont( font );
         fc = false;
-        settingsChanged = true;
+        sc = true;
     }
 
     if( cc ){
@@ -98,11 +98,12 @@ void Settings::updateSettings()
         linkColor = colorPage->linkColor();
         m_config->setLinkColor( linkColor );
         cc = false;
-        settingsChanged = true;
+        sc = true;
     }
 
-    if( settingsChanged ){
+    if( sc ){
         m_config->writeConfig();
+        emit settingsChanged();
     }
 }
 

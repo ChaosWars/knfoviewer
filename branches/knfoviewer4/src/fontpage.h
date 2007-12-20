@@ -25,11 +25,16 @@
 
 class FontPage : public QWidget, public Ui::FontPage
 {
+    Q_OBJECT
+
     public:
-        FontPage(){ setupUi( this ); }
-        ~FontPage(){}
-        QFont font() const{ return kfontchooser->font(); }
-        void setFont( const QFont &font, bool onlyFixed = true ){ kfontchooser->setFont( font, onlyFixed ); }
+        FontPage();
+        ~FontPage();
+        QFont font() const;
+        void setFont( const QFont &font, bool onlyFixed = true );
+
+    Q_SIGNALS:
+        void fontSelected( const QFont& font );
 };
 
 #endif

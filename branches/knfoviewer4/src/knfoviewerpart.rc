@@ -1,12 +1,14 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="KNfoViewerPart" version="1">
+<kpartgui name="KNfoViewerPart" version="4">
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
   </Menu>
+  <Merge/>
   <Menu name="settings">
       <Action name="configure_settings"/>
   </Menu>
+  <Merge/>
 </MenuBar>
 <ToolBar name="mainToolBar">
   <Action name="file_open"/>
