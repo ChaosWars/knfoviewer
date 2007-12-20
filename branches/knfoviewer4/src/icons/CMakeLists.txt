@@ -1,9 +1,1 @@
-IF( COMPILE_FOR_KDE4 )
-
 INSTALL( FILES knfoviewer.png DESTINATION ${KDE4_DATA_INSTALL_DIR}/knfoviewer/icons )
-
-ELSE( COMPILE_FOR_KDE4)
-
-INSTALL( FILES knfoviewer.png DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/crystalsvg/48x48/apps/ )
-
-ENDIF( COMPILE_FOR_KDE4 )
