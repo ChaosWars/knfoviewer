@@ -1,6 +1,8 @@
+# KDevelop Custom Project File List
 CMakeLists.txt
+doc
 doc/CMakeLists.txt
-doc/index.cache.bz2.rule
+src
 src/CMakeLists.txt
 src/colorpage4.h
 src/colorpage4.ui
@@ -11,21 +13,16 @@ src/fontpage4.ui
 src/icons/CMakeLists.txt
 src/knfoviewer4.cpp
 src/knfoviewer4.h
-src/knfoviewer_automoc.cpp
-src/knfoviewer_automoc.cpp.rule
 src/knfoviewer_part4.cpp
 src/knfoviewer_part4.h
 src/knfoviewerhtml4.cpp
 src/knfoviewerhtml4.h
-src/knfoviewerpart_automoc.cpp
-src/knfoviewerpart_automoc.cpp.rule
-src/knfoviewersettings.cpp
-src/knfoviewersettings.h
 src/knfoviewersettings.kcfgc
+src/knfoviewerthumbnail4.cpp
+src/knfoviewerthumbnail4.h
 src/main4.cpp
 src/mainwidget4.cpp
 src/mainwidget4.h
 src/settings4.cpp
 src/settings4.h
-src/ui_colorpage4.h
-src/ui_fontpage4.h
+templates
