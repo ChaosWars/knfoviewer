@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=KNfoViewer
+Name=KNfoViewer4
 GenericName=A NFO viewer for KDE
 Comment=A NFO viewer for KDE
 Icon=knfoviewer
 MimeType=text/x-nfo
-X-KDE-Library=libknfoviewerpart
+X-KDE-ServiceTypes=KParts/ReadOnlyPart
+X-KDE-Library=knfoviewerpart
 Type=Service
-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 Terminal=false
 MultipleArgs=false
