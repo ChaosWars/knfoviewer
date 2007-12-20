@@ -21,6 +21,7 @@
 #include <KDE/KAboutData>
 #include <KDE/KCmdLineArgs>
 #include <KDE/KApplication>
+#include <KDE/KIcon>
 #include "knfoviewer.h"
 
 static const char description[] ="A NFO viewer for KDE4";
@@ -54,6 +55,9 @@ int main(int argc, char **argv)
 
     }
     args->clear();
+//     KIcon icon( "knfoviewer" );
+//     QApplication::setWindowIcon( icon );
+//     app.setWindowIcon( icon );
 
     return app.exec();
 }
