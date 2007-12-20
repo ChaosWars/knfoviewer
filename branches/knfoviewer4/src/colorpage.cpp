@@ -17,3 +17,60 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "colorpage.h"
+
+ColorPage::ColorPage()
+{
+    setupUi( this );
+}
+
+ColorPage::~ColorPage()
+{
+}
+
+KColorCombo* ColorPage::backgroundColorCombo()
+{
+    return m_BackgroundColorCombo ;
+}
+
+KColorCombo* ColorPage::textColorCombo()
+{
+    return m_TextColorCombo ;
+}
+
+KColorCombo* ColorPage::linkColorCombo()
+{
+    return m_LinkColorCombo ;
+}
+
+QColor ColorPage::backgroundColor() const
+{
+    return m_BackgroundColorCombo->color();
+}
+
+QColor ColorPage::textColor() const
+{
+    return m_TextColorCombo->color();
+}
+
+QColor ColorPage::linkColor() const
+{
+    return m_LinkColorCombo->color();
+}
+
+void ColorPage::setBackgroundColor( const QColor &color )
+{
+    m_BackgroundColorCombo->setColor( color );
+}
+
+void ColorPage::setTextColor( const QColor &color )
+{
+    m_TextColorCombo->setColor( color );
+}
+
+void ColorPage::setLinkColor( const QColor &color )
+{
+    m_LinkColorCombo->setColor( color );
+}
+
+#include "colorpage.moc"
