@@ -4,6 +4,7 @@ doc
 doc/CMakeLists.txt
 src
 src/CMakeLists.txt
+src/colorpage.cpp
 src/colorpage.h
 src/colorpage4.h
 src/colorpage4.ui
