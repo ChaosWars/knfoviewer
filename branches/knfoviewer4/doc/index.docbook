@@ -17,8 +17,7 @@
 <title>The &knfoviewer; Handbook</title>
 
 <authorgroup>
-&Lawrence.C.Lee;
-&Lawrence.C.Lee.email;
+<author>&Lawrence.C.Lee; &Lawrence.C.Lee.email;</author>
 </authorgroup>
 
 <copyright>
@@ -84,12 +83,17 @@ You can double click on any NFO file and it will open in &knfoviewer;.
 Alternatively, you can open any NFO file via
 
 <variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>Open</guimenuitem>
-</menuchoice></term>
-</varlistentry>
+  <varlistentry>
+    <term>
+      <menuchoice>
+        <guimenu>File</guimenu>
+        <guimenuitem>Open</guimenuitem>
+      </menuchoice>
+    </term>
+<listitem>
+<para><action>Open a PAR2 file</action></para>
+</listitem>
+  </varlistentry>
 </variablelist>
 
 </para>
@@ -202,7 +206,7 @@ This enables the viewing of ASCII graphics.
 
 <title>Questions and Answers</title>
 
-&reporting.bugs;
+<para>&reporting.bugs;</para>
 
 </chapter>
 
