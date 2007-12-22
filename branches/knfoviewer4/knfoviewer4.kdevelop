@@ -1,8 +1,8 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-    <author/>
-    <email/>
+    <author>Lawrence Lee</author>
+    <email>valheru@facticius.net</email>
     <version>$VERSION$</version>
     <projectmanagement>KDevCustomProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
@@ -20,7 +20,7 @@
   <kdevcustomproject>
     <filelistdirectory>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</filelistdirectory>
     <run>
-      <mainprogram/>
+      <mainprogram>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</mainprogram>
       <directoryradio>custom</directoryradio>
       <customdirectory>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</customdirectory>
       <programargs/>

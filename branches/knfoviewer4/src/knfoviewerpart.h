@@ -52,7 +52,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
      */
         KNfoViewerPart( QWidget* parentWidget,
                          QObject* parent,
-                         const QStringList& args = QStringList()/*const QVariantList& args = QVariantList()*/ );
+                         const QStringList& args = QStringList() );
 
     /**
          * Destructor

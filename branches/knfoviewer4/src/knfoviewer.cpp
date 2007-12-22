@@ -127,6 +127,8 @@ void KNfoViewer::optionsConfigureKeys()
 
 void KNfoViewer::optionsConfigureToolbars()
 {
+	saveMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
+
     // use the standard toolbar editor
     KEditToolBar dlg(factory());
     connect( &dlg, SIGNAL( newToolbarConfig() ), this, SLOT( applyNewToolbarConfig() ) );
@@ -135,6 +137,7 @@ void KNfoViewer::optionsConfigureToolbars()
 
 void KNfoViewer::applyNewToolbarConfig()
 {
+	applyMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
 }
 
 #include "knfoviewer.moc"
