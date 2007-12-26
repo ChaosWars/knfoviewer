@@ -43,8 +43,8 @@ const char* CP437Codec::name() const
     return "CP437";
 }
 
-static const ushort UnToCP437[][2] = {
-};
+// static const ushort UnToCP437[][2] = {
+// };
 
 static const ushort CP437ToUn[][2] = {
 //     {0x0001,0x263A},
@@ -209,8 +209,9 @@ static const ushort CP437ToUn[][2] = {
     {0x00FF,0x00A0}
 };
 
-QCString CP437Codec::fromUnicode( const QString& uc, int& lenInOut ) const
+QCString CP437Codec::fromUnicode( const QString& uc, int& /*lenInOut*/ ) const
 {
+    return uc.utf8();
 }
 
 QString CP437Codec::toUnicode( const char* chars, int len ) const

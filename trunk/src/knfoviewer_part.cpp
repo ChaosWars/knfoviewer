@@ -35,7 +35,7 @@
 #include "knfoviewersettings.h"
 #include "settings.h"
 
-KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
+KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char */*widgetName*/,
                               QObject *parent, const char *name )
     : KParts::ReadOnlyPart( parent, name )
 {
@@ -278,7 +278,7 @@ KNfoViewerPartFactory::~KNfoViewerPartFactory()
 
 KParts::Part* KNfoViewerPartFactory::createPartObject(   QWidget *parentWidget, const char *widgetName,
                                                     QObject *parent, const char *name,
-                                                    const char *classname, const QStringList &args )
+                                                    const char */*classname*/, const QStringList &/*args*/ )
 {
     // Create an instance of our Part
     KNfoViewerPart* obj = new KNfoViewerPart( parentWidget, widgetName, parent, name );

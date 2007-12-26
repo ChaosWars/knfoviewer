@@ -90,9 +90,9 @@ Alternatively, you can open any NFO file via
         <guimenuitem>Open</guimenuitem>
       </menuchoice>
     </term>
-<listitem>
-<para><action>Open a PAR2 file</action></para>
-</listitem>
+    <listitem>
+    <para><action>Open a PAR2 file</action></para>
+    </listitem>
   </varlistentry>
 </variablelist>
 
