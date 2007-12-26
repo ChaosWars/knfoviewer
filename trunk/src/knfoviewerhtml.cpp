@@ -36,8 +36,8 @@ void KNfoViewerHTML::khtmlMouseMoveEvent( khtml::MouseMoveEvent *event )
     emit urlMouseOver( event->url().string() );
 }
 
-void KNfoViewerHTML::urlSelected( const QString &url, int button, int state,
-                                  const QString &_target, KParts::URLArgs args )
+void KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/,
+                                  const QString &/*_target*/, KParts::URLArgs /*args*/ )
 {
     kapp->invokeBrowser( url );
 }
