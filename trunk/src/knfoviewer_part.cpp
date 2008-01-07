@@ -289,7 +289,7 @@ KInstance* KNfoViewerPartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.3.1");
+        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.3.2");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }
