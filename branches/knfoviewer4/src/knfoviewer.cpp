@@ -29,7 +29,7 @@
 #include <KDE/KActionCollection>
 #include <KDE/KStatusBar>
 #include <KDE/KLocale>
-#include <kdebug.h>
+#include <KDE/KDebug>
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
