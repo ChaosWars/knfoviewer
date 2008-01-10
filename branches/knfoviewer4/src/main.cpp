@@ -55,9 +55,5 @@ int main(int argc, char **argv)
 
     }
     args->clear();
-    KIcon icon( "knfoviewer" );
-    QApplication::setWindowIcon( icon );
-    app.setWindowIcon( icon );
-
     return app.exec();
 }
