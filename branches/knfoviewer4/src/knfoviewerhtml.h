@@ -38,7 +38,7 @@ class KNfoViewerHTML : public KHTMLPart
                                   const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
                                   const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments() );
 
-    private slots:
+    private Q_SLOTS:
         void selectionSlot();
 };
 

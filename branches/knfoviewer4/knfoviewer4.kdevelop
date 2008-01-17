@@ -13,42 +13,42 @@
       <language>C</language>
     </secondaryLanguages>
     <projectname>knfoviewer4</projectname>
-    <description/>
-    <defaultencoding/>
+    <description></description>
+    <defaultencoding></defaultencoding>
     <versioncontrol>kdevsubversion</versioncontrol>
   </general>
   <kdevcustomproject>
     <filelistdirectory>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</filelistdirectory>
     <run>
-      <mainprogram>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</mainprogram>
+      <mainprogram>/home/lawrence/Projects/knfoviewer4-build/src/knfoviewer</mainprogram>
       <directoryradio>custom</directoryradio>
       <customdirectory>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</customdirectory>
-      <programargs/>
+      <programargs></programargs>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
-      <globaldebugarguments/>
-      <globalcwd>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</globalcwd>
+      <globaldebugarguments></globaldebugarguments>
+      <globalcwd>/home/lawrence/Projects/knfoviewer4-build/</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
     </run>
     <build>
       <buildtool>make</buildtool>
-      <builddir>/home/lawrence/Projects/knfoviewer/branches/knfoviewer4</builddir>
+      <builddir>/home/lawrence/Projects/knfoviewer4-build/</builddir>
     </build>
     <make>
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
       </environments>
       <prio>0</prio>
-      <defaulttarget/>
-      <makeoptions/>
+      <defaulttarget></defaulttarget>
+      <makeoptions></makeoptions>
     </make>
     <filetypes>
       <filetype>*.java</filetype>
@@ -72,9 +72,9 @@
     </general>
     <other>
       <prio>0</prio>
-      <otherbin/>
-      <defaulttarget/>
-      <otheroptions/>
+      <otherbin></otherbin>
+      <defaulttarget></defaulttarget>
+      <otheroptions></otheroptions>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
@@ -149,7 +149,7 @@
       <designerpluginpaths/>
     </qt>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -179,11 +179,11 @@
   </kdevfileview>
   <kdevdebugger>
     <general>
-      <gdbpath/>
-      <dbgshell/>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <gdbpath></gdbpath>
+      <dbgshell></dbgshell>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>

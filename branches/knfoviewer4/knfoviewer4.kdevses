@@ -1,7 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="0" />
+ <DocsAndViews NumberOfDocuments="2" >
+  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/branches/knfoviewer4/src/knfoviewerpart.cpp" >
+   <View0 Encoding="" line="110" Type="Source" />
+  </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/branches/knfoviewer4/src/settings.cpp" >
+   <View0 Encoding="" line="29" Type="Source" />
+  </Doc1>
+ </DocsAndViews>
  <pluginList>
   <kdevdebugger>
    <breakpointList/>

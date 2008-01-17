@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <KDE/KLocale>
+#include <KDE/KDebug>
 #include "settings.h"
 #include "colorpage.h"
 #include "fontpage.h"
@@ -28,7 +29,7 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
 {
     //Set up font page
     fontPage = new FontPage();
-    fontPage->setFont( config->font(), true );
+//     fontPage->setFont( config->font(), true );
     connect( fontPage, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
     addPage( fontPage, i18n( "Configure Fonts" ), "preferences-desktop-font" );
 

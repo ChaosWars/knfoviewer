@@ -27,6 +27,7 @@
 #include <KDE/KAboutData>
 #include <KDE/KParts/GenericFactory>
 #include <KDE/KIcon>
+#include <KDE/KDebug>
 #include <QFile>
 #include <QRegExp>
 #include <QLayout>
@@ -63,7 +64,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
 
     // create our actions
     KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
-    configureAction = new KAction( KIcon( "configure" ), i18n( "&amp;Configure KNfoViewer" ), actionCollection() );
+    configureAction = new KAction( KIcon( "configure" ), i18n( "&Configure KNfoViewer..." ), actionCollection() );
     actionCollection()->addAction( "configure_settings", configureAction );
     connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
     config = KNfoViewerSettings::self();
