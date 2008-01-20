@@ -55,43 +55,43 @@ KNfoViewerThumbnail::~KNfoViewerThumbnail()
 
 bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
 {
-    // Filter out unwanted mimetypes
-//     KMimeType::Ptr mimeType = KMimeType::findByPath( path );
-//
-//     if( !mimeType->is( "text/x-nfo" ) )
-//         return false;
-
-    if( !m_html ){
-        m_html = new KHTMLPart();
-        connect( m_html, SIGNAL( completed() ), SLOT( slotCompleted() ) );
+    if (!m_html)
+    {
+        m_html = new KHTMLPart;
+        connect(m_html, SIGNAL(completed()), SLOT(slotCompleted()));
         m_html->setJScriptEnabled(false);
         m_html->setJavaEnabled(false);
         m_html->setPluginsEnabled(false);
         m_html->setMetaRefreshEnabled(false);
         m_html->setOnlyLocalReferences(true);
     }
+    KURL url;
+    url.setPath( path );
+//     QFile file( url.url() );
 
-    QFile file( path );
+//     if( !file.open( IO_ReadOnly ) )
+//         return false;
 
-    if( !file.open( IO_ReadOnly ) )
-         return false;
+//     QString text;
+//     QTextStream stream( &file );
+//     CP437Codec codec;
+//     stream.setCodec( &codec );
+//
+//     while( !stream.atEnd() ){
+//         text += stream.readLine() + "\n";
+//     }
 
-    QString text;
-    QTextStream stream( &file );
-    CP437Codec codec;
-    stream.setCodec( &codec );
+//     m_html->begin();
+//     m_html->write( htmlCode( text ) );
+//     m_html->end();
 
-    while( !stream.atEnd() ){
-        text += stream.readLine() + "\n";
-    }
+    m_html->openURL(url);
 
-    int t = startTimer(50000);
+    int t = startTimer(5000);
+
     qApp->enter_loop();
-    killTimer(t);
 
-    m_html->begin();
-    m_html->write( htmlCode( text ) );
-    m_html->end();
+    killTimer(t);
 
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
@@ -119,9 +119,8 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     p.end();
 
     img = pix.convertToImage();
-    file.close();
 
-    qApp->exit_loop();
+    m_html->closeURL();
 
     return true;
 }
