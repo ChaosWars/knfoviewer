@@ -17,9 +17,11 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include <kdebug.h>
 #include <kstandarddirs.h>
 #include <kapplication.h>
 #include <kmimetype.h>
+#include <kpixmapsplitter.h>
 #include <time.h>
 #include <qpixmap.h>
 #include <qimage.h>
@@ -44,7 +46,8 @@ extern "C"
  * in kdebase/kioslave/thumbnail/ with minor changes to
  * ensure the correct rendering of CP437 encoded characters.
  */
-KNfoViewerThumbnail::KNfoViewerThumbnail() : m_html( 0 )
+KNfoViewerThumbnail::KNfoViewerThumbnail()
+    : m_html( 0 )
 {
 }
 
@@ -55,6 +58,7 @@ KNfoViewerThumbnail::~KNfoViewerThumbnail()
 
 bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
 {
+    kdDebug() << path;
     if (!m_html)
     {
         m_html = new KHTMLPart;
@@ -65,27 +69,24 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
         m_html->setMetaRefreshEnabled(false);
         m_html->setOnlyLocalReferences(true);
     }
-    KURL url;
-    url.setPath( path );
-//     QFile file( url.url() );
 
-//     if( !file.open( IO_ReadOnly ) )
-//         return false;
+    QFile file( path );
 
-//     QString text;
-//     QTextStream stream( &file );
-//     CP437Codec codec;
-//     stream.setCodec( &codec );
-//
-//     while( !stream.atEnd() ){
-//         text += stream.readLine() + "\n";
-//     }
+    if( !file.open( IO_ReadOnly ) )
+        return false;
 
-//     m_html->begin();
-//     m_html->write( htmlCode( text ) );
-//     m_html->end();
+    QString text;
+    QTextStream stream( &file );
+    CP437Codec codec;
+    stream.setCodec( &codec );
 
-    m_html->openURL(url);
+    while( !stream.atEnd() ){
+        text += stream.readLine() + "\n";
+    }
+
+    m_html->begin();
+    m_html->write( htmlCode( text ) );
+    m_html->end();
 
     int t = startTimer(5000);
 
@@ -97,12 +98,12 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     // looks better than directly scaling with the QPainter (malte)
     QPixmap pix;
     if (width > 400 || height > 600)
-    {
-        if (height * 3 > width * 4)
-            pix.resize(width, width * 4 / 3);
-        else
-            pix.resize(height * 3 / 4, height);
-    }
+{
+    if (height * 3 > width * 4)
+        pix.resize(width, width * 4 / 3);
+    else
+        pix.resize(height * 3 / 4, height);
+}
     else
         pix.resize(400, 600);
 
@@ -119,9 +120,7 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     p.end();
 
     img = pix.convertToImage();
-
-    m_html->closeURL();
-
+    file.close();
     return true;
 }
 

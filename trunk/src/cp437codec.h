@@ -42,11 +42,12 @@ class CP437Codec : public QTextCodec
     #if !defined(Q_NO_USING_KEYWORD)
         using QTextCodec::fromUnicode;
     #endif
-        QCString fromUnicode(const QString& uc, int& lenInOut) const;
-        QString toUnicode(const char* chars, int len) const;
+        QCString fromUnicode( const QString& uc, int& lenInOut ) const;
+        QString toUnicode( const char *chars, int len ) const;
+        QChar charToUnicode( const uchar ch ) const;
 
-        int heuristicContentMatch(const char* chars, int len) const;
-        int heuristicNameMatch(const char* hint) const;
+        int heuristicContentMatch( const char *chars, int len ) const;
+        int heuristicNameMatch( const char *hint ) const;
 };
 
 #endif // QT_NO_CODECS

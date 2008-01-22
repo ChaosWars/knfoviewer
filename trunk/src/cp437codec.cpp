@@ -214,7 +214,7 @@ QCString CP437Codec::fromUnicode( const QString& uc, int& /*lenInOut*/ ) const
     return uc.utf8();
 }
 
-QString CP437Codec::toUnicode( const char* chars, int len ) const
+QString CP437Codec::toUnicode( const char *chars, int len ) const
 {
     QString result;
 
@@ -232,7 +232,7 @@ QString CP437Codec::toUnicode( const char* chars, int len ) const
 //
 //             } else {
                 result += QValidChar( CP437ToUn[ch - 0x80][1] );
-            //}
+//             }
 
         } else {
             //Invalid charachter
@@ -244,7 +244,32 @@ QString CP437Codec::toUnicode( const char* chars, int len ) const
     return result;
 }
 
-int CP437Codec::heuristicContentMatch( const char* chars, int len ) const
+QChar CP437Codec::charToUnicode( const uchar ch ) const
+{
+    QChar result;
+
+    if (/*( ch == 0x00 ) || ( ch == 0x0A ) || ( ch == 0x0D ) || ( ch >= 0x20 &&*/ ch <= 0x7E ) {
+            //ASCII
+        result = QChar( ch );
+
+    } else if ( IsCP437Char( ch ) ) {
+            //CP437
+//             if ( ch <= 0x1F ) {
+//                 result += QValidChar( CP437ToUn[ch - 0x01][1] );
+        //
+//             } else {
+        result = QValidChar( CP437ToUn[ch - 0x80][1] );
+//             }
+
+    } else {
+            //Invalid charachter
+        result = QChar::replacement;
+    }
+
+    return result;
+}
+
+int CP437Codec::heuristicContentMatch( const char *chars, int len ) const
 {
     int score = 0;
 
@@ -274,7 +299,7 @@ int CP437Codec::heuristicContentMatch( const char* chars, int len ) const
     return score;
 }
 
-int CP437Codec::heuristicNameMatch( const char* hint ) const
+int CP437Codec::heuristicNameMatch( const char *hint ) const
 {
     const char *p = strchr( hint, '.' );
 
