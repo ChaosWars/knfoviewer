@@ -29,7 +29,14 @@ Settings::Settings( QWidget *parent, const char *name, KNfoViewerSettings *confi
 {
     //Set up font page
     fontPage = new FontPage();
-//     fontPage->setFont( config->font(), true );
+
+    if( config ){
+        QFont fixedFont( config->font() );
+
+        if( fixedFont != QFont() )
+            fontPage->setFont( config->font(), true );
+    }
+
     connect( fontPage, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( fontChanged( const QFont& ) ) );
     addPage( fontPage, i18n( "Configure Fonts" ), "preferences-desktop-font" );
 

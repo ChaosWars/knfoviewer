@@ -27,6 +27,7 @@
 #include <qimage.h>
 #include <qpainter.h>
 #include <khtml_part.h>
+#include <khtmlview.h>
 #include <qfile.h>
 #include <qimage.h>
 #include <qtextstream.h>
@@ -58,7 +59,6 @@ KNfoViewerThumbnail::~KNfoViewerThumbnail()
 
 bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
 {
-    kdDebug() << path;
     if (!m_html)
     {
         m_html = new KHTMLPart;
@@ -87,11 +87,9 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     m_html->begin();
     m_html->write( htmlCode( text ) );
     m_html->end();
-
+    m_html->view()->resize( 400, 600 );
     int t = startTimer(5000);
-
     qApp->enter_loop();
-
     killTimer(t);
 
     // render the HTML page on a bigger pixmap and use smoothScale,

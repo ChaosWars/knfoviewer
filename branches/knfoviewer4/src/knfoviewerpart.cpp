@@ -88,6 +88,9 @@ KAboutData* KNfoViewerPart::createAboutData()
 
 void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
 {
+    if( !config )
+        return;
+
     config->setFont( font );
     config->setBackgroundColor( backgroundColor );
     config->setTextColor( textColor );
@@ -97,6 +100,9 @@ void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
 
 void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
 {
+    if( !config )
+        return;
+
     font = config->font();
     backgroundColor = config->backgroundColor();
     textColor = config->textColor();

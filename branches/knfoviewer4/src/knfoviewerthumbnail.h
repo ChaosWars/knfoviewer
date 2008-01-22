@@ -21,8 +21,9 @@
 #ifndef _KNFOVIEWER_THUMBNAIL_H_
 #define _KNFOVIEWER_THUMBNAIL_H_
 
-#include <kio/thumbcreator.h>
-#include <qpixmap.h>
+#include <KDE/ThumbCreator>
+#include <QTimerEvent>
+#include <QEventLoop>
 
 class KHTMLPart;
 
@@ -38,13 +39,14 @@ class KNfoViewerThumbnail : public QObject, public ThumbCreator
         virtual Flags flags() const;
 
     protected:
-        virtual void timerEvent(QTimerEvent *);
+        virtual void timerEvent( QTimerEvent * );
 
     private slots:
         void slotCompleted();
 
     private:
         KHTMLPart *m_html;
+        QEventLoop m_eventLoop;
 };
 
 #endif

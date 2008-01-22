@@ -1,22 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="5" >
+ <DocsAndViews NumberOfDocuments="1" >
   <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/trunk/src/knfoviewerthumbnail.cpp" >
-   <View0 Encoding="" Type="Source" />
+   <View0 Encoding="" line="29" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/trunk/src/cp437codec.cpp" >
-   <View0 Encoding="" Type="Source" />
-  </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/trunk/src/knfoviewerthumbnail.h" >
-   <View0 Encoding="" Type="Source" />
-  </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/trunk/src/cp437codec.h" >
-   <View0 Encoding="" Type="Source" />
-  </Doc3>
-  <Doc4 NumberOfViews="1" URL="file:///home/lawrence/Projects/knfoviewer/trunk/src/CMakeLists.txt" >
-   <View0 Encoding="" line="11" Type="Source" />
-  </Doc4>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

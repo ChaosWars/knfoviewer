@@ -21,12 +21,11 @@
 #include <KDE/KApplication>
 #include <KDE/KMimeType>
 #include <KDE/KHTMLPart>
-#include <time.h>
-#include <QPixMap>
+#include <KDE/KHTMLView>
+#include <QPixmap>
 #include <QImage>
 #include <QPainter>
 #include <QFile>
-#include <QTextStream>
 #include "knfoviewerthumbnail.h"
 #include "cp437codec.h"
 
@@ -40,7 +39,7 @@ extern "C"
 
 /*
  * This code is taken nearly verbatim from htmlcreator.cpp
- * in kdebase/kioslave/thumbnail/ with minor changes to
+ * in kdebase/runtime/kioslave/thumbnail/ with minor changes to
  * ensure the correct rendering of CP437 encoded characters.
  */
 KNfoViewerThumbnail::KNfoViewerThumbnail() : m_html( 0 )
@@ -72,7 +71,7 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
 
     QFile file( path );
 
-    if( !file.open( IO_ReadOnly ) )
+    if( !file.open( QIODevice::ReadOnly ) )
          return false;
 
     QString text;
@@ -84,13 +83,14 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
         text += stream.readLine() + "\n";
     }
 
-    int t = startTimer(50000);
-    qApp->enter_loop();
-    killTimer(t);
-
     m_html->begin();
     m_html->write( htmlCode( text ) );
     m_html->end();
+    m_html->view()->resize( 400, 600 );
+
+    int t = startTimer(5000);
+    m_eventLoop.exec( QEventLoop::ExcludeUserInputEvents );
+    killTimer(t);
 
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
@@ -98,30 +98,26 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     if (width > 400 || height > 600)
     {
         if (height * 3 > width * 4)
-            pix.resize(width, width * 4 / 3);
+            pix = QPixmap(width, width * 4 / 3);
         else
-            pix.resize(height * 3 / 4, height);
+            pix = QPixmap(height * 3 / 4, height);
     }
     else
-        pix.resize(400, 600);
+        pix = QPixmap(400, 600);
 
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );
 
     int borderX = pix.width() / width, borderY = pix.height() / height;
-    QRect rc(borderX, borderY, pix.width() - borderX * 2,
-             pix.height() - borderY * 2);
+    QRect rc(borderX, borderY, pix.width() - borderX * 2, pix.height() - borderY * 2);
 
     QPainter p;
     p.begin(&pix);
     m_html->paint(&p, rc);
     p.end();
 
-    img = pix.convertToImage();
+    img = pix.toImage();
     file.close();
-
-    qApp->exit_loop();
-
     return true;
 }
 
@@ -182,12 +178,12 @@ const QString KNfoViewerThumbnail::htmlCode( const QString &text )
 
 void KNfoViewerThumbnail::timerEvent(QTimerEvent *)
 {
-    qApp->exit_loop();
+    m_eventLoop.quit();
 }
 
 void KNfoViewerThumbnail::slotCompleted()
 {
-    qApp->exit_loop();
+    m_eventLoop.quit();
 }
 
 ThumbCreator::Flags KNfoViewerThumbnail::flags() const
