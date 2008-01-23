@@ -87,7 +87,6 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     m_html->begin();
     m_html->write( htmlCode( text ) );
     m_html->end();
-    m_html->view()->resize( 400, 600 );
     int t = startTimer(5000);
     qApp->enter_loop();
     killTimer(t);
@@ -95,15 +94,18 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
     QPixmap pix;
-    if (width > 400 || height > 600)
-{
-    if (height * 3 > width * 4)
-        pix.resize(width, width * 4 / 3);
-    else
-        pix.resize(height * 3 / 4, height);
-}
-    else
+    if (width > 400 || height > 600){
+        if (height * 3 > width * 4){
+            m_html->view()->resize( width, width * 4 / 3 );
+            pix.resize(width, width * 4 / 3);
+        }else{
+            m_html->view()->resize( height * 3 / 4, height );
+            pix.resize(height * 3 / 4, height);
+        }
+    }else{
+        m_html->view()->resize( 400, 600 );
         pix.resize(400, 600);
+    }
 
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );

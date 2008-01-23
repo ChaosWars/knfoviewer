@@ -24,9 +24,9 @@
 #include "knfoviewer.h"
 
 static const char description[] =
-    I18N_NOOP( "A NFO viewer for KDE3" );
+    I18N_NOOP( "A NFO viewer for KDE" );
 
-static const char version[] = "0.3.2";
+static const char version[] = "0.3.3";
 
 static KCmdLineOptions options[] =
 {
