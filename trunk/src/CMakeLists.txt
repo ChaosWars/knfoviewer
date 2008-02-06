@@ -23,8 +23,8 @@ TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${QT_AND_KDECORE_LIBS} kio kparts kht
 TARGET_LINK_LIBRARIES( knfoviewer ${QT_AND_KDECORE_LIBS} kdeui kio kparts )
 INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
         RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
-        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/kde3
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/kde3 )
+        LIBRARY DESTINATION ${KDE3_LIB_DIR}/kde3
+        ARCHIVE DESTINATION ${KDE3_LIB_DIR}/kde3 )
 INSTALL( FILES knfoviewer.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/kde )
 INSTALL( FILES knfoviewer_part.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
 INSTALL( FILES x-nfo.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mimelnk/application )
