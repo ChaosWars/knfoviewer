@@ -1,0 +1,1 @@
+shlibs:Depends=libqt3-mt (>= 3:3.3.8-b), libsm6, libice6 (>= 1:1.0.0), libxext6, libc6 (>= 2.4), libgcc1 , libstdc++6 (>= 4.1.1-21), libx11-6, kdelibs4c2a (>= 4:3.5.8-1)
