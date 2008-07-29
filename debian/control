@@ -1,0 +1,12 @@
+Source: knfoviewer
+Section: graphics
+Priority: extra
+Maintainer: Lawrence Lee <valheru@facticius.net>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: knfoviewer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: NFO viewer for KDE
+ An application for viewing NFO files

@@ -1,0 +1,4 @@
+File=knfoviewersettings.kcfg
+ClassName=KNfoViewerSettings
+Singleton=true
+Mutators=true
