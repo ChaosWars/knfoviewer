@@ -1,0 +1,15 @@
+[Desktop Entry]
+Categories=Qt;KDE;Application;Graphics;X-KDE-Graphics-File
+Comment=A NFO viewer for KDE
+X-DocPath=knfoviewer/index.html
+Encoding=UTF-8
+Exec=knfoviewer %i %m -caption "%c"
+GenericName=A NFO viewer for KDE
+Icon=knfoviewer
+MimeType=text/x-readme;
+Name=KNfoViewer
+Terminal=false
+Type=Application
+X-KDE-StartupNotify=true
+X-DBUS-StartupType=Multi
+X-DBUS-ServiceName=com.googlecode.KNfoViewer
