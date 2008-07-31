@@ -2,7 +2,7 @@
 Type=Service
 Name=KNfoViewer Part
 Icon=knfoviewer
-MimeType=text/x-readme
+MimeType=text/x-nfo
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View;
 X-KDE-Library=knfoviewerpart
-InitialPreference=10
+InitialPreference=100
