@@ -17,7 +17,10 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
+/**
+ * @class KNFOViewer knfoviewer.h
+ * @mainpage A NFO viewer for KDE
+ */
 #ifndef _KNFOVIEWER4_H_
 #define _KNFOVIEWER4_H_
 
@@ -32,20 +35,20 @@ class KToggleAction;
 class KRecentFilesAction;
 
 /**
+ * @brief Application Shell
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
  *
- * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
  * @version 0.4.0
  */
-class KNfoViewer : public KParts::MainWindow
+class KNFOViewer : public KParts::MainWindow
 {
     Q_OBJECT
 
     public:
-        KNfoViewer();
-        virtual ~KNfoViewer();
+        KNFOViewer();
+        virtual ~KNFOViewer();
 
         /**
         * Use this method to load whatever file/URL you have

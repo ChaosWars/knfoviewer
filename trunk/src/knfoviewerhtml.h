@@ -22,13 +22,13 @@
 
 #include <KDE/KHTMLPart>
 
-class KNfoViewerHTML : public KHTMLPart
+class KNFOViewerHTML : public KHTMLPart
 {
     Q_OBJECT
 
     public:
-        KNfoViewerHTML();
-        ~KNfoViewerHTML();
+        KNFOViewerHTML();
+        ~KNFOViewerHTML();
 
     protected:
         virtual bool urlSelected( const QString &url,

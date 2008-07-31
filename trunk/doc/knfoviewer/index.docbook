@@ -3,7 +3,7 @@
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
   <!ENTITY homepage "<ulink url='http://knfoviewer.googlecode.com'>http://knfoviewer.googlecode.com</ulink>">
-  <!ENTITY knfoviewer "<application>KNfoViewer</application>">
+  <!ENTITY knfoviewer "<application>KNFOViewer</application>">
   <!ENTITY kappname "&knfoviewer;">
   <!ENTITY package "kde-module">
   <!ENTITY % addindex "IGNORE">
@@ -27,9 +27,9 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2007-12-16</date>
+<date>2008-07-31</date>
 
-<releaseinfo>0.03.10</releaseinfo>
+<releaseinfo>0.04.00</releaseinfo>
 
 <abstract>
 
@@ -42,7 +42,7 @@
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>kdeutils</keyword>
-<keyword>KNfoViewer</keyword>
+<keyword>KNFOViewer</keyword>
 <keyword>nfo</keyword>
 </keywordset>
 
@@ -91,7 +91,7 @@ Alternatively, you can open any NFO file via
       </menuchoice>
     </term>
     <listitem>
-    <para><action>Open a PAR2 file</action></para>
+    <para><action>Open a NFO file</action></para>
     </listitem>
   </varlistentry>
 </variablelist>
@@ -181,9 +181,9 @@ This enables the viewing of ASCII graphics.
 <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
 </shortcut>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure KNfoViewer</guimenuitem>
+<guimenuitem>Configure KNFOViewer</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Opens the configuration dialog for KNfoViewer</action></para></listitem>
+<listitem><para><action>Opens the configuration dialog for KNFOViewer</action></para></listitem>
 </varlistentry>
 </variablelist>
 </para>
@@ -250,7 +250,7 @@ Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 <title>Requirements</title>
 
 <para>
-In order to successfully use &knfoviewer; you need &kde; 3.5.
+In order to successfully use &knfoviewer; you need &kde; 4.0 or higher.
 </para>
 
 </sect1>
@@ -260,11 +260,11 @@ In order to successfully use &knfoviewer; you need &kde; 3.5.
 <title>Compilation and Installation</title>
 
 <para>
-In order to compile and install KNfoViewer on your system, type the following in the base directory of the KNfoViewer source:
+In order to compile and install KNFOViewer on your system, type the following in the base directory of the KNFOViewer source:
 </para>
 
 <screen>
-%cmake . -DCMAKE_INSTALL_PREFIX=$KDEDIR
+%cmake . -DCMAKE_INSTALL_PREFIX=/usr
 %make
 %make install
 </screen>

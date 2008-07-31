@@ -31,7 +31,7 @@
 #include <KDE/KStatusBar>
 #include "knfoviewer.h"
 
-KNfoViewer::KNfoViewer()
+KNFOViewer::KNFOViewer()
     : KParts::MainWindow(), recentFiles( NULL ), m_part( NULL )
 {
     setupActions();
@@ -71,30 +71,30 @@ KNfoViewer::KNfoViewer()
 
 }
 
-KNfoViewer::~KNfoViewer()
+KNFOViewer::~KNFOViewer()
 {
     KConfigGroup configGroup( config, "RecentFiles" );
     saveProperties( configGroup );
 }
 
-void KNfoViewer::load( const KUrl& url )
+void KNFOViewer::load( const KUrl& url )
 {
     if( m_part )
         m_part->openUrl( url );
 }
 
-void KNfoViewer::addRecentFile( const KUrl &url )
+void KNFOViewer::addRecentFile( const KUrl &url )
 {
     recentFiles->addUrl( url );
 }
 
-void KNfoViewer::openRecentFile( const KUrl &url )
+void KNFOViewer::openRecentFile( const KUrl &url )
 {
     if( m_part )
         m_part->openUrl( url );
 }
 
-void KNfoViewer::setupActions()
+void KNFOViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
@@ -102,7 +102,7 @@ void KNfoViewer::setupActions()
     KStandardAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
 }
 
-void KNfoViewer::saveProperties( KConfigGroup &configGroup )
+void KNFOViewer::saveProperties( KConfigGroup &configGroup )
 {
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
@@ -110,7 +110,7 @@ void KNfoViewer::saveProperties( KConfigGroup &configGroup )
      recentFiles->saveEntries( configGroup );
 }
 
-void KNfoViewer::readProperties( const KConfigGroup &configGroup )
+void KNFOViewer::readProperties( const KConfigGroup &configGroup )
 {
      recentFiles->loadEntries( configGroup );
 }
