@@ -48,7 +48,7 @@ KNfoViewer::KNfoViewer()
     if ( factory ){
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>( factory->create(this, "knfoviewerpart", "KParts::ReadOnlyPart" ) );
+        m_part = static_cast<KParts::ReadOnlyPart *>( factory->create( this, "knfoviewerpart", "KParts::ReadOnlyPart" ) );
 
         if( m_part ){
             // tell the KParts::MainWindow that this is indeed the main widget
