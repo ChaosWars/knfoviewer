@@ -37,7 +37,7 @@ class KRecentFilesAction;
  *
  * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.4
+ * @version 0.4.0
  */
 class KNfoViewer : public KParts::MainWindow
 {

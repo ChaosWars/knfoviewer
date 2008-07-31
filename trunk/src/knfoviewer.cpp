@@ -18,18 +18,17 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <KDE/KApplication>
-#include <KDE/KMessageBox>
-#include <KDE/KPluginLoader>
-#include <KDE/KPluginFactory>
-#include <KDE/KFileDialog>
+#include <KDE/KActionCollection>
 #include <KDE/KConfig>
 #include <KDE/KEditToolBar>
+#include <KDE/KFileDialog>
+#include <KDE/KLocale>
+#include <KDE/KMessageBox>
+#include <KDE/KPluginFactory>
+#include <KDE/KPluginLoader>
 #include <KDE/KRecentFilesAction>
 #include <KDE/KStandardAction>
-#include <KDE/KActionCollection>
 #include <KDE/KStatusBar>
-#include <KDE/KLocale>
-#include <KDE/KDebug>
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
@@ -41,7 +40,7 @@ KNfoViewer::KNfoViewer()
     KPluginFactory* factory = loader.factory();
 
     if( !factory ){
-        kWarning() << "Error loading plugin:" << loader.errorString();
+        KMessageBox::error( this, i18n( "Error loading plugin: %1", loader.errorString() ) );
     }else{
 
         m_part = factory->create< KParts::ReadOnlyPart >();
