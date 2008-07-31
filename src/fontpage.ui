@@ -21,7 +21,7 @@
         </property>
         <widget class="KFontChooser">
             <property name="name">
-                <cstring>fontChooser</cstring>
+                <cstring>kcfg_fontChooser</cstring>
             </property>
         </widget>
     </vbox>
