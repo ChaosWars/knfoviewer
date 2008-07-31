@@ -12,4 +12,4 @@ Terminal=false
 Type=Application
 X-KDE-StartupNotify=true
 X-DBUS-StartupType=Multi
-X-DBUS-ServiceName=org.kde.knfoviewer
+X-DBUS-ServiceName=com.googlecode.knfoviewer

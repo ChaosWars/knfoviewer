@@ -27,7 +27,7 @@
 
 static const char description[] ="A NFO viewer for KDE";
 
-static const char version[] = "0.4";
+static const char version[] = "0.4.0";
 
 int main(int argc, char **argv)
 {
