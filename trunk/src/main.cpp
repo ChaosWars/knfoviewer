@@ -17,14 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <KDE/KLocalizedString>
+
 #include <KDE/KAboutData>
-#include <KDE/KCmdLineArgs>
 #include <KDE/KApplication>
-#include <KDE/KIcon>
+#include <KDE/KCmdLineArgs>
+#include <KDE/KConfigDialog>
+#include <KDE/KLocalizedString>
 #include "knfoviewer.h"
 
-static const char description[] ="A NFO viewer for KDE4";
+static const char description[] ="A NFO viewer for KDE";
 
 static const char version[] = "0.4";
 
@@ -32,7 +33,7 @@ int main(int argc, char **argv)
 {
     KCmdLineOptions options;
     options.add( "+files", ki18n( "Documents to open. You can list multiple files here." ) );
-    KAboutData about( "KNfoViewer", QByteArray(), ki18n( "KNfoViewer" ), version, ki18n( description ),
+    KAboutData about( "knfoviewer", QByteArray(), ki18n( "KNfoViewer" ), version, ki18n( description ),
                       KAboutData::License_GPL, ki18n( "(C) 2007 Lawrence Lee" ), ki18n(""),
                       "http://knfoviewer.googlecode.com", "valheru@facticius.net" );
     about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru@facticius.net", "www.facticius.net" );

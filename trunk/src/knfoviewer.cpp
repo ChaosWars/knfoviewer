@@ -33,13 +33,10 @@
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
+    : KParts::MainWindow(), recentFiles( NULL ), m_part( NULL )
 {
-    // set the shell's ui resource file
-    setXMLFile("knfoviewer/knfoviewer.rc");
-
-    // then, setup our actions
     setupActions();
-
+    setupGUI( ToolBar | Keys | StatusBar );
     KPluginLoader loader( "knfoviewerpart" );
     KPluginFactory* factory = loader.factory();
 
@@ -84,7 +81,8 @@ KNfoViewer::~KNfoViewer()
 
 void KNfoViewer::load( const KUrl& url )
 {
-     m_part->openUrl( url );
+    if( m_part )
+        m_part->openUrl( url );
 }
 
 void KNfoViewer::addRecentFile( const KUrl &url )
@@ -92,19 +90,18 @@ void KNfoViewer::addRecentFile( const KUrl &url )
     recentFiles->addUrl( url );
 }
 
-void KNfoViewer::openRecent( const KUrl &url )
+void KNfoViewer::openRecentFile( const KUrl &url )
 {
-     m_part->openUrl( url );
+    if( m_part )
+        m_part->openUrl( url );
 }
 
 void KNfoViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStandardAction::quit( this, SLOT( close() ), actionCollection() );
-    KStandardAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
-    KStandardAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
-    recentFiles = KStandardAction::openRecent( this, SLOT( openRecent( const KUrl& ) ), actionCollection() );
+    recentFiles = KStandardAction::openRecent( this, SLOT( openRecentFile( const KUrl& ) ), actionCollection() );
+    KStandardAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
 }
 
 void KNfoViewer::saveProperties( KConfigGroup &configGroup )
@@ -118,26 +115,6 @@ void KNfoViewer::saveProperties( KConfigGroup &configGroup )
 void KNfoViewer::readProperties( const KConfigGroup &configGroup )
 {
      recentFiles->loadEntries( configGroup );
-}
-
-void KNfoViewer::optionsConfigureKeys()
-{
-//     KKeyDialog::configure( actionCollection() );
-}
-
-void KNfoViewer::optionsConfigureToolbars()
-{
-	saveMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
-
-    // use the standard toolbar editor
-    KEditToolBar dlg(factory());
-    connect( &dlg, SIGNAL( newToolbarConfig() ), this, SLOT( applyNewToolbarConfig() ) );
-    dlg.exec();
-}
-
-void KNfoViewer::applyNewToolbarConfig()
-{
-	applyMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
 }
 
 #include "knfoviewer.moc"

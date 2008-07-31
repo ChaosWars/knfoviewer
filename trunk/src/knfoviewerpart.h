@@ -28,8 +28,8 @@ class KAction;
 class KAboutData;
 class KNfoViewerHTML;
 class KRecentFilesAction;
-class KConfigDialog;
-class KNfoViewerSettings;
+// class KConfigDialog;
+// class KNfoViewerSettings;
 class QGridLayout;
 class MainWidget;
 
@@ -40,23 +40,22 @@ class MainWidget;
  *
  * @short Main Part
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3.2
+ * @version 0.4
  */
 class KNfoViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 
     public:
-    /**
-     * Default constructor
-     */
+        /**
+         * Construct a KNfoViewer part.
+         * @param parentWidget 
+         * @param parent 
+         * @param args 
+         */
         KNfoViewerPart( QWidget* parentWidget,
                          QObject* parent,
                          const QStringList& args = QStringList() );
-
-    /**
-         * Destructor
-     */
         virtual ~KNfoViewerPart();
         static KAboutData* createAboutData();
 
@@ -64,15 +63,12 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         void loadSettings();
 
     protected:
-    /**
-     * This must be implemented by each part
-     */
         virtual bool openFile();
         virtual bool openUrl( const KUrl & url );
 
     protected Q_SLOTS:
         void fileOpen();
-        void configureSettings();
+        void optionsConfigure();
 
     private:
         QFont font;
@@ -81,37 +77,19 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         QColor textColor;
         QColor linkColor;
         KAction *configureAction;
-        KConfigDialog *settings;
-        KNfoViewerSettings *config;
+//         KConfigDialog *settings;
+        KSharedConfigPtr config;
         MainWidget *m_widget;
         KNfoViewerHTML *htmlpart;
         QGridLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
-        void saveProperties( KNfoViewerSettings *config );
-        void readProperties( KNfoViewerSettings *config );
+//         void saveProperties( KNfoViewerSettings *config );
+//         void readProperties( KNfoViewerSettings *config );
         void display();
 
     Q_SIGNALS:
         void addRecentFile( const KUrl& url );
 };
-
-// #include <KDE/KParts/Factory>
-//
-// class KNfoViewerPartFactory : public KParts::Factory
-// {
-//     Q_OBJECT
-//     public:
-//         KNfoViewerPartFactory();
-//         virtual ~KNfoViewerPartFactory();
-//         virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
-//                 QObject *parent, const char *name,
-//                 const char *classname, const QStringList &args );
-//         static KInstance* instance();
-//
-//     private:
-//         static KInstance* s_instance;
-//         static KAboutData* s_about;
-// };
 
 #endif // _KNFOVIEWER_PART_H_

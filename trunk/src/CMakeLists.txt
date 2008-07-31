@@ -4,7 +4,13 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
 
 SET( SRC main.cpp knfoviewer.cpp )
-SET( KPART_SRC knfoviewerpart.cpp mainwidget.cpp fontpage.cpp colorpage.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
+SET( KPART_SRC knfoviewerpart.cpp
+               mainwidget.cpp
+               fontpage.cpp
+               colorpage.cpp
+               knfoviewerhtml.cpp
+               cp437codec.cpp )
+#                settings.cpp )
 SET( KPART_UI_SRC colorpage.ui fontpage.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
@@ -24,4 +30,4 @@ INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
 INSTALL( FILES knfoviewer.desktop DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR} )
 INSTALL( FILES knfoviewerpart.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 INSTALL( FILES knfoviewerthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-INSTALL( FILES knfoviewer.rc knfoviewerpart.rc DESTINATION ${DATA_INSTALL_DIR}/knfoviewer )
+INSTALL( FILES knfoviewerui.rc knfoviewerpart.rc DESTINATION ${DATA_INSTALL_DIR}/knfoviewer )

@@ -17,30 +17,34 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <KDE/KAction>
-#include <KDE/KStandardAction>
-#include <KDE/KActionCollection>
-#include <KDE/KFileDialog>
-#include <KDE/KLocale>
-#include <KDE/KIO/NetAccess>
-#include <KDE/KHTMLView>
 #include <KDE/KAboutData>
-#include <KDE/KParts/GenericFactory>
-#include <KDE/KIcon>
+#include <KDE/KAction>
+#include <KDE/KActionCollection>
+#include <KDE/KConfigDialog>
 #include <KDE/KDebug>
+#include <KDE/KFileDialog>
+#include <KDE/KGlobal>
+#include <KDE/KHTMLView>
+#include <KDE/KIcon>
+#include <KDE/KLocale>
+#include <KDE/KStandardAction>
+#include <KDE/KIO/NetAccess>
+#include <KDE/KParts/GenericFactory>
 #include <QFile>
 #include <QRegExp>
 #include <QLayout>
-#include "mainwidget.h"
-#include "knfoviewerpart.h"
-#include "knfoviewerhtml.h"
+#include "colorpage.h"
 #include "cp437codec.h"
+#include "fontpage.h"
+#include "mainwidget.h"
+#include "knfoviewerhtml.h"
+#include "knfoviewerpart.h"
 #include "knfoviewersettings.h"
-#include "settings.h"
 
 //Factory Code
 typedef KParts::GenericFactory<KNfoViewerPart> KNfoViewerPartFactory;
-K_EXPORT_COMPONENT_FACTORY( knfoviewerpart /*library name*/, KNfoViewerPartFactory )
+K_EXPORT_PLUGIN( KNfoViewerPartFactory );
+K_EXPORT_PLUGIN_VERSION( 0.4 );
 
 KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
     : KParts::ReadOnlyPart( parent )
@@ -56,72 +60,71 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
     htmlpart->setMetaRefreshEnabled(false);
     htmlpart->setPluginsEnabled(false);
     htmlpart->setOnlyLocalReferences(true);
-
-    connect( htmlpart, SIGNAL( urlMouseOver( const QString& ) ), m_widget, SIGNAL( urlMouseOver( const QString& ) ) );
-
-    // notify the part that this is our internal widget
-    setWidget( m_widget );
-
     // create our actions
     KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
-    configureAction = new KAction( KIcon( "configure" ), i18n( "&Configure KNfoViewer..." ), actionCollection() );
-    actionCollection()->addAction( "configure_settings", configureAction );
-    connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
-    config = KNfoViewerSettings::self();
-    readProperties( config );
-
+    KStandardAction::preferences( this, SLOT( optionsConfigure() ), actionCollection() );
+    connect( htmlpart->view(), SIGNAL( onUrl( const QString& ) ), this, SIGNAL( setStatusBarText( const QString& ) ) );
+    // notify the part that this is our internal widget
+    setWidget( m_widget );
     // set our XML-UI resource file
     setXMLFile( "knfoviewer/knfoviewerpart.rc" );
-
     display();
 }
 
 KNfoViewerPart::~KNfoViewerPart()
 {
-    saveProperties( config );
+//     saveProperties( config );
 }
 
 KAboutData* KNfoViewerPart::createAboutData()
 {
-    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNfoViewer" ), "0.3.2" );
+    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNfoViewer" ), "0.4" );
 }
 
-void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
-{
-    if( !config )
-        return;
+// void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
+// {
+//     if( !config )
+//         return;
+// 
+//     config->setFont( font );
+//     config->setBackgroundColor( backgroundColor );
+//     config->setTextColor( textColor );
+//     config->setLinkColor( linkColor );
+//     config->writeConfig();
+// }
 
-    config->setFont( font );
-    config->setBackgroundColor( backgroundColor );
-    config->setTextColor( textColor );
-    config->setLinkColor( linkColor );
-    config->writeConfig();
-}
+// void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
+// {
+//     font = KNfoViewerSettings::font();
+//     backgroundColor = KNfoViewerSettings->backgroundColor();
+//     textColor = KNfoViewerSettings->textColor();
+//     linkColor = KNfoViewerSettings->linkColor();
+// }
 
-void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
-{
-    if( !config )
-        return;
-
-    font = config->font();
-    backgroundColor = config->backgroundColor();
-    textColor = config->textColor();
-    linkColor = config->linkColor();
-}
-
-void KNfoViewerPart::configureSettings()
+void KNfoViewerPart::optionsConfigure()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    settings = new Settings( m_widget, "settings", config );
-    connect( settings, SIGNAL( settingsChanged() ), this, SLOT( loadSettings() ) );
-    settings->show();
+    KConfigDialog *configDialog = new KConfigDialog( htmlpart->view()->widget(), "settings", KNfoViewerSettings::self() );
+//     settings = new Settings( m_widget, "settings", KNfoViewerSettings::self() );
+    QWidget *fontWidget = new QWidget();
+    new FontPage( fontWidget );
+    configDialog->addPage( fontWidget, i18n( "Font Settings" ), "preferences-desktop-font" );
+    QWidget *colorWidget = new QWidget();
+    new ColorPage( colorWidget );
+    configDialog->addPage( colorWidget, i18n( "Color Settings" ), "preferences-desktop-color" );
+    connect( configDialog, SIGNAL( settingsChanged( QString ) ), this, SLOT( loadSettings() ) );
+    configDialog->show();
 }
 
 void KNfoViewerPart::loadSettings()
 {
-    readProperties( config );
+//     readProperties( config );
+    font = KNfoViewerSettings::fontChooser();
+    backgroundColor = KNfoViewerSettings::backgroundColor();
+    textColor = KNfoViewerSettings::textColor();
+    linkColor = KNfoViewerSettings::linkColor();
     display();
 }
 
@@ -206,6 +209,7 @@ void KNfoViewerPart::display()
 bool KNfoViewerPart::openUrl( const KUrl & url )
 {
     QString m_file( KIO::NetAccess::mostLocalUrl( url, 0 ).path() );
+    kDebug() << "opening" << m_file;
     // m_file is always local so we can use QFile on it
     QFile file(m_file );
 
