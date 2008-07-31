@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <kapplication.h>
-#include <khtml_events.h>
 #include <qclipboard.h>
 #include "knfoviewerhtml.h"
 
@@ -29,11 +28,6 @@ KNfoViewerHTML::KNfoViewerHTML( QWidget *parentWidget ) : KHTMLPart( parentWidge
 
 KNfoViewerHTML::~KNfoViewerHTML()
 {
-}
-
-void KNfoViewerHTML::khtmlMouseMoveEvent( khtml::MouseMoveEvent *event )
-{
-    emit urlMouseOver( event->url().string() );
 }
 
 void KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/,

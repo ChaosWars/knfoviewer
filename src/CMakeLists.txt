@@ -32,4 +32,4 @@ INSTALL( FILES knfoviewer.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/appl
 INSTALL( FILES knfoviewerpart.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
 INSTALL( FILES x-nfo.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mimelnk/application )
 INSTALL( FILES knfoviewerthumbnail.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
-INSTALL( FILES knfoviewerui.rc knfoviewer_part.rc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/apps/knfoviewer )
+INSTALL( FILES knfoviewerui.rc knfoviewerpart.rc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/apps/knfoviewer )
