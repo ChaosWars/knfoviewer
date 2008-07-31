@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>472</width>
-    <height>413</height>
+    <width>477</width>
+    <height>387</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,7 +14,7 @@
   </property>
   <layout class="QGridLayout" >
    <item row="0" column="0" >
-    <widget class="KFontChooser" name="kfontchooser" />
+    <widget class="KFontChooser" name="kcfg_fontChooser" />
    </item>
   </layout>
  </widget>

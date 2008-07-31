@@ -19,24 +19,24 @@
  ***************************************************************************/
 #include "fontpage.h"
 
-FontPage::FontPage()
+FontPage::FontPage( QWidget *parent ) : QWidget( parent )
 {
-    setupUi( this );
-    connect( kfontchooser, SIGNAL( fontSelected( const QFont& ) ), this, SIGNAL( fontSelected( const QFont& ) ) );
+    setupUi( parent );
+//     connect( fontchooser, SIGNAL( fontSelected( const QFont& ) ), this, SIGNAL( fontSelected( const QFont& ) ) );
 }
 
 FontPage::~FontPage()
 {
 }
 
-QFont FontPage::font() const
-{
-    return kfontchooser->font();
-}
-
-void FontPage::setFont( const QFont &font, const bool onlyFixed )
-{
-    kfontchooser->setFont( font, onlyFixed );
-}
+// QFont FontPage::font() const
+// {
+//     return fontchooser->font();
+// }
+// 
+// void FontPage::setFont( const QFont &font, const bool onlyFixed )
+// {
+//     fontchooser->setFont( font, onlyFixed );
+// }
 
 #include "fontpage.moc"

@@ -28,13 +28,13 @@ class FontPage : public QWidget, public Ui::FontPage
     Q_OBJECT
 
     public:
-        FontPage();
+        FontPage( QWidget *parent );
         ~FontPage();
-        QFont font() const;
-        void setFont( const QFont &font, bool onlyFixed = true );
-
-    Q_SIGNALS:
-        void fontSelected( const QFont& font );
+//         QFont font() const;
+//         void setFont( const QFont &font, bool onlyFixed = true );
+// 
+//     Q_SIGNALS:
+//         void fontSelected( const QFont& font );
 };
 
 #endif

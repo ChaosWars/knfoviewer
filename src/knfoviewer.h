@@ -37,49 +37,39 @@ class KRecentFilesAction;
  *
  * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3.2
+ * @version 0.4
  */
 class KNfoViewer : public KParts::MainWindow
 {
     Q_OBJECT
 
     public:
-    /**
-     * Default Constructor
-     */
         KNfoViewer();
-
-    /**
-         * Default Destructor
-     */
         virtual ~KNfoViewer();
 
-    /**
-         * Use this method to load whatever file/URL you have
-     */
+        /**
+        * Use this method to load whatever file/URL you have
+        */
         void load(const KUrl& url);
 
     protected:
 
-    /**
-     * This method is called when it is time for the app to save its
-     * properties for session management purposes.
-     */
+        /**
+         * This method is called when it is time for the app to save its
+         * properties for session management purposes.
+         */
         void saveProperties( KConfigGroup &config );
 
-    /**
+        /**
          * This method is called when this app is restored.  The KConfig
          * object points to the session management config file that was saved
-         * with @ref saveProperties
-     */
+         * with saveProperties()
+        */
         void readProperties( const KConfigGroup &config );
 
-    private slots:
-        void optionsConfigureKeys();
-        void optionsConfigureToolbars();
-        void applyNewToolbarConfig();
+    private Q_SLOTS:
         void addRecentFile( const KUrl &url );
-        void openRecent( const KUrl &url );
+        void openRecentFile( const KUrl &url );
 
     private:
         KSharedConfigPtr config;

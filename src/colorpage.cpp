@@ -19,61 +19,61 @@
  ***************************************************************************/
 #include "colorpage.h"
 
-ColorPage::ColorPage()
+ColorPage::ColorPage( QWidget *parent ) : QWidget( parent )
 {
-    setupUi( this );
-    m_BackgroundColorCombo->showEmptyList();
-    m_TextColorCombo->showEmptyList();
-    m_LinkColorCombo->showEmptyList();
+    setupUi( parent );
+//     m_BackgroundColorCombo->showEmptyList();
+//     m_TextColorCombo->showEmptyList();
+//     m_LinkColorCombo->showEmptyList();
 }
 
 ColorPage::~ColorPage()
 {
 }
 
-KColorCombo* ColorPage::backgroundColorCombo()
-{
-    return m_BackgroundColorCombo ;
-}
-
-KColorCombo* ColorPage::textColorCombo()
-{
-    return m_TextColorCombo ;
-}
-
-KColorCombo* ColorPage::linkColorCombo()
-{
-    return m_LinkColorCombo ;
-}
-
-QColor ColorPage::backgroundColor() const
-{
-    return m_BackgroundColorCombo->color();
-}
-
-QColor ColorPage::textColor() const
-{
-    return m_TextColorCombo->color();
-}
-
-QColor ColorPage::linkColor() const
-{
-    return m_LinkColorCombo->color();
-}
-
-void ColorPage::setBackgroundColor( const QColor &color )
-{
-    m_BackgroundColorCombo->setColor( color );
-}
-
-void ColorPage::setTextColor( const QColor &color )
-{
-    m_TextColorCombo->setColor( color );
-}
-
-void ColorPage::setLinkColor( const QColor &color )
-{
-    m_LinkColorCombo->setColor( color );
-}
+// KColorCombo* ColorPage::backgroundColorCombo()
+// {
+//     return m_BackgroundColorCombo ;
+// }
+// 
+// KColorCombo* ColorPage::textColorCombo()
+// {
+//     return m_TextColorCombo ;
+// }
+// 
+// KColorCombo* ColorPage::linkColorCombo()
+// {
+//     return m_LinkColorCombo ;
+// }
+// 
+// QColor ColorPage::backgroundColor() const
+// {
+//     return m_BackgroundColorCombo->color();
+// }
+// 
+// QColor ColorPage::textColor() const
+// {
+//     return m_TextColorCombo->color();
+// }
+// 
+// QColor ColorPage::linkColor() const
+// {
+//     return m_LinkColorCombo->color();
+// }
+// 
+// void ColorPage::setBackgroundColor( const QColor &color )
+// {
+//     m_BackgroundColorCombo->setColor( color );
+// }
+// 
+// void ColorPage::setTextColor( const QColor &color )
+// {
+//     m_TextColorCombo->setColor( color );
+// }
+// 
+// void ColorPage::setLinkColor( const QColor &color )
+// {
+//     m_LinkColorCombo->setColor( color );
+// }
 
 #include "colorpage.moc"
