@@ -2,9 +2,9 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
-  <!ENTITY homepage "<ulink>http://knfoviewer.googlecode.com</ulink>">
-  <!ENTITY knfoviewer "<application>KNfoViewer</application>">
-  <!ENTITY kappname "&knfoviewer;">
+  <!ENTITY homepage "<ulink>http://KNFOViewer.googlecode.com</ulink>">
+  <!ENTITY KNFOViewer "<application>KNFOViewer</application>">
+  <!ENTITY kappname "&KNFOViewer;">
   <!ENTITY package "kde-module">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
@@ -14,7 +14,7 @@
 
 <bookinfo>
 
-<title>The &knfoviewer; Handbook</title>
+<title>The &KNFOViewer; Handbook</title>
 
 <authorgroup>
 &Lawrence.C.Lee;
@@ -35,7 +35,7 @@
 <abstract>
 
 <para>
-&knfoviewer; is an application for viewing NFO files.
+&KNFOViewer; is an application for viewing NFO files.
 </para>
 
 </abstract>
@@ -43,7 +43,7 @@
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>kdeutils</keyword>
-<keyword>KNfoViewer</keyword>
+<keyword>KNFOViewer</keyword>
 <keyword>nfo</keyword>
 </keywordset>
 
@@ -54,23 +54,23 @@
 <title>Introduction</title>
 
 <para>
-&knfoviewer; is an application for viewing NFO files.
+&KNFOViewer; is an application for viewing NFO files.
 Please report any problems or feature requests as an issue on &homepage;
 </para>
 
 </chapter>
 
-<chapter id="using-knfoviewer">
+<chapter id="using-KNFOViewer">
 
-<title>Using &knfoviewer;</title>
+<title>Using &KNFOViewer;</title>
 
 <para>
 
 <screenshot>
-<screeninfo>Here's a screenshot of &knfoviewer;</screeninfo>
+<screeninfo>Here's a screenshot of &KNFOViewer;</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="knfoviewer.png" format="PNG"/>
+	    <imagedata fileref="KNFOViewer.png" format="PNG"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -80,7 +80,7 @@ Please report any problems or feature requests as an issue on &homepage;
 </para>
 
 <para>
-You can double click on any NFO file and it will open in &knfoviewer;.
+You can double click on any NFO file and it will open in &KNFOViewer;.
 Alternatively, you can open any NFO file via
 
 <variablelist>
@@ -101,10 +101,10 @@ This enables the viewing of ASCII graphics.
 
 <para>
 <screenshot>
-<screeninfo>&knfoviewer; displaying a CP437 encoded file</screeninfo>
+<screeninfo>&KNFOViewer; displaying a CP437 encoded file</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="knfoviewer_file_loaded.png" format="PNG"/>
+	    <imagedata fileref="KNFOViewer_file_loaded.png" format="PNG"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -119,9 +119,9 @@ This enables the viewing of ASCII graphics.
 
 <title>Command Reference</title>
 
-<sect1 id="knfoviewer-mainwindow">
+<sect1 id="KNFOViewer-mainwindow">
 
-<title>The main &knfoviewer; window</title>
+<title>The main &KNFOViewer; window</title>
 
 <sect2>
 
@@ -157,7 +157,7 @@ This enables the viewing of ASCII graphics.
 <guimenu>File</guimenu>
 <guimenuitem>Quit</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Quits</action> &knfoviewer;</para></listitem>
+<listitem><para><action>Quits</action> &KNFOViewer;</para></listitem>
 </varlistentry>
 
 </variablelist>
@@ -177,9 +177,9 @@ This enables the viewing of ASCII graphics.
 <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
 </shortcut>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure KNfoViewer</guimenuitem>
+<guimenuitem>Configure KNFOViewer</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Opens the configuration dialog for KNfoViewer</action></para></listitem>
+<listitem><para><action>Opens the configuration dialog for KNFOViewer</action></para></listitem>
 </varlistentry>
 </variablelist>
 </para>
@@ -211,7 +211,7 @@ This enables the viewing of ASCII graphics.
 <title>Credits and License</title>
 
 <para>
-&knfoviewer;
+&KNFOViewer;
 </para>
 
 <para>
@@ -231,12 +231,12 @@ Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 
 <title>Installation</title>
 
-<sect1 id="getting-knfoviewer">
+<sect1 id="getting-KNFOViewer">
 
-<title>How to obtain &knfoviewer;</title>
+<title>How to obtain &KNFOViewer;</title>
 
 <para>
-&knfoviewer; can be found on <ulink url="http://knfoviewer.googlecode.com">the &knfoviewer; home page</ulink>.
+&KNFOViewer; can be found on <ulink url="http://KNFOViewer.googlecode.com">the &KNFOViewer; home page</ulink>.
 </para>
 
 </sect1>
@@ -246,7 +246,7 @@ Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 <title>Requirements</title>
 
 <para>
-In order to successfully use &knfoviewer; you need &kde; 3.5.
+In order to successfully use &KNFOViewer; you need &kde; 3.5.
 </para>
 
 </sect1>
@@ -256,7 +256,7 @@ In order to successfully use &knfoviewer; you need &kde; 3.5.
 <title>Compilation and Installation</title>
 
 <para>
-In order to compile and install KNfoViewer on your system, type the following in the base directory of the KNfoViewer source:
+In order to compile and install KNFOViewer on your system, type the following in the base directory of the KNFOViewer source:
 </para>
 
 <screen>
@@ -271,13 +271,13 @@ In order to compile and install KNfoViewer on your system, type the following in
 
 <title>Configuration</title>
 
-<para>&knfoviewer; allows users to configure the font used in the application
+<para>&KNFOViewer; allows users to configure the font used in the application
 and the colors the application uses to display the NFO files.
 </para>
 
 <para>
 <screenshot>
-<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Fonts</screeninfo>
+<screeninfo>Here's a screenshot of &KNFOViewer;'s settings dialog option Configure Fonts</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="configure_font.png" format="PNG"/>
@@ -290,12 +290,12 @@ and the colors the application uses to display the NFO files.
 </para>
 
 <para>
-You can configure the font that &knfoviewer; uses to render the NFO's. Only fixed type fonts are shown.
+You can configure the font that &KNFOViewer; uses to render the NFO's. Only fixed type fonts are shown.
 </para>
 
 <para>
 <screenshot>
-<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Colors</screeninfo>
+<screeninfo>Here's a screenshot of &KNFOViewer;'s settings dialog option Configure Colors</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="configure_colors.png" format="PNG"/>
@@ -308,7 +308,7 @@ You can configure the font that &knfoviewer; uses to render the NFO's. Only fixe
 </para>
 
 <para>
-You can configure the colors that &knfoviewer; uses to render the NFO's.
+You can configure the colors that &KNFOViewer; uses to render the NFO's.
 You can configure the colors used for:
 
 <itemizedlist>
