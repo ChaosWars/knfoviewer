@@ -21,22 +21,22 @@
 #include <qclipboard.h>
 #include "knfoviewerhtml.h"
 
-KNfoViewerHTML::KNfoViewerHTML( QWidget *parentWidget ) : KHTMLPart( parentWidget )
+KNFOViewerHTML::KNFOViewerHTML( QWidget *parentWidget ) : KHTMLPart( parentWidget )
 {
     connect( this, SIGNAL( selectionChanged() ), this, SLOT( selectionSlot() ) );
 }
 
-KNfoViewerHTML::~KNfoViewerHTML()
+KNFOViewerHTML::~KNFOViewerHTML()
 {
 }
 
-void KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/,
+void KNFOViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/,
                                   const QString &/*_target*/, KParts::URLArgs /*args*/ )
 {
     kapp->invokeBrowser( url );
 }
 
-void KNfoViewerHTML::selectionSlot()
+void KNFOViewerHTML::selectionSlot()
 {
     kapp->clipboard()->setText( selectedText() );
 //     DOM::Range newRange;

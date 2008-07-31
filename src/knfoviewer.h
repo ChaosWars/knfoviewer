@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 /**
- * @class KNfoViewer knfoviewer.h
+ * @class KNFOViewer knfoviewer.h
  */
 #ifndef _KNFOVIEWER_H_
 #define _KNFOVIEWER_H_
@@ -32,7 +32,7 @@
 
 class KToggleAction;
 class KRecentFilesAction;
-class KNfoViewerPart;
+class KNFOViewerPart;
 
 /**
  * @brief Application Shell
@@ -41,13 +41,13 @@ class KNfoViewerPart;
  * @author Lawrence Lee <valher@facticius.net>
  * @version 0.3.4
  */
-class KNfoViewer : public KParts::MainWindow
+class KNFOViewer : public KParts::MainWindow
 {
     Q_OBJECT
 
     public:
-        KNfoViewer();
-        virtual ~KNfoViewer();
+        KNFOViewer();
+        virtual ~KNFOViewer();
 
         /**
          * Use this method to load whatever file/URL you have

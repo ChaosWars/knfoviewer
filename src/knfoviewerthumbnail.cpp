@@ -36,7 +36,7 @@ extern "C"
 {
     ThumbCreator *new_creator()
     {
-        return new KNfoViewerThumbnail();
+        return new KNFOViewerThumbnail();
     }
 }
 
@@ -45,17 +45,17 @@ extern "C"
  * in kdebase/kioslave/thumbnail/ with minor changes to
  * ensure the correct rendering of CP437 encoded characters.
  */
-KNfoViewerThumbnail::KNfoViewerThumbnail()
+KNFOViewerThumbnail::KNFOViewerThumbnail()
     : m_html( 0 )
 {
 }
 
-KNfoViewerThumbnail::~KNfoViewerThumbnail()
+KNFOViewerThumbnail::~KNFOViewerThumbnail()
 {
     delete m_html;
 }
 
-bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
+bool KNFOViewerThumbnail::create( const QString &path, int width, int height, QImage &img )
 {
     if (!m_html)
     {
@@ -122,7 +122,7 @@ bool KNfoViewerThumbnail::create( const QString &path, int width, int height, QI
     return true;
 }
 
-const QString KNfoViewerThumbnail::htmlCode( const QString &text )
+const QString KNFOViewerThumbnail::htmlCode( const QString &text )
 {
     QString code = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\
             <html>\n\
@@ -177,17 +177,17 @@ const QString KNfoViewerThumbnail::htmlCode( const QString &text )
     return code;
 }
 
-void KNfoViewerThumbnail::timerEvent(QTimerEvent *)
+void KNFOViewerThumbnail::timerEvent(QTimerEvent *)
 {
     qApp->exit_loop();
 }
 
-void KNfoViewerThumbnail::slotCompleted()
+void KNFOViewerThumbnail::slotCompleted()
 {
     qApp->exit_loop();
 }
 
-ThumbCreator::Flags KNfoViewerThumbnail::flags() const
+ThumbCreator::Flags KNFOViewerThumbnail::flags() const
 {
     return DrawFrame;
 }

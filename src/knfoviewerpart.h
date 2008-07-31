@@ -25,7 +25,7 @@
 #include <kparts/factory.h>
 #include <kparts/part.h>
 
-class KNfoViewerHTML;
+class KNFOViewerHTML;
 class QHBoxLayout;
 class MainWidget;
 
@@ -36,14 +36,14 @@ class MainWidget;
  * @author Lawrence Lee <valher@facticius.net>
  * @version 0.3.4
  */
-class KNfoViewerPart : public KParts::ReadOnlyPart
+class KNFOViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 
     public:
-        KNfoViewerPart( QWidget *parentWidget, const char *widgetName,
+        KNFOViewerPart( QWidget *parentWidget, const char *widgetName,
                         QObject *parent, const char *name );
-        virtual ~KNfoViewerPart();
+        virtual ~KNFOViewerPart();
 
     public slots:
         void loadSettings();
@@ -63,7 +63,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         QColor textColor;
         QColor linkColor;
         MainWidget *m_widget;
-        KNfoViewerHTML *htmlpart;
+        KNFOViewerHTML *htmlpart;
         QHBoxLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
@@ -76,12 +76,12 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
 class KInstance;
 class KAboutData;
 
-class KNfoViewerPartFactory : public KParts::Factory
+class KNFOViewerPartFactory : public KParts::Factory
 {
     Q_OBJECT
     public:
-        KNfoViewerPartFactory();
-        virtual ~KNfoViewerPartFactory();
+        KNFOViewerPartFactory();
+        virtual ~KNFOViewerPartFactory();
         virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
                                                 QObject *parent, const char *name,
                                                 const char *classname, const QStringList &args );

@@ -22,13 +22,13 @@
 
 #include <khtml_part.h>
 
-class KNfoViewerHTML : public KHTMLPart
+class KNFOViewerHTML : public KHTMLPart
 {
     Q_OBJECT
 
     public:
-        KNfoViewerHTML( QWidget *parentWidget = 0 );
-        ~KNfoViewerHTML();
+        KNFOViewerHTML( QWidget *parentWidget = 0 );
+        ~KNFOViewerHTML();
 
     protected:
         virtual void urlSelected( const QString &url, int button, int state, const QString &_target, KParts::URLArgs args=KParts::URLArgs() );
