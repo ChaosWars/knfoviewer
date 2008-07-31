@@ -40,6 +40,7 @@
 KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char */*widgetName*/,
                                 QObject *parent, const char *name )
     : KParts::ReadOnlyPart( parent, name ),
+      font( KGlobalSettings::fixedFont() ),
       backgroundColor( QColor( 0, 0, 0 ) ),
       textColor( QColor( 128, 128, 128 ) ),
       linkColor( QColor( 0, 0, 255 ) )
