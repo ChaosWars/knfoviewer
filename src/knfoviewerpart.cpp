@@ -21,7 +21,6 @@
 #include <KDE/KAction>
 #include <KDE/KActionCollection>
 #include <KDE/KConfigDialog>
-#include <KDE/KDebug>
 #include <KDE/KFileDialog>
 #include <KDE/KGlobal>
 #include <KDE/KHTMLView>
@@ -32,7 +31,7 @@
 #include <KDE/KParts/GenericFactory>
 #include <QFile>
 #include <QRegExp>
-#include <QLayout>
+#include <QHBoxLayout>
 #include "colorpage.h"
 #include "cp437codec.h"
 #include "fontpage.h"
@@ -49,15 +48,15 @@ K_EXPORT_PLUGIN_VERSION( 0.4 );
 KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
     : KParts::ReadOnlyPart( parent ),
       font( KGlobalSettings::fixedFont() ),
-      backgroundColor( QColor( 0, 0, 0, 255 ) ),
-      textColor( QColor( 128, 128, 128, 255 ) ),
-      linkColor( QColor( 0, 0, 255, 255 ) )
+      backgroundColor( QColor( 0, 0, 0 ) ),
+      textColor( QColor( 128, 128, 128 ) ),
+      linkColor( QColor( 0, 0, 255 ) )
 {
     // this should be your custom internal widget
     m_widget = new MainWidget( parentWidget );
-    layout = new QGridLayout( m_widget );
+    layout = new QHBoxLayout( m_widget );
     htmlpart = new KNfoViewerHTML();
-    layout->addWidget( htmlpart->view(), 0, 0, 0 );
+    layout->addWidget( htmlpart->view() );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
     htmlpart->setJavaEnabled(false);
