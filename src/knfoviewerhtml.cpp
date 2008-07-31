@@ -22,23 +22,23 @@
 #include <QClipboard>
 #include "knfoviewerhtml.h"
 
-KNfoViewerHTML::KNfoViewerHTML()
+KNFOViewerHTML::KNFOViewerHTML()
 {
     connect( this, SIGNAL( selectionChanged() ), this, SLOT( selectionSlot() ) );
 }
 
-KNfoViewerHTML::~KNfoViewerHTML()
+KNFOViewerHTML::~KNFOViewerHTML()
 {
 }
 
-bool KNfoViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/, const QString&/*_target*/,
+bool KNFOViewerHTML::urlSelected( const QString &url, int /*button*/, int /*state*/, const QString&/*_target*/,
                                   const KParts::OpenUrlArguments&/*args*/, const KParts::BrowserArguments&/*browserArgs*/ )
 {
     KToolInvocation::invokeBrowser( url );
     return true;
 }
 
-void KNfoViewerHTML::selectionSlot()
+void KNFOViewerHTML::selectionSlot()
 {
     kapp->clipboard()->setText( selectedText() );
 }

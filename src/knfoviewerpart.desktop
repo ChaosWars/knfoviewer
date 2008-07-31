@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-Name=KNfoViewer Part
+Name=KNFOViewer
 Icon=knfoviewer
 MimeType=text/x-nfo
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View;

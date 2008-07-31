@@ -27,13 +27,13 @@
 
 class KHTMLPart;
 
-class KNfoViewerThumbnail : public QObject, public ThumbCreator
+class KNFOViewerThumbnail : public QObject, public ThumbCreator
 {
     Q_OBJECT
 
     public:
-        KNfoViewerThumbnail();
-        ~KNfoViewerThumbnail();
+        KNFOViewerThumbnail();
+        ~KNFOViewerThumbnail();
         const QString htmlCode( const QString &text );
         virtual bool create( const QString &path, int width, int height, QImage &img );
         virtual Flags flags() const;

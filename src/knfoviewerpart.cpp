@@ -41,11 +41,11 @@
 #include "knfoviewersettings.h"
 
 //Factory Code
-typedef KParts::GenericFactory<KNfoViewerPart> KNfoViewerPartFactory;
-K_EXPORT_PLUGIN( KNfoViewerPartFactory );
+typedef KParts::GenericFactory<KNFOViewerPart> KNFOViewerPartFactory;
+K_EXPORT_PLUGIN( KNFOViewerPartFactory );
 K_EXPORT_PLUGIN_VERSION( 0.4 );
 
-KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
+KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
     : KParts::ReadOnlyPart( parent ),
       font( KGlobalSettings::fixedFont() ),
       backgroundColor( QColor( 0, 0, 0 ) ),
@@ -55,7 +55,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
     // this should be your custom internal widget
     m_widget = new MainWidget( parentWidget );
     layout = new QHBoxLayout( m_widget );
-    htmlpart = new KNfoViewerHTML();
+    htmlpart = new KNFOViewerHTML();
     layout->addWidget( htmlpart->view() );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -75,21 +75,21 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
     display();
 }
 
-KNfoViewerPart::~KNfoViewerPart()
+KNFOViewerPart::~KNFOViewerPart()
 {
 }
 
-KAboutData* KNfoViewerPart::createAboutData()
+KAboutData* KNFOViewerPart::createAboutData()
 {
-    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNfoViewer" ), "0.4" );
+    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNFOViewer" ), "0.4" );
 }
 
-void KNfoViewerPart::optionsConfigure()
+void KNFOViewerPart::optionsConfigure()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    KConfigDialog *configDialog = new KConfigDialog( htmlpart->view()->widget(), "settings", KNfoViewerSettings::self() );
+    KConfigDialog *configDialog = new KConfigDialog( htmlpart->view()->widget(), "settings", KNFOViewerSettings::self() );
     QWidget *fontWidget = new QWidget();
     new FontPage( fontWidget );
     configDialog->addPage( fontWidget, i18n( "Font Settings" ), "preferences-desktop-font" );
@@ -100,21 +100,21 @@ void KNfoViewerPart::optionsConfigure()
     configDialog->show();
 }
 
-void KNfoViewerPart::loadSettings()
+void KNFOViewerPart::loadSettings()
 {
-    font = KNfoViewerSettings::fontChooser();
-    backgroundColor = KNfoViewerSettings::backgroundColor();
-    textColor = KNfoViewerSettings::textColor();
-    linkColor = KNfoViewerSettings::linkColor();
+    font = KNFOViewerSettings::fontChooser();
+    backgroundColor = KNFOViewerSettings::backgroundColor();
+    textColor = KNFOViewerSettings::textColor();
+    linkColor = KNFOViewerSettings::linkColor();
     display();
 }
 
-bool KNfoViewerPart::openFile()
+bool KNFOViewerPart::openFile()
 {
     return false;
 }
 
-const QString KNfoViewerPart::htmlCode( const QString &text )
+const QString KNFOViewerPart::htmlCode( const QString &text )
 {
     int fontSize = font.pointSize();
     QString code;
@@ -180,14 +180,14 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     return code;
 }
 
-void KNfoViewerPart::display()
+void KNFOViewerPart::display()
 {
     htmlpart->begin();
     htmlpart->write( htmlCode( text ) );
     htmlpart->end();
 }
 
-bool KNfoViewerPart::openUrl( const KUrl & url )
+bool KNFOViewerPart::openUrl( const KUrl & url )
 {
     QString m_file( KIO::NetAccess::mostLocalUrl( url, 0 ).path() );
     // m_file is always local so we can use QFile on it
@@ -237,7 +237,7 @@ bool KNfoViewerPart::openUrl( const KUrl & url )
     return true;
 }
 
-void KNfoViewerPart::fileOpen()
+void KNFOViewerPart::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar

@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 {
     KCmdLineOptions options;
     options.add( "+files", ki18n( "Documents to open. You can list multiple files here." ) );
-    KAboutData about( "knfoviewer", QByteArray(), ki18n( "KNfoViewer" ), version, ki18n( description ),
+    KAboutData about( "knfoviewer", QByteArray(), ki18n( "KNFOViewer" ), version, ki18n( description ),
                       KAboutData::License_GPL, ki18n( "(C) 2007 Lawrence Lee" ), ki18n(""),
                       "http://knfoviewer.googlecode.com", "valheru@facticius.net" );
     about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru@facticius.net", "www.facticius.net" );
@@ -43,13 +43,13 @@ int main(int argc, char **argv)
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
     if ( args->count() == 0 ){
-        KNfoViewer *widget = new KNfoViewer();
+        KNFOViewer *widget = new KNFOViewer();
         widget->show();
     }else{
 
         for (int i = 0; i < args->count(); i++ )
         {
-            KNfoViewer *widget = new KNfoViewer();
+            KNFOViewer *widget = new KNFOViewer();
             widget->show();
             widget->load( args->url( i ) );
         }

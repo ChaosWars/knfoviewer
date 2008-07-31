@@ -26,7 +26,7 @@
 
 class KAction;
 class KAboutData;
-class KNfoViewerHTML;
+class KNFOViewerHTML;
 class QHBoxLayout;
 class MainWidget;
 
@@ -39,21 +39,21 @@ class MainWidget;
  * @author Lawrence Lee <valher@facticius.net>
  * @version 0.4.0
  */
-class KNfoViewerPart : public KParts::ReadOnlyPart
+class KNFOViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 
     public:
         /**
-         * Construct a KNfoViewer part.
+         * Construct a KNFOViewer part.
          * @param parentWidget 
          * @param parent 
          * @param args 
          */
-        KNfoViewerPart( QWidget* parentWidget,
+        KNFOViewerPart( QWidget* parentWidget,
                          QObject* parent,
                          const QStringList& args = QStringList() );
-        virtual ~KNfoViewerPart();
+        virtual ~KNFOViewerPart();
         static KAboutData* createAboutData();
 
     public Q_SLOTS:
@@ -76,7 +76,7 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         KAction *configureAction;
         KSharedConfigPtr config;
         MainWidget *m_widget;
-        KNfoViewerHTML *htmlpart;
+        KNFOViewerHTML *htmlpart;
         QHBoxLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
