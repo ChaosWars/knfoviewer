@@ -57,7 +57,7 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>m_backgroundColorCombo</cstring>
+                                <cstring>kcfg_backgroundColor</cstring>
                             </property>
                         </widget>
                     </vbox>
@@ -83,14 +83,7 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>m_textColorCombo</cstring>
-                            </property>
-                            <property name="color">
-                                <color>
-                                    <red>0</red>
-                                    <green>0</green>
-                                    <blue>0</blue>
-                                </color>
+                                <cstring>kcfg_textColor</cstring>
                             </property>
                         </widget>
                     </vbox>
@@ -116,14 +109,7 @@
                         </widget>
                         <widget class="KColorCombo">
                             <property name="name">
-                                <cstring>m_linkColorCombo</cstring>
-                            </property>
-                            <property name="color">
-                                <color>
-                                    <red>0</red>
-                                    <green>0</green>
-                                    <blue>255</blue>
-                                </color>
+                                <cstring>kcfg_linkColor</cstring>
                             </property>
                         </widget>
                     </vbox>
@@ -149,21 +135,10 @@
         </spacer>
     </vbox>
 </widget>
-<includes>
-    <include location="local" impldecl="in implementation">color.ui.h</include>
-</includes>
-<slots>
-    <slot>setBackgroundColor( const QColor &amp; color )</slot>
-    <slot>setTextColor( const QColor &amp; color )</slot>
-    <slot>setLinkColor( const QColor &amp; color )</slot>
-</slots>
-<functions>
-    <function returnType="QColor">backgroundColor()</function>
-    <function returnType="QColor">textColor()</function>
-    <function returnType="QColor">linkColor()</function>
-    <function returnType="KColorCombo *">backgroundColorCombo()</function>
-    <function returnType="KColorCombo *">textColorCombo()</function>
-    <function returnType="KColorCombo *">linkColorCombo()</function>
-</functions>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcolorcombo.h</includehint>
+    <includehint>kcolorcombo.h</includehint>
+    <includehint>kcolorcombo.h</includehint>
+</includehints>
 </UI>

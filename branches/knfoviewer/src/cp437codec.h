@@ -17,6 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+/**
+ * @file CP437Codec cp437codec.h
+ */
 #ifndef _CP437CODEC_H_
 #define _CP437CODEC_H_
 
@@ -31,6 +34,13 @@
 
 #ifndef QT_NO_CODECS
 
+/**
+ * @brief The IBM/CP437 codec
+ * This codec is used to encode text as "ASCII-art", often found in NFO files.
+ * See the Qt documentation on QTextCodec.
+ * @author Lawrence Lee <valheru.ashen.shugar@gmail.com>
+ * @version 0.3.4
+ */
 class CP437Codec : public QTextCodec
 {
     public:

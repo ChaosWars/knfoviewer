@@ -17,25 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+/**
+ * @class MainWidget mainwidget.h
+ */
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
 #include <qwidget.h>
 
 /**
-	@author
-*/
+ *@author Lawrence Lee <valheru.ashen.shugar@gmail.com>
+ */
 class MainWidget : public QWidget
 {
-    Q_OBJECT
-
     public:
-        MainWidget(QWidget *parent = 0, const char *name = 0);
+        MainWidget( QWidget *parent = 0 );
         ~MainWidget();
-
-    signals:
-        void urlMouseOver( const QString& url );
-
 };
 
 #endif

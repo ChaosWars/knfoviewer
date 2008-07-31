@@ -17,22 +17,20 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <kdebug.h>
-#include <kstandarddirs.h>
-#include <kapplication.h>
-#include <kmimetype.h>
-#include <kpixmapsplitter.h>
 #include <time.h>
-#include <qpixmap.h>
-#include <qimage.h>
-#include <qpainter.h>
+#include <kapplication.h>
 #include <khtml_part.h>
 #include <khtmlview.h>
+#include <kmimetype.h>
+#include <kpixmapsplitter.h>
+#include <kstandarddirs.h>
 #include <qfile.h>
 #include <qimage.h>
+#include <qpainter.h>
+#include <qpixmap.h>
 #include <qtextstream.h>
-#include "knfoviewerthumbnail.h"
 #include "cp437codec.h"
+#include "knfoviewerthumbnail.h"
 
 extern "C"
 {

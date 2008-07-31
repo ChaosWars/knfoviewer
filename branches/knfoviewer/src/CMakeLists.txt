@@ -8,9 +8,12 @@ IF( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
 ENDIF( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
 
 SET( SRC main.cpp knfoviewer.cpp )
-SET( KPART_SRC knfoviewer_part.cpp mainwidget.cpp knfoviewerhtml.cpp cp437codec.cpp settings.cpp )
+SET( KPART_SRC knfoviewerpart.cpp
+               mainwidget.cpp
+               knfoviewerhtml.cpp
+               cp437codec.cpp )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
-KDE3_ADD_UI_FILES( KPART_UI_SRC color.ui )
+KDE3_ADD_UI_FILES( KPART_UI_SRC colorpage.ui fontpage.ui )
 KDE3_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE3_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE3_LIB_DIR} )
