@@ -27,9 +27,6 @@
 class KAction;
 class KAboutData;
 class KNfoViewerHTML;
-class KRecentFilesAction;
-// class KConfigDialog;
-// class KNfoViewerSettings;
 class QGridLayout;
 class MainWidget;
 
@@ -77,15 +74,12 @@ class KNfoViewerPart : public KParts::ReadOnlyPart
         QColor textColor;
         QColor linkColor;
         KAction *configureAction;
-//         KConfigDialog *settings;
         KSharedConfigPtr config;
         MainWidget *m_widget;
         KNfoViewerHTML *htmlpart;
         QGridLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
-//         void saveProperties( KNfoViewerSettings *config );
-//         void readProperties( KNfoViewerSettings *config );
         void display();
 
     Q_SIGNALS:

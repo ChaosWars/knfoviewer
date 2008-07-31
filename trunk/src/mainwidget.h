@@ -32,9 +32,6 @@ class MainWidget : public QWidget
     public:
         MainWidget( QWidget *parent = 0 );
         ~MainWidget();
-
-    signals:
-        void urlMouseOver( const QString& url );
 };
 
 #endif
