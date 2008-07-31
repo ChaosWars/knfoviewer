@@ -73,7 +73,6 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
 
 KNfoViewerPart::~KNfoViewerPart()
 {
-//     saveProperties( config );
 }
 
 KAboutData* KNfoViewerPart::createAboutData()
@@ -81,33 +80,12 @@ KAboutData* KNfoViewerPart::createAboutData()
     return new KAboutData( "knfoviewerpart", 0, ki18n( "KNfoViewer" ), "0.4" );
 }
 
-// void KNfoViewerPart::saveProperties( KNfoViewerSettings *config )
-// {
-//     if( !config )
-//         return;
-// 
-//     config->setFont( font );
-//     config->setBackgroundColor( backgroundColor );
-//     config->setTextColor( textColor );
-//     config->setLinkColor( linkColor );
-//     config->writeConfig();
-// }
-
-// void KNfoViewerPart::readProperties( KNfoViewerSettings *config )
-// {
-//     font = KNfoViewerSettings::font();
-//     backgroundColor = KNfoViewerSettings->backgroundColor();
-//     textColor = KNfoViewerSettings->textColor();
-//     linkColor = KNfoViewerSettings->linkColor();
-// }
-
 void KNfoViewerPart::optionsConfigure()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
     KConfigDialog *configDialog = new KConfigDialog( htmlpart->view()->widget(), "settings", KNfoViewerSettings::self() );
-//     settings = new Settings( m_widget, "settings", KNfoViewerSettings::self() );
     QWidget *fontWidget = new QWidget();
     new FontPage( fontWidget );
     configDialog->addPage( fontWidget, i18n( "Font Settings" ), "preferences-desktop-font" );
@@ -120,7 +98,6 @@ void KNfoViewerPart::optionsConfigure()
 
 void KNfoViewerPart::loadSettings()
 {
-//     readProperties( config );
     font = KNfoViewerSettings::fontChooser();
     backgroundColor = KNfoViewerSettings::backgroundColor();
     textColor = KNfoViewerSettings::textColor();
@@ -209,7 +186,6 @@ void KNfoViewerPart::display()
 bool KNfoViewerPart::openUrl( const KUrl & url )
 {
     QString m_file( KIO::NetAccess::mostLocalUrl( url, 0 ).path() );
-    kDebug() << "opening" << m_file;
     // m_file is always local so we can use QFile on it
     QFile file(m_file );
 
@@ -249,10 +225,8 @@ bool KNfoViewerPart::openUrl( const KUrl & url )
     }
 
     file.close();
-
     // now that we have the entire file, display it
     display();
-
     // just for fun, set the status bar
     emit setStatusBarText( url.prettyUrl() );
     emit setWindowCaption( url.prettyUrl() );
