@@ -29,7 +29,7 @@ INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
         LIBRARY DESTINATION ${KDE3_LIB_DIR}/kde3
         ARCHIVE DESTINATION ${KDE3_LIB_DIR}/kde3 )
 INSTALL( FILES knfoviewer.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/kde )
-INSTALL( FILES knfoviewer_part.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
+INSTALL( FILES knfoviewerpart.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
 INSTALL( FILES x-nfo.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mimelnk/application )
 INSTALL( FILES knfoviewerthumbnail.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/services )
-INSTALL( FILES knfoviewer_shell.rc knfoviewer_part.rc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/apps/knfoviewer )
+INSTALL( FILES knfoviewerui.rc knfoviewer_part.rc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/apps/knfoviewer )
