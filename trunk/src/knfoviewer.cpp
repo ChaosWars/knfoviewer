@@ -63,7 +63,6 @@ KNfoViewer::KNfoViewer()
         createGUI( m_part );
 
         connect( m_part, SIGNAL( addRecentFile( const KUrl& ) ), this, SLOT( addRecentFile( const KUrl&  ) ) );
-        connect( m_part->widget(), SIGNAL( urlMouseOver( const QString& ) ), statusBar(), SLOT( message( const QString& ) ) );
 
         config = KGlobal::config();
         readProperties( KConfigGroup( config, "RecentFiles" ) );

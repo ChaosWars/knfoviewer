@@ -27,5 +27,3 @@ MainWidget::MainWidget( QWidget *parent )
 MainWidget::~MainWidget()
 {
 }
-
-#include "mainwidget.moc"

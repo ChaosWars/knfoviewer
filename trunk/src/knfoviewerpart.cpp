@@ -47,7 +47,11 @@ K_EXPORT_PLUGIN( KNfoViewerPartFactory );
 K_EXPORT_PLUGIN_VERSION( 0.4 );
 
 KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QStringList& )
-    : KParts::ReadOnlyPart( parent )
+    : KParts::ReadOnlyPart( parent ),
+      font( KGlobalSettings::fixedFont() ),
+      backgroundColor( QColor( 0, 0, 0, 255 ) ),
+      textColor( QColor( 128, 128, 128, 255 ) ),
+      linkColor( QColor( 0, 0, 255, 255 ) )
 {
     // this should be your custom internal widget
     m_widget = new MainWidget( parentWidget );
@@ -63,7 +67,7 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, QObject *parent, const QS
     // create our actions
     KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
     KStandardAction::preferences( this, SLOT( optionsConfigure() ), actionCollection() );
-    connect( htmlpart->view(), SIGNAL( onUrl( const QString& ) ), this, SIGNAL( setStatusBarText( const QString& ) ) );
+    connect( htmlpart, SIGNAL( onURL( const QString& ) ), this, SIGNAL( setStatusBarText( const QString& ) ) );
     // notify the part that this is our internal widget
     setWidget( m_widget );
     // set our XML-UI resource file
@@ -228,8 +232,6 @@ bool KNfoViewerPart::openUrl( const KUrl & url )
     file.close();
     // now that we have the entire file, display it
     display();
-    // just for fun, set the status bar
-    emit setStatusBarText( url.prettyUrl() );
     emit setWindowCaption( url.prettyUrl() );
     emit addRecentFile( url );
 

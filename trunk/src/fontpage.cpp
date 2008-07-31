@@ -22,21 +22,8 @@
 FontPage::FontPage( QWidget *parent ) : QWidget( parent )
 {
     setupUi( parent );
-//     connect( fontchooser, SIGNAL( fontSelected( const QFont& ) ), this, SIGNAL( fontSelected( const QFont& ) ) );
 }
 
 FontPage::~FontPage()
 {
 }
-
-// QFont FontPage::font() const
-// {
-//     return fontchooser->font();
-// }
-// 
-// void FontPage::setFont( const QFont &font, const bool onlyFixed )
-// {
-//     fontchooser->setFont( font, onlyFixed );
-// }
-
-#include "fontpage.moc"
