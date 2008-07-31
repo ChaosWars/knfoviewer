@@ -80,12 +80,14 @@ void KNfoViewerPart::optionsConfigure()
 
     KConfigDialog *configDialog = new KConfigDialog( m_widget, "settings", KNfoViewerSettings::self() );
     QWidget *fontWidget = new QWidget();
-    new FontPage( fontWidget );
+    QHBoxLayout *fontLayout = new QHBoxLayout( fontWidget );
+    fontLayout->addWidget( new FontPage( fontWidget ) );
     configDialog->addPage( fontWidget, i18n( "Font Settings" ), "fonts" );
     QWidget *colorWidget = new QWidget();
-    new ColorPage( colorWidget );
+    QHBoxLayout *colorLayout = new QHBoxLayout( colorWidget );
+    colorLayout->addWidget( new ColorPage( colorWidget ) );
     configDialog->addPage( colorWidget, i18n( "Color Settings" ), "colorize" );
-    connect( configDialog, SIGNAL( settingsChanged( QString ) ), this, SLOT( loadSettings() ) );
+    connect( configDialog, SIGNAL( settingsChanged() ), this, SLOT( loadSettings() ) );
     configDialog->show();
 }
 

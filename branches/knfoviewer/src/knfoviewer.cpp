@@ -59,7 +59,6 @@ KNfoViewer::KNfoViewer()
         }
 
         connect( m_part, SIGNAL( addRecentFile( const KURL& ) ), this, SLOT( addRecentFile( const KURL&  ) ) );
-        connect( m_part->widget(), SIGNAL( urlMouseOver( const QString& ) ), statusBar(), SLOT( message( const QString& ) ) );
     }
     else
     {
@@ -106,7 +105,7 @@ void KNfoViewer::setupActions()
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
     recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
-    KStdAction::quit( this, SLOT( close() ), actionCollection() );
+    KStdAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }

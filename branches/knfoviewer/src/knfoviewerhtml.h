@@ -31,14 +31,10 @@ class KNfoViewerHTML : public KHTMLPart
         ~KNfoViewerHTML();
 
     protected:
-        virtual void khtmlMouseMoveEvent( khtml::MouseMoveEvent *event );
         virtual void urlSelected( const QString &url, int button, int state, const QString &_target, KParts::URLArgs args=KParts::URLArgs() );
 
     private slots:
         void selectionSlot();
-
-    signals:
-        void urlMouseOver( const QString &url );
 };
 
 #endif
