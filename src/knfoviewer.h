@@ -17,7 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
+/**
+ * @class KNfoViewer knfoviewer.h
+ */
 #ifndef _KNFOVIEWER_H_
 #define _KNFOVIEWER_H_
 
@@ -33,46 +35,38 @@ class KRecentFilesAction;
 class KNfoViewerPart;
 
 /**
+ * @brief Application Shell
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
- *
- * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3.1
+ * @version 0.3.4
  */
 class KNfoViewer : public KParts::MainWindow
 {
     Q_OBJECT
 
     public:
-    /**
-     * Default Constructor
-     */
         KNfoViewer();
-
-    /**
-     * Default Destructor
-     */
         virtual ~KNfoViewer();
 
-    /**
-     * Use this method to load whatever file/URL you have
-     */
+        /**
+         * Use this method to load whatever file/URL you have
+         */
         void load(const KURL& url);
 
     protected:
 
-    /**
-     * This method is called when it is time for the app to save its
-     * properties for session management purposes.
-     */
+        /**
+         * This method is called when it is time for the app to save its
+         * properties for session management purposes.
+         */
         void saveProperties( KConfig *config );
 
-    /**
-     * This method is called when this app is restored.  The KConfig
-     * object points to the session management config file that was saved
-     * with @ref saveProperties
-     */
+        /**
+         * This method is called when this app is restored.  The KConfig
+         * object points to the session management config file that was saved
+         * with saveProperties()
+         */
         void readProperties( KConfig *config );
 
     private slots:

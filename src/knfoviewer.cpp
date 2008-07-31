@@ -17,27 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <kkeydialog.h>
-#include <kfiledialog.h>
-#include <kconfig.h>
-#include <kurl.h>
-#include <kedittoolbar.h>
 #include <kaction.h>
-#include <kstdaction.h>
+#include <kconfig.h>
+#include <kedittoolbar.h>
+#include <kfiledialog.h>
+#include <kkeydialog.h>
 #include <klibloader.h>
+#include <klocale.h>
 #include <kmessagebox.h>
 #include <kstatusbar.h>
-#include <klocale.h>
+#include <kstdaction.h>
+#include <kurl.h>
 #include "knfoviewer.h"
 
 KNfoViewer::KNfoViewer()
     : KParts::MainWindow( 0L, "KNfoViewer" )
 {
     // set the shell's ui resource file
-    setXMLFile("knfoviewer_shell.rc");
+    //setXMLFile("knfoviewer_shell.rc");
 
     // then, setup our actions
     setupActions();
+    setupGUI( ToolBar | Keys | StatusBar );
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -47,7 +48,7 @@ KNfoViewer::KNfoViewer()
     if ( factory ){
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>( factory->create(this, "knfoviewer_part", "KParts::ReadOnlyPart" ) );
+        m_part = static_cast<KParts::ReadOnlyPart *>( factory->create(this, "knfoviewerpart", "KParts::ReadOnlyPart" ) );
 
         if( m_part ){
             // tell the KParts::MainWindow that this is indeed the main widget
@@ -104,10 +105,10 @@ void KNfoViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
+    recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
     KStdAction::quit( this, SLOT( close() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
-    recentFiles = KStdAction::openRecent( this, SLOT( openRecent( const KURL& ) ), actionCollection() );
 }
 
 void KNfoViewer::saveProperties( KConfig *config )

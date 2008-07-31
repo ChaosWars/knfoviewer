@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
-<kcfg> <kcfgfile name="knfoviewersettingsrc"/>
+<kcfg> <kcfgfile name="knfoviewerrc"/>
   <include>kglobalsettings.h</include>
   <group name="Font">
-    <entry name="font" type="Font">
+    <entry name="fontChooser" type="Font">
     <label>Font</label>
     <default>KGlobalSettings::fixedFont()</default>
     </entry>

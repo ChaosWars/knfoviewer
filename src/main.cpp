@@ -17,8 +17,8 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <kapplication.h>
 #include <kaboutdata.h>
+#include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include "knfoviewer.h"
@@ -26,7 +26,7 @@
 static const char description[] =
     I18N_NOOP( "A NFO viewer for KDE" );
 
-static const char version[] = "0.3.3";
+static const char version[] = "0.3.4";
 
 static KCmdLineOptions options[] =
 {

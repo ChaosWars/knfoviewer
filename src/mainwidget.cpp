@@ -19,13 +19,11 @@
  ***************************************************************************/
 #include "mainwidget.h"
 
-MainWidget::MainWidget(QWidget *parent, const char *name)
- : QWidget(parent, name)
+MainWidget::MainWidget( QWidget *parent )
+ : QWidget( parent )
 {
 }
 
 MainWidget::~MainWidget()
 {
 }
-
-#include "mainwidget.moc"
