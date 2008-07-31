@@ -2,7 +2,6 @@ ADD_SUBDIRECTORY( icons )
 INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_BINARY_DIR}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
-
 SET( SRC main.cpp knfoviewer.cpp )
 SET( KPART_SRC knfoviewerpart.cpp
                mainwidget.cpp
