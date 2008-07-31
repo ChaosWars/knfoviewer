@@ -37,7 +37,7 @@
 #include "knfoviewersettings.h"
 #include "mainwidget.h"
 
-KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char */*widgetName*/,
+KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, const char */*widgetName*/,
                                 QObject *parent, const char *name )
     : KParts::ReadOnlyPart( parent, name ),
       font( KGlobalSettings::fixedFont() ),
@@ -46,11 +46,11 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char */*widgetName*
       linkColor( QColor( 0, 0, 255 ) )
 {
     // we need an instance
-    setInstance( KNfoViewerPartFactory::instance() );
+    setInstance( KNFOViewerPartFactory::instance() );
     // this should be your custom internal widget
     m_widget = new MainWidget( parentWidget );
     layout = new QHBoxLayout( m_widget );
-    htmlpart = new KNfoViewerHTML( m_widget );
+    htmlpart = new KNFOViewerHTML( m_widget );
     layout->addWidget( htmlpart->view() );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -70,16 +70,16 @@ KNfoViewerPart::KNfoViewerPart( QWidget *parentWidget, const char */*widgetName*
     display();
 }
 
-KNfoViewerPart::~KNfoViewerPart()
+KNFOViewerPart::~KNFOViewerPart()
 {
 }
 
-void KNfoViewerPart::optionsConfigure()
+void KNFOViewerPart::optionsConfigure()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    KConfigDialog *configDialog = new KConfigDialog( m_widget, "settings", KNfoViewerSettings::self() );
+    KConfigDialog *configDialog = new KConfigDialog( m_widget, "settings", KNFOViewerSettings::self() );
     QWidget *fontWidget = new QWidget();
     QHBoxLayout *fontLayout = new QHBoxLayout( fontWidget );
     fontLayout->addWidget( new FontPage( fontWidget ) );
@@ -92,16 +92,16 @@ void KNfoViewerPart::optionsConfigure()
     configDialog->show();
 }
 
-void KNfoViewerPart::loadSettings()
+void KNFOViewerPart::loadSettings()
 {
-    font = KNfoViewerSettings::fontChooser();
-    backgroundColor = KNfoViewerSettings::backgroundColor();
-    textColor = KNfoViewerSettings::textColor();
-    linkColor = KNfoViewerSettings::linkColor();
+    font = KNFOViewerSettings::fontChooser();
+    backgroundColor = KNFOViewerSettings::backgroundColor();
+    textColor = KNFOViewerSettings::textColor();
+    linkColor = KNFOViewerSettings::linkColor();
     display();
 }
 
-bool KNfoViewerPart::openFile()
+bool KNFOViewerPart::openFile()
 {
     // m_file is always local so we can use QFile on it
     QFile file( m_file );
@@ -152,7 +152,7 @@ bool KNfoViewerPart::openFile()
     return true;
 }
 
-const QString KNfoViewerPart::htmlCode( const QString &text )
+const QString KNFOViewerPart::htmlCode( const QString &text )
 {
     int fontSize = font.pointSize();
     QString code;
@@ -218,14 +218,14 @@ const QString KNfoViewerPart::htmlCode( const QString &text )
     return code;
 }
 
-void KNfoViewerPart::display()
+void KNFOViewerPart::display()
 {
     htmlpart->begin();
     htmlpart->write( htmlCode( text ) );
     htmlpart->end();
 }
 
-bool KNfoViewerPart::openURL( const KURL & url )
+bool KNFOViewerPart::openURL( const KURL & url )
 {
     emit setWindowCaption( url.prettyURL() );
     emit addRecentFile( url );
@@ -233,7 +233,7 @@ bool KNfoViewerPart::openURL( const KURL & url )
     return openFile();
 }
 
-void KNfoViewerPart::fileOpen()
+void KNFOViewerPart::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
@@ -250,15 +250,15 @@ void KNfoViewerPart::fileOpen()
 #include <kaboutdata.h>
 #include <klocale.h>
 
-    KInstance*  KNfoViewerPartFactory::s_instance = 0L;
-    KAboutData* KNfoViewerPartFactory::s_about = 0L;
+    KInstance*  KNFOViewerPartFactory::s_instance = 0L;
+    KAboutData* KNFOViewerPartFactory::s_about = 0L;
 
-    KNfoViewerPartFactory::KNfoViewerPartFactory()
+    KNFOViewerPartFactory::KNFOViewerPartFactory()
         : KParts::Factory()
 {
 }
 
-KNfoViewerPartFactory::~KNfoViewerPartFactory()
+KNFOViewerPartFactory::~KNFOViewerPartFactory()
 {
     delete s_instance;
     delete s_about;
@@ -266,20 +266,20 @@ KNfoViewerPartFactory::~KNfoViewerPartFactory()
     s_instance = 0L;
 }
 
-KParts::Part* KNfoViewerPartFactory::createPartObject( QWidget *parentWidget, const char *widgetName,
+KParts::Part* KNFOViewerPartFactory::createPartObject( QWidget *parentWidget, const char *widgetName,
                                                        QObject *parent, const char *name,
                                                        const char */*classname*/, const QStringList &/*args*/ )
 {
     // Create an instance of our Part
-    KNfoViewerPart* obj = new KNfoViewerPart( parentWidget, widgetName, parent, name );
+    KNFOViewerPart* obj = new KNFOViewerPart( parentWidget, widgetName, parent, name );
     return obj;
 }
 
-KInstance* KNfoViewerPartFactory::instance()
+KInstance* KNFOViewerPartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNfoViewer"), "0.3.4");
+        s_about = new KAboutData("knfoviewer", I18N_NOOP("KNFOViewer"), "0.3.4");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }
@@ -291,7 +291,7 @@ extern "C"
     void* init_libknfoviewerpart()
     {
         KGlobal::locale()->insertCatalogue("knfoviewer");
-        return new KNfoViewerPartFactory;
+        return new KNFOViewerPartFactory;
     }
 };
 

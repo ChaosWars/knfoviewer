@@ -36,7 +36,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about( "knfoviewer", I18N_NOOP("KNfoViewer"), version, description,
+    KAboutData about( "knfoviewer", I18N_NOOP("KNFOViewer"), version, description,
                       KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://knfoviewer.googlecode.com" );
     about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
     KCmdLineArgs::init( argc, argv, &about );
@@ -45,19 +45,19 @@ int main(int argc, char **argv)
 
     // see if we are starting with session management
     if ( app.isRestored() ){
-        RESTORE( KNfoViewer );
+        RESTORE( KNFOViewer );
     }else{
         // no session.. just start up normally
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
         if ( args->count() == 0 ){
-            KNfoViewer *widget = new KNfoViewer();
+            KNFOViewer *widget = new KNFOViewer();
             widget->show();
         }else{
 
             for (int i = 0; i < args->count(); i++ )
             {
-                KNfoViewer *widget = new KNfoViewer();
+                KNFOViewer *widget = new KNFOViewer();
                 widget->show();
                 widget->load( args->url( i ) );
             }

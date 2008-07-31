@@ -30,8 +30,8 @@
 #include <kurl.h>
 #include "knfoviewer.h"
 
-KNfoViewer::KNfoViewer()
-    : KParts::MainWindow( 0L, "KNfoViewer" )
+KNFOViewer::KNFOViewer()
+    : KParts::MainWindow( 0L, "KNFOViewer" )
 {
     // set the shell's ui resource file
     //setXMLFile("knfoviewer_shell.rc");
@@ -80,27 +80,27 @@ KNfoViewer::KNfoViewer()
     setAutoSaveSettings();
 }
 
-KNfoViewer::~KNfoViewer()
+KNFOViewer::~KNFOViewer()
 {
     saveProperties( config );
 }
 
-void KNfoViewer::load( const KURL& url )
+void KNFOViewer::load( const KURL& url )
 {
     m_part->openURL( url );
 }
 
-void KNfoViewer::addRecentFile( const KURL &url )
+void KNFOViewer::addRecentFile( const KURL &url )
 {
     recentFiles->addURL( url );
 }
 
-void KNfoViewer::openRecent( const KURL &url )
+void KNFOViewer::openRecent( const KURL &url )
 {
     m_part->openURL( url );
 }
 
-void KNfoViewer::setupActions()
+void KNFOViewer::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
@@ -110,7 +110,7 @@ void KNfoViewer::setupActions()
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }
 
-void KNfoViewer::saveProperties( KConfig *config )
+void KNFOViewer::saveProperties( KConfig *config )
 {
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
@@ -119,7 +119,7 @@ void KNfoViewer::saveProperties( KConfig *config )
     recentFiles->saveEntries( config );
 }
 
-void KNfoViewer::readProperties( KConfig *config )
+void KNFOViewer::readProperties( KConfig *config )
 {
     // the 'config' object points to the session managed
     // config file.  this function is automatically called whenever
@@ -129,12 +129,12 @@ void KNfoViewer::readProperties( KConfig *config )
     recentFiles->loadEntries( config );
 }
 
-void KNfoViewer::optionsConfigureKeys()
+void KNFOViewer::optionsConfigureKeys()
 {
     KKeyDialog::configure( actionCollection() );
 }
 
-void KNfoViewer::optionsConfigureToolbars()
+void KNFOViewer::optionsConfigureToolbars()
 {
 #if defined(KDE_MAKE_VERSION)
 # if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
@@ -152,7 +152,7 @@ void KNfoViewer::optionsConfigureToolbars()
     dlg.exec();
 }
 
-void KNfoViewer::applyNewToolbarConfig()
+void KNFOViewer::applyNewToolbarConfig()
 {
 #if defined(KDE_MAKE_VERSION)
 # if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
