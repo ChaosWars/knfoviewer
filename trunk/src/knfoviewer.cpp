@@ -42,7 +42,6 @@ KNFOViewer::KNFOViewer()
     if( !factory ){
         KMessageBox::error( this, i18n( "Error loading plugin: %1", loader.errorString() ) );
     }else{
-
         m_part = factory->create< KParts::ReadOnlyPart >();
 
         if ( !m_part ) {
@@ -57,21 +56,16 @@ KNFOViewer::KNFOViewer()
 
         // tell the KParts::MainWindow that this is indeed the main widget
         setCentralWidget( m_part->widget() );
-
         // and integrate the part's GUI with the shell's
         createGUI( m_part );
-
         connect( m_part, SIGNAL( addRecentFile( const KUrl& ) ), this, SLOT( addRecentFile( const KUrl&  ) ) );
-
         config = KGlobal::config();
         readProperties( KConfigGroup( config, "RecentFiles" ) );
         // apply the saved mainwindow settings, if any, and ask the mainwindow
         // to automatically save settings if changed: window size, toolbar
         // position, icon size, etc.
         setAutoSaveSettings();
-
     }
-
 }
 
 KNFOViewer::~KNFOViewer()
