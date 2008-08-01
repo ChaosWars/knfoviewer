@@ -27,7 +27,7 @@
 class KAction;
 class KAboutData;
 class KNFOViewerHTML;
-class QHBoxLayout;
+// class QHBoxLayout;
 class MainWidget;
 
 
@@ -77,7 +77,7 @@ class KNFOViewerPart : public KParts::ReadOnlyPart
         KSharedConfigPtr config;
         MainWidget *m_widget;
         KNFOViewerHTML *htmlpart;
-        QHBoxLayout *layout;
+//         QHBoxLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
         void display();

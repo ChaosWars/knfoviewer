@@ -31,7 +31,7 @@
 #include <KDE/KParts/GenericFactory>
 #include <QFile>
 #include <QRegExp>
-#include <QHBoxLayout>
+#include <QVBoxLayout>
 #include "colorpage.h"
 #include "cp437codec.h"
 #include "fontpage.h"
@@ -53,10 +53,11 @@ KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, QObject *parent, const QS
       linkColor( QColor( 0, 0, 255 ) )
 {
     // this should be your custom internal widget
-    m_widget = new MainWidget( parentWidget );
-    layout = new QHBoxLayout( m_widget );
+    QWidget *m_widget = new QWidget( parentWidget );
+    QVBoxLayout *layout = new QVBoxLayout( m_widget );
     htmlpart = new KNFOViewerHTML();
     layout->addWidget( htmlpart->view() );
+    m_widget->setLayout( layout );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
     htmlpart->setJavaEnabled(false);
