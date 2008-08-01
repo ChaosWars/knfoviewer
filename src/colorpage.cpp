@@ -22,9 +22,6 @@
 ColorPage::ColorPage( QWidget *parent ) : QWidget( parent )
 {
     setupUi( parent );
-    kcfg_backgroundColor->showEmptyList();
-    kcfg_textColor->showEmptyList();
-    kcfg_linkColor->showEmptyList();
 }
 
 ColorPage::~ColorPage()
