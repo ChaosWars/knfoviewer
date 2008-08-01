@@ -20,7 +20,6 @@
 #ifndef _FONTPAGE4_H_
 #define _FONTPAGE4_H_
 
-#include <QFont>
 #include "ui_fontpage.h"
 
 class FontPage : public QWidget, public Ui::FontPage

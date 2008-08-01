@@ -20,8 +20,6 @@
 #ifndef _COLORPAGE_H_
 #define _COLORPAGE_H_
 
-#include <KDE/KColorCombo>
-#include <QColor>
 #include "ui_colorpage.h"
 
 class ColorPage : public QWidget, public Ui::ColorPage
