@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>177</width>
-            <height>222</height>
+            <width>238</width>
+            <height>153</height>
         </rect>
     </property>
     <property name="caption">
@@ -32,15 +32,23 @@
                 </property>
                 <widget class="QLayoutWidget">
                     <property name="name">
-                        <cstring>layout1</cstring>
+                        <cstring>layout4</cstring>
                     </property>
-                    <vbox>
+                    <hbox>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
                         <widget class="QLabel">
                             <property name="name">
                                 <cstring>backgroundColorLabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
                             </property>
                             <property name="frameShape">
                                 <enum>NoFrame</enum>
@@ -55,24 +63,35 @@
                                 <cstring>kColorCombo1</cstring>
                             </property>
                         </widget>
-                        <widget class="KColorCombo">
+                        <widget class="KColorButton">
                             <property name="name">
                                 <cstring>kcfg_backgroundColor</cstring>
                             </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
                         </widget>
-                    </vbox>
+                    </hbox>
                 </widget>
                 <widget class="QLayoutWidget">
                     <property name="name">
-                        <cstring>layout2</cstring>
+                        <cstring>layout5</cstring>
                     </property>
-                    <vbox>
+                    <hbox>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
                         <widget class="QLabel">
                             <property name="name">
                                 <cstring>textColorLabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
                             </property>
                             <property name="text">
                                 <string>Text Color</string>
@@ -81,24 +100,32 @@
                                 <cstring>kColorCombo2</cstring>
                             </property>
                         </widget>
-                        <widget class="KColorCombo">
+                        <widget class="KColorButton">
                             <property name="name">
                                 <cstring>kcfg_textColor</cstring>
                             </property>
                         </widget>
-                    </vbox>
+                    </hbox>
                 </widget>
                 <widget class="QLayoutWidget">
                     <property name="name">
-                        <cstring>layout3</cstring>
+                        <cstring>layout6</cstring>
                     </property>
-                    <vbox>
+                    <hbox>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
                         <widget class="QLabel">
                             <property name="name">
                                 <cstring>linkColorLabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
                             </property>
                             <property name="text">
                                 <string>Link Color</string>
@@ -107,12 +134,15 @@
                                 <cstring>kColorCombo3</cstring>
                             </property>
                         </widget>
-                        <widget class="KColorCombo">
+                        <widget class="KColorButton">
                             <property name="name">
                                 <cstring>kcfg_linkColor</cstring>
                             </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
                         </widget>
-                    </vbox>
+                    </hbox>
                 </widget>
             </vbox>
         </widget>
@@ -137,8 +167,8 @@
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>kcolorcombo.h</includehint>
-    <includehint>kcolorcombo.h</includehint>
-    <includehint>kcolorcombo.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
 </includehints>
 </UI>
