@@ -36,9 +36,9 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about( "knfoviewer", I18N_NOOP("KNFOViewer"), version, description,
-                      KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://knfoviewer.googlecode.com" );
-    about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
+    KAboutData about( "knfoviewer", I18N_NOOP("KNFOViewer"), version, description, KAboutData::License_GPL,
+                      "(C) 2007-2008 Lawrence Lee", 0, "http://knfoviewer.googlecode.com", "http://code.google.com/p/knfoviewer/issues/list" );
+    about.addAuthor( "Lawrence Lee", 0, "valheru.ashen.shugar@gmail.com" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;
