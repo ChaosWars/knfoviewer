@@ -27,7 +27,6 @@
 
 class KNFOViewerHTML;
 class QHBoxLayout;
-class MainWidget;
 
 /**
  * @brief Main Part
@@ -62,9 +61,8 @@ class KNFOViewerPart : public KParts::ReadOnlyPart
         QColor backgroundColor;
         QColor textColor;
         QColor linkColor;
-        MainWidget *m_widget;
+        QWidget *m_widget;
         KNFOViewerHTML *htmlpart;
-        QHBoxLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
         void display();
