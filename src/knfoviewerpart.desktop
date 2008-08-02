@@ -1,8 +1,8 @@
 [Desktop Entry]
 Icon=knfoviewer
 InitialPreference=8
-MimeType=application/x-nfo;
+MimeType=text/x-nfo;
 Name=KNFOViewer
 Type=Service
 X-KDE-Library=knfoviewerpart
-X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View;
+X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View

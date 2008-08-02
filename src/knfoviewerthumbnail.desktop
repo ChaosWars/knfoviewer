@@ -1,10 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
-Type=Service
-Name=NFO File
-GeneralName=NFO File
-Comment=NFO File
-ServiceTypes=ThumbCreator
-MimeTypes=text/x-nfo
-X-KDE-Library=knfoviewerthumbnail
 CacheThumbnail=true
+Encoding=UTF-8
+MimeTypes=text/x-nfo;
+Name=NFO File
+Type=Service
+X-KDE-Library=knfoviewerthumbnail
+X-KDE-ServiceTypes=ThumbCreator
