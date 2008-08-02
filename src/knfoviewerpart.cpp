@@ -286,7 +286,7 @@ KInstance* KNFOViewerPartFactory::instance()
 
 extern "C"
 {
-    void* init_libknfoviewerpart()
+    void* init_knfoviewerpart()
     {
         KGlobal::locale()->insertCatalogue("knfoviewer");
         return new KNFOViewerPartFactory;
