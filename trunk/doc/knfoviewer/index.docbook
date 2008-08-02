@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
-  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru.ashen.shugar@gmail.com</email>">
   <!ENTITY homepage "<ulink url='http://knfoviewer.googlecode.com'>http://knfoviewer.googlecode.com</ulink>">
   <!ENTITY knfoviewer "<application>KNFOViewer</application>">
   <!ENTITY kappname "&knfoviewer;">
@@ -21,13 +21,13 @@
 </authorgroup>
 
 <copyright>
-<year>2007</year>
+<year>2007-2008</year>
 <holder>&Lawrence.C.Lee;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2008-07-31</date>
+<date>2008-08-01</date>
 
 <releaseinfo>0.04.00</releaseinfo>
 
@@ -219,11 +219,11 @@ This enables the viewing of ASCII graphics.
 </para>
 
 <para>
-Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+Program copyright 2007-2008 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <para>
-Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+Documentation Copyright &copy; 2007-2008 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 &underFDL;
