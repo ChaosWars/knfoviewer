@@ -35,7 +35,6 @@
 #include "colorpage.h"
 #include "cp437codec.h"
 #include "fontpage.h"
-#include "mainwidget.h"
 #include "knfoviewerhtml.h"
 #include "knfoviewerpart.h"
 #include "knfoviewersettings.h"
