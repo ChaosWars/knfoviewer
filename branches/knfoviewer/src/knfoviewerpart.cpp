@@ -34,7 +34,6 @@
 #include "knfoviewerhtml.h"
 #include "knfoviewerpart.h"
 #include "knfoviewersettings.h"
-#include "mainwidget.h"
 
 KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, const char */*widgetName*/,
                                 QObject *parent, const char *name )
@@ -47,8 +46,8 @@ KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, const char */*widgetName*
     // we need an instance
     setInstance( KNFOViewerPartFactory::instance() );
     // this should be your custom internal widget
-    m_widget = new MainWidget( parentWidget );
-    layout = new QHBoxLayout( m_widget );
+    m_widget = new QWidget( parentWidget );
+    QVBoxLayout *layout = new QVBoxLayout( m_widget );
     htmlpart = new KNFOViewerHTML( m_widget );
     layout->addWidget( htmlpart->view() );
     htmlpart->setZoomFactor( 100 );

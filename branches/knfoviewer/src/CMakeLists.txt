@@ -10,7 +10,6 @@ ENDIF( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
 
 SET( SRC main.cpp knfoviewer.cpp )
 SET( KPART_SRC knfoviewerpart.cpp
-               mainwidget.cpp
                knfoviewerhtml.cpp
                cp437codec.cpp )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
