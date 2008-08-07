@@ -41,6 +41,7 @@ int main(int argc, char **argv)
     about.addAuthor( "Lawrence Lee", 0, "valheru.ashen.shugar@gmail.com" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
+    KCmdLineArgs::addTempFileOption();
     KApplication app;
 
     // see if we are starting with session management
