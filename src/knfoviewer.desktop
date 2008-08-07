@@ -12,3 +12,4 @@ Name=KNFOViewer
 StartupNotify=true
 Terminal=false
 Type=Application
+X-KDE-HasTempFileOption=true
