@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>225</width>
+    <width>229</width>
     <height>149</height>
    </rect>
   </property>
@@ -24,18 +24,40 @@
         <item>
          <widget class="QLabel" name="backgroundColorLabel" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="minimumSize" >
+           <size>
+            <width>115</width>
+            <height>26</height>
+           </size>
+          </property>
           <property name="text" >
            <string>Background color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>kcfg_backgroundColor</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorButton" name="kcfg_backgroundColor" />
+         <widget class="KColorButton" name="kcfg_backgroundColor" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>82</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -44,18 +66,40 @@
         <item>
          <widget class="QLabel" name="textColorLabel" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="minimumSize" >
+           <size>
+            <width>115</width>
+            <height>26</height>
+           </size>
+          </property>
           <property name="text" >
            <string>Text color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>kcfg_textColor</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorButton" name="kcfg_textColor" />
+         <widget class="KColorButton" name="kcfg_textColor" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>82</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -64,18 +108,40 @@
         <item>
          <widget class="QLabel" name="linkColorLabel" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="minimumSize" >
+           <size>
+            <width>115</width>
+            <height>26</height>
+           </size>
+          </property>
           <property name="text" >
            <string>Link color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>kcfg_linkColor</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KColorButton" name="kcfg_linkColor" />
+         <widget class="KColorButton" name="kcfg_linkColor" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>82</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

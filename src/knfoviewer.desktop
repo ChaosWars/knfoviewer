@@ -1,7 +1,6 @@
 [Desktop Entry]
 Categories=Qt;KDE;Utility;TextEditor;
 Comment=A NFO viewer for KDE
-X-DocPath=knfoviewer/index.html
 Encoding=UTF-8
 Exec=knfoviewer %U
 GenericName=NFO Viewer
@@ -11,6 +10,8 @@ MimeType=text/x-nfo;
 Name=KNFOViewer
 Terminal=false
 Type=Application
-X-KDE-StartupNotify=true
 X-DBUS-StartupType=Multi
 X-DBUS-ServiceName=com.googlecode.knfoviewer
+X-DocPath=knfoviewer/index.html
+X-KDE-HasTempFileOption=true
+X-KDE-StartupNotify=true
