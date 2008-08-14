@@ -140,13 +140,10 @@ bool KNFOViewerPart::openFile()
     }
 
     file.close();
-
     // now that we have the entire file, display it
     display();
-
     // just for fun, set the status bar
     emit setStatusBarText( m_url.prettyURL() );
-
     return true;
 }
 
