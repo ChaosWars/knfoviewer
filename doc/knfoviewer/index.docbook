@@ -281,10 +281,10 @@ and the colors the application uses to display the NFO files.
 
 <para>
 <screenshot>
-<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Fonts</screeninfo>
+<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option General Configuration</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="configure_font.png" format="PNG"/>
+	    <imagedata fileref="configure.png" format="PNG"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -295,24 +295,7 @@ and the colors the application uses to display the NFO files.
 
 <para>
 You can configure the font that &knfoviewer; uses to render the NFO's. Only fixed type fonts are shown.
-</para>
-
-<para>
-<screenshot>
-<screeninfo>Here's a screenshot of &knfoviewer;'s settings dialog option Configure Colors</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="configure_colors.png" format="PNG"/>
-	  </imageobject>
-	  <textobject>
-	    <phrase>Screenshot</phrase>
-	  </textobject>
-	</mediaobject>
-</screenshot>
-</para>
-
-<para>
-You can configure the colors that &knfoviewer; uses to render the NFO's.
+You can also configure the colors that &knfoviewer; uses to render the NFO's.
 You can configure the colors used for:
 
 <itemizedlist>
