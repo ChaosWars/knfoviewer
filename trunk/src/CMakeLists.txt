@@ -3,12 +3,14 @@ INCLUDE_DIRECTORIES(${KDE4_INCLUDES}
                     ${CMAKE_CURRENT_BINARY_DIR}
                     ${CMAKE_CURRENT_SOURCE_DIR} )
 SET( SRC main.cpp knfoviewer.cpp )
-SET( KPART_SRC knfoviewerpart.cpp
+SET( KPART_SRC cp437codec.cpp
+               knfoviewerhtml.cpp
+               knfoviewerpart.cpp
+               settingspage.cpp
                fontpage.cpp
                colorpage.cpp
-               knfoviewerhtml.cpp
-               cp437codec.cpp )
-SET( KPART_UI_SRC colorpage.ui fontpage.ui )
+                )
+SET( KPART_UI_SRC settingspage.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )
 KDE4_ADD_KCFG_FILES( KPART_SRC knfoviewersettings.kcfgc )
@@ -20,7 +22,7 @@ KDE4_ADD_PLUGIN( knfoviewerthumbnail ${THUMBNAIL_SRC} )
 TARGET_LINK_LIBRARIES( knfoviewerpart ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
 TARGET_LINK_LIBRARIES( knfoviewerthumbnail ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
 TARGET_LINK_LIBRARIES( knfoviewer ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} )
-INSTALL(TARGETS knfoviewer knfoviewerpart knfoviewerthumbnail
+INSTALL(TARGETS knfoviewer knfoviewerpart
         RUNTIME DESTINATION ${KDE4_BIN_INSTALL_DIR}
         LIBRARY DESTINATION ${PLUGIN_INSTALL_DIR}
         ARCHIVE DESTINATION ${PLUGIN_INSTALL_DIR} )

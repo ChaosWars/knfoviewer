@@ -3,19 +3,19 @@
 <kcfg> <kcfgfile name="knfoviewerrc"/>
   <include>KGlobalSettings</include>
   <group name="Font">
-    <entry name="fontChooser" type="Font">
-    <label>Font</label>
-    <default>KGlobalSettings::fixedFont()</default>
+    <entry name="fontRequester" type="Font">
+        <label>Font</label>
+        <default>KGlobalSettings::fixedFont()</default>
     </entry>
   </group>
   <group name="Colors">
     <entry name="backgroundColor" type="Color">
-    <label>Background color</label>
-    <default>0,0,0</default>
+        <label>Background color</label>
+        <default>0,0,0</default>
     </entry>
     <entry name="textColor" type="Color">
-    <label>Text color</label>
-    <default>128,128,128</default>
+        <label>Text color</label>
+        <default>128,128,128</default>
     </entry>
     <entry name="linkColor" type="Color">
     <label>Link color</label>

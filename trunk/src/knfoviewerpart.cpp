@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
 #include <KDE/KAboutData>
 #include <KDE/KAction>
 #include <KDE/KActionCollection>
@@ -27,17 +28,19 @@
 #include <KDE/KIcon>
 #include <KDE/KLocale>
 #include <KDE/KStandardAction>
+// #include <KDE/KTextBrowser>
 #include <KDE/KIO/NetAccess>
 #include <KDE/KParts/GenericFactory>
 #include <QFile>
 #include <QRegExp>
 #include <QVBoxLayout>
-#include "colorpage.h"
+// #include "colorpage.h"
 #include "cp437codec.h"
-#include "fontpage.h"
+// #include "fontpage.h"
 #include "knfoviewerhtml.h"
 #include "knfoviewerpart.h"
 #include "knfoviewersettings.h"
+#include "settingspage.h"
 
 //Factory Code
 typedef KParts::GenericFactory<KNFOViewerPart> KNFOViewerPartFactory;
@@ -52,10 +55,13 @@ KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, QObject *parent, const QS
       linkColor( QColor( 0, 0, 255 ) )
 {
     // this should be your custom internal widget
-    QWidget *m_widget = new QWidget( parentWidget );
+    m_widget = new QWidget( parentWidget );
     QVBoxLayout *layout = new QVBoxLayout( m_widget );
+//     browser = new KTextBrowser( m_widget );
+//     browser->setLineWrapMode( QTextEdit::NoWrap );
     htmlpart = new KNFOViewerHTML();
     layout->addWidget( htmlpart->view() );
+//     layout->addWidget( browser );
     m_widget->setLayout( layout );
     htmlpart->setZoomFactor( 100 );
     htmlpart->setJScriptEnabled(false);
@@ -66,7 +72,7 @@ KNFOViewerPart::KNFOViewerPart( QWidget *parentWidget, QObject *parent, const QS
     // create our actions
     KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
     KStandardAction::preferences( this, SLOT( optionsConfigure() ), actionCollection() );
-    connect( htmlpart, SIGNAL( onURL( const QString& ) ), this, SIGNAL( setStatusBarText( const QString& ) ) );
+//     connect( htmlpart, SIGNAL( onURL( const QString& ) ), this, SIGNAL( setStatusBarText( const QString& ) ) );
     // notify the part that this is our internal widget
     setWidget( m_widget );
     // set our XML-UI resource file
@@ -89,20 +95,23 @@ void KNFOViewerPart::optionsConfigure()
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    KConfigDialog *configDialog = new KConfigDialog( htmlpart->view()->widget(), "settings", KNFOViewerSettings::self() );
-    QWidget *fontWidget = new QWidget();
-    new FontPage( fontWidget );
-    configDialog->addPage( fontWidget, i18n( "Font Settings" ), "preferences-desktop-font" );
-    QWidget *colorWidget = new QWidget();
-    new ColorPage( colorWidget );
-    configDialog->addPage( colorWidget, i18n( "Color Settings" ), "preferences-desktop-color" );
+    KConfigDialog *configDialog = new KConfigDialog( m_widget, "settings", KNFOViewerSettings::self() );
+    QWidget *settingsWidget = new QWidget();
+    SettingsPage *settingsPage = new SettingsPage( settingsWidget );
+    configDialog->addPage( settingsWidget, i18n( "General Settings" ), "preferences-desktop" );
+//     QWidget *fontWidget = new QWidget();
+//     new FontPage( fontWidget );
+//     configDialog->addPage( fontWidget, i18n( "Font Settings" ), "preferences-desktop-font" );
+//     QWidget *colorWidget = new QWidget();
+//     new ColorPage( colorWidget );
+//     configDialog->addPage( colorWidget, i18n( "Color Settings" ), "preferences-desktop-color" );
     connect( configDialog, SIGNAL( settingsChanged( QString ) ), this, SLOT( loadSettings() ) );
     configDialog->show();
 }
 
 void KNFOViewerPart::loadSettings()
 {
-    font = KNFOViewerSettings::fontChooser();
+    font = KNFOViewerSettings::fontRequester();
     backgroundColor = KNFOViewerSettings::backgroundColor();
     textColor = KNFOViewerSettings::textColor();
     linkColor = KNFOViewerSettings::linkColor();
@@ -182,6 +191,7 @@ const QString KNFOViewerPart::htmlCode( const QString &text )
 
 void KNFOViewerPart::display()
 {
+//     browser->setHtml( htmlCode( text ) );
     htmlpart->begin();
     htmlpart->write( htmlCode( text ) );
     htmlpart->end();
