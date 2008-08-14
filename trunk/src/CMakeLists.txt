@@ -7,8 +7,8 @@ SET( KPART_SRC cp437codec.cpp
                knfoviewerhtml.cpp
                knfoviewerpart.cpp
                settingspage.cpp
-               fontpage.cpp
-               colorpage.cpp
+#                fontpage.cpp
+#                colorpage.cpp
                 )
 SET( KPART_UI_SRC settingspage.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
