@@ -26,9 +26,8 @@
 
 class KAction;
 class KAboutData;
+// class KTextBrowser;
 class KNFOViewerHTML;
-// class QHBoxLayout;
-class MainWidget;
 
 
 /**
@@ -70,14 +69,15 @@ class KNFOViewerPart : public KParts::ReadOnlyPart
     private:
         QFont font;
         QString text;
+        QString stylesheet;
         QColor backgroundColor;
         QColor textColor;
         QColor linkColor;
         KAction *configureAction;
         KSharedConfigPtr config;
-        MainWidget *m_widget;
+        QWidget *m_widget;
+//         KTextBrowser *browser;
         KNFOViewerHTML *htmlpart;
-//         QHBoxLayout *layout;
         void setupMainWidget();
         const QString htmlCode( const QString &text );
         void display();
