@@ -1,4 +1,4 @@
 File=knfoviewersettings.kcfg
 ClassName=KNFOViewerSettings
 Singleton=true
-Mutators=fontChooser, backgroundColor, textColor, linkColor
+Mutators=fontChooser,backgroundColor,textColor,linkColor
