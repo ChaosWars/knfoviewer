@@ -7,9 +7,8 @@ SET( KPART_SRC cp437codec.cpp
                knfoviewerhtml.cpp
                knfoviewerpart.cpp
                settingspage.cpp
-#                fontpage.cpp
-#                colorpage.cpp
-                )
+               fontrequester.cpp
+   )
 SET( KPART_UI_SRC settingspage.ui )
 SET( THUMBNAIL_SRC knfoviewerthumbnail.cpp cp437codec.cpp )
 KDE4_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )

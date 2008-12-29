@@ -25,7 +25,7 @@
 #include "ui_settingspage.h"
 
 /**
- * @author
+ * @author Lawrence Lee <valheru@facticius.net>
  */
 class SettingsPage : public QWidget, public Ui::SettingsPage
 {

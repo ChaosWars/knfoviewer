@@ -17,16 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef _FONTPAGE4_H_
-#define _FONTPAGE4_H_
+#include "fontrequester.h"
 
-#include "ui_fontpage.h"
-
-class FontPage : public QWidget, public Ui::FontPage
+FontRequester::FontRequester(QWidget *parent, bool onlyFixed)
+ : KFontRequester(parent, onlyFixed)
 {
-    public:
-        FontPage( QWidget *parent );
-        ~FontPage();
-};
+}
 
-#endif
+
+FontRequester::~FontRequester()
+{
+}
+
+
