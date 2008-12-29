@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>248</width>
+    <width>354</width>
     <height>228</height>
    </rect>
   </property>
@@ -20,7 +20,17 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2" >
       <item>
-       <widget class="KFontRequester" name="kcfg_fontRequester" />
+       <widget class="FontRequester" name="kcfg_fontRequester" >
+        <property name="font" >
+         <font>
+          <family>Bitstream Vera Sans Mono</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -182,9 +192,9 @@
    <header>kcolorbutton.h</header>
   </customwidget>
   <customwidget>
-   <class>KFontRequester</class>
-   <extends>QWidget</extends>
-   <header>kfontrequester.h</header>
+   <class>FontRequester</class>
+   <extends>KFontRequester</extends>
+   <header>fontrequester.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -17,16 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef _COLORPAGE_H_
-#define _COLORPAGE_H_
+#ifndef FONTREQUESTER_H
+#define FONTREQUESTER_H
 
-#include "ui_colorpage.h"
+#include <KDE/KFontRequester>
 
-class ColorPage : public QWidget, public Ui::ColorPage
+/**
+ * @author Lawrence Lee <valheru@facticius.net>
+ */
+class FontRequester : public KFontRequester
 {
+    Q_OBJECT
+
     public:
-        ColorPage( QWidget *parent );
-        ~ColorPage();
+        FontRequester(QWidget *parent = 0, bool onlyFixed = true);
+        ~FontRequester();
+
 };
 
 #endif
