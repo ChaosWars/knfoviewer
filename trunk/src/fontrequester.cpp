@@ -19,8 +19,8 @@
  ***************************************************************************/
 #include "fontrequester.h"
 
-FontRequester::FontRequester(QWidget *parent, bool onlyFixed)
- : KFontRequester(parent, onlyFixed)
+FontRequester::FontRequester(QWidget *parent)
+ : KFontRequester(parent, true)
 {
 }
 

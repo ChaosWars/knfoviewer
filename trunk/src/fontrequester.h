@@ -30,7 +30,7 @@ class FontRequester : public KFontRequester
     Q_OBJECT
 
     public:
-        FontRequester(QWidget *parent = 0, bool onlyFixed = true);
+        FontRequester(QWidget *parent = 0);
         ~FontRequester();
 
 };
