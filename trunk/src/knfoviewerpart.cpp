@@ -87,7 +87,7 @@ KNFOViewerPart::~KNFOViewerPart()
 
 KAboutData* KNFOViewerPart::createAboutData()
 {
-    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNFOViewer" ), "0.4" );
+    return new KAboutData( "knfoviewerpart", 0, ki18n( "KNFOViewer" ), "0.4.1" );
 }
 
 void KNFOViewerPart::optionsConfigure()
