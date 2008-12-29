@@ -40,7 +40,7 @@ class KRecentFilesAction;
  * statusbar but relies on the "Part" to do all the real work.
  *
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.4.0
+ * @version 0.4.1
  */
 class KNFOViewer : public KParts::MainWindow
 {
